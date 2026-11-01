@@ -66,9 +66,9 @@
   }
 
   var CSS =
-    "#pn-cookie{position:fixed;left:0;right:0;bottom:0;z-index:2147483000;padding:12px 12px calc(12px + env(safe-area-inset-bottom,0px));font:400 15px/1.5 'DM Sans',system-ui,sans-serif;color:#1A1033;color-scheme:light}" +
+    "#pn-cookie{position:fixed;left:0;right:0;bottom:0;z-index:2147483000;padding:12px 12px calc(12px + env(safe-area-inset-bottom,0px));font:400 15px/1.5 'DM Sans',system-ui,sans-serif;color:#1A1033;color-scheme:light;pointer-events:none}" +
     "#pn-cookie[hidden]{display:none}" +
-    ".pnc-box{max-width:760px;margin:0 auto;background:#fff;border:2px solid #5B21E6;border-radius:18px;padding:18px 20px;box-shadow:0 8px 30px rgba(26,16,51,.25)}" +
+    ".pnc-box{pointer-events:auto;max-width:760px;margin:0 auto;background:#fff;border:2px solid #5B21E6;border-radius:18px;padding:18px 20px;box-shadow:0 8px 30px rgba(26,16,51,.25)}" +
     ".pnc-box h2{margin:0 0 6px;font:700 20px/1.2 Outfit,system-ui,sans-serif;color:#1A1033}" +
     ".pnc-box p{margin:0 0 12px}.pnc-box a{color:#5B21E6}" +
     ".pnc-row{display:flex;flex-wrap:wrap;gap:10px}" +
