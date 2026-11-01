@@ -104,7 +104,7 @@
 
   var ALLOWED = {
     "/privacy.html": 1, "/cookies.html": 1, "/free-website-terms.html": 1, "/#contact": 1, "/#services": 1, "/#quotes": 1, "/#why": 1,
-    "mailto:jedarlington@live.co.uk": 1
+    "mailto:james@pixel-north.co.uk": 1
   };
 
   // Show a reply as text, turning [label](url) into links, but only for approved urls.

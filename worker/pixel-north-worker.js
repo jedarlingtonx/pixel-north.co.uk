@@ -14,7 +14,7 @@ const ALLOWED_HOSTS = [/^pixel-north\.co\.uk$/, /^www\.pixel-north\.co\.uk$/, /^
 // Hand-written notes. Only used as a backup if the live pages cannot be read.
 const FALLBACK_KNOWLEDGE = `
 ABOUT PIXEL NORTH
-Pixel North is a one-person web design business run by James, a freelance web designer based in Northwich, Cheshire. James meets clients in person across Cheshire, and works with small businesses anywhere in the UK. Tagline: "Small business sites, sorted". Website: pixel-north.co.uk. Email: jedarlington@live.co.uk. Pixel North is run by Pixel North Limited, registered in England and Wales.
+Pixel North is a one-person web design business run by James, a freelance web designer based in Northwich, Cheshire. James meets clients in person across Cheshire, and works with small businesses anywhere in the UK. Tagline: "Small business sites, sorted". Website: pixel-north.co.uk. Email: james@pixel-north.co.uk. Pixel North is run by Pixel North Limited, registered in England and Wales.
 James helps small businesses build an online presence, creating greater customer reach, visibility and trust.
 
 WHY A MODERN WEBSITE MATTERS (sources are named)
@@ -45,7 +45,7 @@ HOW QUOTES WORK
 3. Start when you're ready: no pressure. If it looks right, work begins. If not, you've lost nothing.
 
 PRIVACY AND COOKIES (summary of the privacy notice at /privacy.html and cookie policy at /cookies.html)
-- The site is run by Pixel North Limited (company number 16490976). Contact: jedarlington@live.co.uk.
+- The site is run by Pixel North Limited (company number 16490976). Contact: james@pixel-north.co.uk.
 - The pages themselves don't store personal data. Google Analytics cookies are used only if the visitor accepts them. Rejecting is as easy as accepting, and the site works the same either way. The visitor can change their choice any time via "Cookie settings" in the footer. One essential cookie, pn_consent, remembers the choice for 12 months.
 - Contact form details (name, email, business name, current website if given, what's needed, and the message) go through Forminit, which emails them to James. They are used only to reply to the enquiry and prepare a quotation. Enquiries from people who don't become clients are kept for up to 12 months, then deleted. Details are never sold or used for unrelated marketing.
 - The chat assistant is automated. Typed questions are sent to Cloudflare's AI service to write a reply. Visitors should not put personal or sensitive details in the chat. James does not keep a record of what is typed, and the chat does not use cookies. Cloudflare may log technical information such as IP addresses.
@@ -54,14 +54,14 @@ PRIVACY AND COOKIES (summary of the privacy notice at /privacy.html and cookie p
 - Rights: visitors can ask to see, correct, delete or restrict their data by emailing James. They can complain to the Information Commissioner's Office (ico.org.uk).
 
 CONTACTING JAMES
-Use the "Tell me about your business" form on the website (Get a quote button), or email jedarlington@live.co.uk. The form asks for name, email, business name, optional current website address, what you need (a brand new website, a refresh of your current site, or not sure yet) and a short message. Details are used only to reply to the enquiry. See the privacy notice at /privacy.html and cookie policy at /cookies.html.
+Use the "Tell me about your business" form on the website (Get a quote button), or email james@pixel-north.co.uk. The form asks for name, email, business name, optional current website address, what you need (a brand new website, a refresh of your current site, or not sure yet) and a short message. Details are used only to reply to the enquiry. See the privacy notice at /privacy.html and cookie policy at /cookies.html.
 `;
 
 const RULES = `You are Pixel, the friendly website assistant for Pixel North, a small web design business. You are an AI, not James. If asked your name, say you are Pixel.
 Answer only from the information below. Use plain, warm, quick UK English. Keep answers short: usually two to four sentences, no more than about 80 words. No headings or markdown tables.
 Rules:
 - Never state or guess prices, costs, discounts or fixed timescales. Prices are not published. A written quotation follows an initial consultation with James. The only timescale you may mention is "live in as little as a week".
-- If the answer is not in the information below, say you're not sure and suggest the contact form or emailing jedarlington@live.co.uk.
+- If the answer is not in the information below, say you're not sure and suggest the contact form or emailing james@pixel-north.co.uk.
 - Do not promise anything on James's behalf. Only James can agree work, quotes or dates.
 - Stay on the subject of Pixel North and its services. Politely decline anything else.
 - Say "Pixel North", "this site" or "James" rather than "our" or "we". You are an assistant, not the business.
@@ -72,13 +72,13 @@ Rules:
 - When it helps, point people to the contact form or the "Get a quote" button.
 - If someone asks about privacy, personal data, how their details are used or stored, or GDPR: answer briefly and accurately from the privacy information, then give the link to the privacy notice. If they ask about cookies, give the cookie policy link.
 - You may include links in this exact format: [label](url). Use ONLY these urls, exactly as written, and never invent others:
-  /privacy.html (privacy notice), /cookies.html (cookie policy), /faq.html (frequently asked questions), /web-design-cheshire.html (web design in Cheshire and across the UK), /free-website-terms.html (free website competition terms), /#contact (contact form), /#services (services), /#quotes (how quotes work), mailto:jedarlington@live.co.uk (email James).
+  /privacy.html (privacy notice), /cookies.html (cookie policy), /faq.html (frequently asked questions), /web-design-cheshire.html (web design in Cheshire and across the UK), /free-website-terms.html (free website competition terms), /#contact (contact form), /#services (services), /#quotes (how quotes work), mailto:james@pixel-north.co.uk (email James).
   Use at most two links per answer, and never show a raw web address.
 `;
 
 // Facts that are not written on any page, or that matter most. Always included.
 const CORE_FACTS = `
-- Pixel North is a one-person web design business run by James, a freelance web designer in Northwich, Cheshire. James meets clients in person across Cheshire, and works with small businesses anywhere in the UK. Tagline: "Small business sites, sorted". Email: jedarlington@live.co.uk. Pixel North is run by Pixel North Limited (company number 16490976), registered in England and Wales.
+- Pixel North is a one-person web design business run by James, a freelance web designer in Northwich, Cheshire. James meets clients in person across Cheshire, and works with small businesses anywhere in the UK. Tagline: "Small business sites, sorted". Email: james@pixel-north.co.uk. Pixel North is run by Pixel North Limited (company number 16490976), registered in England and Wales.
 - Seasonal and event-based themes can keep a website feeling current. The Pixel North home page has a Halloween theme at the moment.
 - The contact form asks for first and last name, email, business name, an optional current website address, what you need (a brand new website, a refresh of your current site, or not sure yet) and a short message.`;
 
@@ -173,7 +173,7 @@ function plainText(text) {
 
 const ALLOWED_LINKS = new Set([
   "/privacy.html", "/cookies.html", "/faq.html", "/web-design-cheshire.html", "/free-website-terms.html", "/#contact", "/#services", "/#quotes", "/#why",
-  "mailto:jedarlington@live.co.uk",
+  "mailto:james@pixel-north.co.uk",
 ]);
 const LINK_RE = /\[([^\]\n]{1,60})\]\(([^)\s]{1,200})\)/g;
 
