@@ -395,7 +395,7 @@ document.getElementById("f").addEventListener("submit", async function(ev){
     form.reset();
     say("Thank you, " + first + ". Your message has been sent, and I’ll reply by email.", null, null, "ok");
   } catch (e) {
-    say("Sorry, that didn’t send. Please try again, or email me at ", "mailto:" + EMAIL, EMAIL, "err");
+    say("Sorry, that didn’t send. Please try again, or email ", "mailto:" + EMAIL, EMAIL, "err");
   }
   btn.disabled = false;
   btn.textContent = label;

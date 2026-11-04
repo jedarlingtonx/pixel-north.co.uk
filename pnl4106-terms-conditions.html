@@ -320,7 +320,7 @@ var ACCESS_KEY = "82b75d31-d854-4ba0-bd19-61ff5a2dbb3c";
       codeSeen = false;
       say("Thank you, " + first + ". Your promo code has been extended and is valid for a further 3 months. We will remind you by email before the promo code expires.", null, null, "ok");
     } catch (e) {
-      say("Sorry, that didn’t send. Please try again, or email me at ", mailtoHref(), EMAIL, "err");
+      say("Sorry, that didn’t send. Please try again, or email ", mailtoHref(), EMAIL, "err");
     }
     btn.disabled = false;
     btn.textContent = label;

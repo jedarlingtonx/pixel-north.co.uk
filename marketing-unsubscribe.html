@@ -208,7 +208,7 @@ var ACCESS_KEY = "06dbbd03-ce0c-4fd4-a35c-4fa7807b0652";
       form.reset();
       say("Thank you. Your request has been received, and we’ll remove " + addr + " from our marketing emails list.", null, null, "ok");
     } catch (e) {
-      say("Sorry, that didn’t send. Please try again, or email me at ", mailtoHref(), EMAIL, "err");
+      say("Sorry, that didn’t send. Please try again, or email ", mailtoHref(), EMAIL, "err");
     }
     btn.disabled = false;
     btn.textContent = label;
