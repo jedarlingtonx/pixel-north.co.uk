@@ -47,9 +47,9 @@ HOW QUOTES WORK
 PRIVACY AND COOKIES (summary of the privacy notice at /privacy.html and cookie policy at /cookies.html)
 - The site is run by Pixel North Limited (company number 16490976). Contact: james@pixel-north.co.uk.
 - The pages themselves don't store personal data. Google Analytics cookies are used only if the visitor accepts them. Rejecting is as easy as accepting, and the site works the same either way. The visitor can change their choice any time via "Cookie settings" in the footer. One essential cookie, pn_consent, remembers the choice for 12 months.
-- Contact form details (name, email, business name, current website if given, what's needed, and the message) go through Forminit, which emails them to James. They are used only to reply to the enquiry and prepare a quotation. Enquiries from people who don't become clients are kept for up to 12 months, then deleted. Details are never sold or used for unrelated marketing.
+- Contact form details (name, email, business name, current website if given, what's needed, and the message) go through Web3Forms, which emails them to James and keeps a copy in his account. They are used only to reply to the enquiry and prepare a quotation. Enquiries from people who don't become clients are kept for up to 12 months, then deleted. Details are never sold or used for unrelated marketing.
 - The chat assistant is automated. Typed questions are sent to Cloudflare's AI service to write a reply. Visitors should not put personal or sensitive details in the chat. James does not keep a record of what is typed, and the chat does not use cookies. Cloudflare may log technical information such as IP addresses.
-- Other companies involved: Cloudflare (hosting), Google Fonts, Google Analytics (only with consent), Forminit, and an email provider. Some, such as Google and Cloudflare, may process data outside the UK.
+- Other companies involved: Cloudflare (hosting), Google Fonts, Google Analytics (only with consent), Web3Forms (form service, run from India), and an email provider. Some, such as Google and Cloudflare, may process data outside the UK.
 - Analytics data is kept for up to 14 months.
 - Rights: visitors can ask to see, correct, delete or restrict their data by emailing James. They can complain to the Information Commissioner's Office (ico.org.uk).
 

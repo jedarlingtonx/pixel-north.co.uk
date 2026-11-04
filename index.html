@@ -424,7 +424,6 @@ nav .wm{font-size:24px}
 </div>
 </footer>
 
-<script src="https://forminit.com/sdk/v1/forminit.js" defer></script>
 <script>
 // Replace with the address enquiries should go to.
 var EMAIL = "james@pixel-north.co.uk";
@@ -435,9 +434,9 @@ document.querySelectorAll("[data-go]").forEach(function(a){
     if (t) t.scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
   });
 });
-// Contact form: sent through Forminit, which emails each enquiry to me.
-// If FORM_ID is empty, or Forminit can't be reached, the form falls back to a pre-filled email.
-var FORM_ID = "yyje3l2l97x";
+// Contact form: sent through Web3Forms, which emails each enquiry to me.
+// The access key is meant to be public. If it is empty, or Web3Forms can't be reached, the form falls back to a pre-filled email.
+var ACCESS_KEY = "82b75d31-d854-4ba0-bd19-61ff5a2dbb3c";
 var siteEl = document.getElementById("site");
 var SITE_RE = /^(https?:\/\/)?([a-z0-9]([a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}(:\d+)?([\/?#]\S*)?$/i;
 function checkSite(){
@@ -473,7 +472,7 @@ document.getElementById("f").addEventListener("submit", async function(ev){
     var body = "Name: " + name + "\nEmail: " + v("e") + "\nBusiness: " + v("b") + "\nCurrent website: " + siteVal() + "\nNeed: " + v("w") + "\n\n" + v("m");
     return "mailto:" + EMAIL + "?subject=" + encodeURIComponent("Website enquiry from " + name) + "&body=" + encodeURIComponent(body);
   };
-  if (!FORM_ID) {
+  if (!ACCESS_KEY) {
     var href = mailtoHref();
     say("Your email app should open. If it doesn’t, ", href, "open the pre-filled email");
     window.location.href = href;
@@ -484,11 +483,26 @@ document.getElementById("f").addEventListener("submit", async function(ev){
   btn.textContent = "Sending…";
   say("");
   try {
-    if (typeof Forminit === "undefined") throw new Error("Forminit did not load");
-    var data = new FormData(form);
-    data.set("fi-text-currentWebsite", siteVal());
-    var res = await new Forminit().submit(FORM_ID, data);
-    if (res.error) throw new Error(res.error.message || "Forminit error");
+    var resp = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {"Content-Type": "application/json", "Accept": "application/json"},
+      body: JSON.stringify({
+        access_key: ACCESS_KEY,
+        subject: "Website enquiry from " + name,
+        from_name: "Pixel North website",
+        source: "Home page contact form",
+        name: name,
+        first_name: first,
+        last_name: v("ln"),
+        email: v("e"),
+        business_name: v("b"),
+        current_website: siteVal(),
+        need: v("w"),
+        message: v("m")
+      })
+    });
+    var json = await resp.json();
+    if (!resp.ok || !json.success) throw new Error(json.message || "Web3Forms error");
     form.reset();
     say("Thank you, " + first + ". Your message has been sent, and I’ll reply by email.", null, null, "ok");
   } catch (e) {
