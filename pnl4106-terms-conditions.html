@@ -96,7 +96,9 @@ mark{background:#FFE9A8;color:#1A1033;padding:0 4px;border-radius:4px}
 #claim-form{margin-top:20px}
 #claim-form label.check{flex-direction:row;align-items:flex-start;gap:12px;font-weight:400;font-size:15px;line-height:1.5;cursor:pointer}
 #claim-form label.check input{width:22px;height:22px;flex:none;margin:1px 0 0;padding:0;accent-color:var(--primary)}
+#claim-form .two>.sp{height:0;margin-top:-18px;padding:0;pointer-events:none}
 #claim-form .hint{margin:0;font-size:14px;color:var(--muted)}
+#claim-form label.check input[aria-invalid="true"]{outline:3px solid #D64560;outline-offset:2px}
 #claim-note{font-size:15px;color:var(--muted)}
 #claim-note:empty{display:none}
 #claim-note.ok,#claim-note.err{padding:14px 16px;border-radius:12px;border:1px solid;font-size:16px;line-height:1.5}
@@ -177,7 +179,10 @@ mark{background:#FFE9A8;color:#1A1033;padding:0 4px;border-radius:4px}
 <form id="claim-form" novalidate>
 <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><label>Leave this field empty<input id="c-gotcha" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
 <input type="hidden" name="fi-text-source" value="PNL4106 offer terms page">
+<div class="two">
 <label><span>Promo code <span class="req" aria-hidden="true">*</span></span><input id="c-code" name="fi-text-promoCode" required minlength="7" maxlength="7" pattern="[A-Za-z0-9]{7}" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text" aria-describedby="c-code-hint"></label>
+<div class="sp" aria-hidden="true"></div>
+</div>
 <p class="hint" id="c-code-hint">The 7-character code printed on your flyer.</p>
 <div class="two">
 <label><span>First name <span class="req" aria-hidden="true">*</span></span><input id="c-fn" name="fi-sender-firstName" required autocomplete="given-name"></label>
@@ -185,8 +190,8 @@ mark{background:#FFE9A8;color:#1A1033;padding:0 4px;border-radius:4px}
 </div>
 <label><span>Business name <span class="req" aria-hidden="true">*</span></span><input id="c-b" name="fi-text-business" required autocomplete="organization"></label>
 <label><span>Email <span class="req" aria-hidden="true">*</span></span><input id="c-e" name="fi-sender-email" type="email" required autocomplete="email"></label>
-<label class="check"><input id="c-mk" type="checkbox" name="fi-checkbox-marketing" value="yes"><span>By checking this box, you agree to receive communications from Pixel North. You can unsubscribe anytime.</span></label>
-<label class="check"><input id="c-consent" type="checkbox" name="fi-checkbox-consent" value="yes" required><span>To process your request, we need your permission to store and process your personal data. Please check this box to confirm your consent (see <a href="privacy.html">Privacy Policy</a>). <span class="req" aria-hidden="true">*</span></span></label>
+<label class="check"><input id="c-mk" type="checkbox" name="fi-checkbox-marketing" value="yes"><span>By checking this box, you agree to receive marketing communications from Pixel North. You can unsubscribe anytime.</span></label>
+<label class="check"><input id="c-consent" type="checkbox" name="fi-checkbox-consent" value="yes" aria-required="true"><span>To process your request, we need your permission to store and process your personal data. Please check this box to confirm your consent (see <a href="privacy.html">Privacy Policy</a>). <span class="req" aria-hidden="true">*</span></span></label>
 <p class="hint">Fields marked * are required.</p>
 <button class="btn pink" type="submit" style="align-self:flex-start">Claim the offer →</button>
 <p id="claim-note" role="status"></p>
@@ -233,20 +238,28 @@ var FORM_ID = "yyje3l2l97x";
     code.setCustomValidity("");
   });
   consent.addEventListener("change", function(){
-    consent.setCustomValidity("");
+    if (consent.checked) {
+      consent.removeAttribute("aria-invalid");
+      if (note.className === "err") say("");
+    }
   });
   form.addEventListener("submit", async function(ev){
     ev.preventDefault();
     if (v("c-gotcha")) return; // a bot filled the hidden field
     code.value = code.value.trim().toUpperCase();
     code.setCustomValidity(/^[A-Z0-9]{7}$/.test(code.value) ? "" : "Please enter the 7-character code from your flyer.");
-    consent.setCustomValidity(consent.checked ? "" : "Please tick this box so we can process your request.");
     if (!form.checkValidity()) { form.reportValidity(); return; }
+    if (!consent.checked) {
+      consent.setAttribute("aria-invalid", "true");
+      say("Please tick the Privacy Policy box so I can process your request. The form can’t be sent without it.", null, null, "err");
+      consent.focus();
+      return;
+    }
     var first = v("c-fn");
     var name = first + " " + v("c-ln");
     var btn = form.querySelector('button[type="submit"]');
     var mailtoHref = function(){
-      var body = "Promo code: " + code.value + "\nName: " + name + "\nBusiness: " + v("c-b") + "\nEmail: " + v("c-e") + "\nHappy to receive communications from Pixel North: " + (document.getElementById("c-mk").checked ? "Yes" : "No") + "\nConsent to store and process my personal data: Yes";
+      var body = "Promo code: " + code.value + "\nName: " + name + "\nBusiness: " + v("c-b") + "\nEmail: " + v("c-e") + "\nHappy to receive marketing communications from Pixel North: " + (document.getElementById("c-mk").checked ? "Yes" : "No") + "\nConsent to store and process my personal data: Yes";
       return "mailto:" + EMAIL + "?subject=" + encodeURIComponent("PNL4106 offer claim from " + name) + "&body=" + encodeURIComponent(body);
     };
     if (!FORM_ID) {
