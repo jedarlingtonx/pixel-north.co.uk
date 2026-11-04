@@ -98,6 +98,10 @@ mark{background:#FFE9A8;color:#1A1033;padding:0 4px;border-radius:4px}
 #claim-form label.check input{width:22px;height:22px;flex:none;margin:1px 0 0;padding:0;accent-color:var(--primary)}
 #claim-form .two>.sp{height:0;margin-top:-18px;padding:0;pointer-events:none}
 #claim-form button[aria-disabled="true"]{background:#E2DEEA;color:#5E5675;cursor:not-allowed}
+#claim-form input[type="text"][aria-invalid="true"],#claim-form input:not([type])[aria-invalid="true"]{border-color:#D64560;box-shadow:0 0 0 1px #D64560}
+#claim-form .field-err{margin:-6px 0 0;font-size:15px;font-weight:500;line-height:1.4;color:#7A1F31}
+#claim-form .field-err:empty{display:none}
+#claim-form .field-err::before{content:"\2715";font-weight:700;margin-right:8px}
 #claim-form .hint{margin:0;font-size:14px;color:var(--muted)}
 #claim-form label.check input[aria-invalid="true"]{outline:3px solid #D64560;outline-offset:2px}
 #claim-note{font-size:15px;color:var(--muted)}
@@ -184,6 +188,7 @@ mark{background:#FFE9A8;color:#1A1033;padding:0 4px;border-radius:4px}
 <label><span>Promo code <span class="req" aria-hidden="true">*</span></span><input id="c-code" name="fi-text-promoCode" required maxlength="7" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></label>
 <div class="sp" aria-hidden="true"></div>
 </div>
+<p class="field-err" id="c-code-err" role="alert"></p>
 <div class="two">
 <label><span>First name <span class="req" aria-hidden="true">*</span></span><input id="c-fn" name="fi-sender-firstName" required autocomplete="given-name"></label>
 <label><span>Last name <span class="req" aria-hidden="true">*</span></span><input id="c-ln" name="fi-sender-lastName" required autocomplete="family-name"></label>
@@ -236,9 +241,19 @@ var FORM_ID = "yyje3l2l97x";
   };
   var btn = form.querySelector('button[type="submit"]');
   // Only the code PNL4106 is accepted, in any case.
+  var codeErr = document.getElementById("c-code-err");
+  var codeSeen = false; // true once the visitor has left the field or tried to send
   var checkCode = function(){
-    code.setCustomValidity(code.value.trim().toUpperCase() === "PNL4106" ? "" : "Please enter a valid promo code.");
+    var val = code.value.trim().toUpperCase();
+    var bad = val !== "" && val !== "PNL4106";
+    code.setCustomValidity(val === "PNL4106" ? "" : "Please enter a valid promo code.");
+    // Show "not valid" once a full-length code is typed, or after the field is left.
+    var show = bad && (val.length >= 7 || codeSeen);
+    codeErr.textContent = show ? "That promo code isn’t valid. Please check it and try again." : "";
+    if (show) { code.setAttribute("aria-invalid", "true"); code.setAttribute("aria-describedby", "c-code-err"); }
+    else { code.removeAttribute("aria-invalid"); code.removeAttribute("aria-describedby"); }
   };
+  code.addEventListener("blur", function(){ codeSeen = true; checkCode(); });
   // The button is greyed until every mandatory field is complete and the data-consent box is ticked.
   var refresh = function(){
     checkCode();
@@ -257,6 +272,7 @@ var FORM_ID = "yyje3l2l97x";
     ev.preventDefault();
     if (v("c-gotcha")) return; // a bot filled the hidden field
     code.value = code.value.trim().toUpperCase();
+    codeSeen = true;
     checkCode();
     if (!form.checkValidity()) { form.reportValidity(); return; }
     if (!consent.checked) {
@@ -286,6 +302,7 @@ var FORM_ID = "yyje3l2l97x";
       var res = await new Forminit().submit(FORM_ID, new FormData(form));
       if (res.error) throw new Error(res.error.message || "Forminit error");
       form.reset();
+      codeSeen = false;
       say("Thank you, " + first + ". Your promo code has been extended and is valid for a further 3 months. We will remind you by email before the promo code expires.", null, null, "ok");
     } catch (e) {
       say("Sorry, that didn’t send. Please try again, or email me at ", mailtoHref(), EMAIL, "err");
