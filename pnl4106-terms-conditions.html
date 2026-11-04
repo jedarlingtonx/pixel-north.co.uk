@@ -286,7 +286,7 @@ var FORM_ID = "yyje3l2l97x";
       var res = await new Forminit().submit(FORM_ID, new FormData(form));
       if (res.error) throw new Error(res.error.message || "Forminit error");
       form.reset();
-      say("Thank you, " + first + ". Your claim has been sent, and I’ll reply by email to arrange your consultation.", null, null, "ok");
+      say("Thank you, " + first + ". Your promo code has been extended and is valid for a further 3 months. We will remind you by email before the promo code expires.", null, null, "ok");
     } catch (e) {
       say("Sorry, that didn’t send. Please try again, or email me at ", mailtoHref(), EMAIL, "err");
     }
