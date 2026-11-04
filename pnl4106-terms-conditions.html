@@ -183,20 +183,19 @@ mark{background:#FFE9A8;color:#1A1033;padding:0 4px;border-radius:4px}
 <p>Have your flyer to hand? Fill in the form and I’ll get back to you to arrange your initial consultation. Sending the form does not commit you to anything.</p>
 <form id="claim-form" novalidate>
 <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><label>Leave this field empty<input id="c-gotcha" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
-<input type="hidden" name="fi-text-source" value="PNL4106 offer terms page">
 <div class="two">
-<label><span>Promo code <span class="req" aria-hidden="true">*</span></span><input id="c-code" name="fi-text-promoCode" required maxlength="7" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></label>
+<label><span>Promo code <span class="req" aria-hidden="true">*</span></span><input id="c-code" name="promo_code" required maxlength="7" autocomplete="off" autocapitalize="characters" spellcheck="false" inputmode="text"></label>
 <div class="sp" aria-hidden="true"></div>
 </div>
 <p class="field-err" id="c-code-err" role="alert"></p>
 <div class="two">
-<label><span>First name <span class="req" aria-hidden="true">*</span></span><input id="c-fn" name="fi-sender-firstName" required autocomplete="given-name"></label>
-<label><span>Last name <span class="req" aria-hidden="true">*</span></span><input id="c-ln" name="fi-sender-lastName" required autocomplete="family-name"></label>
+<label><span>First name <span class="req" aria-hidden="true">*</span></span><input id="c-fn" name="first_name" required autocomplete="given-name"></label>
+<label><span>Last name <span class="req" aria-hidden="true">*</span></span><input id="c-ln" name="last_name" required autocomplete="family-name"></label>
 </div>
-<label><span>Business name <span class="req" aria-hidden="true">*</span></span><input id="c-b" name="fi-text-business" required autocomplete="organization"></label>
-<label><span>Email <span class="req" aria-hidden="true">*</span></span><input id="c-e" name="fi-sender-email" type="email" required autocomplete="email"></label>
-<label class="check"><input id="c-mk" type="checkbox" name="fi-checkbox-marketing" value="yes"><span>Email me news, tips and offers from Pixel North. You can <a href="https://pixel-north.co.uk/marketing-unsubscribe" target="_blank" rel="noopener noreferrer" aria-label="unsubscribe (opens in a new tab)">unsubscribe</a> at any time. See the <a href="privacy.html" target="_blank" rel="noopener noreferrer" aria-label="privacy notice (opens in a new tab)">privacy notice</a>.</span></label>
-<label class="check"><input id="c-consent" type="checkbox" name="fi-checkbox-consent" value="yes" aria-required="true"><span>To process your request, we need your permission to store and process your personal data. Please check this box to confirm your consent. See the <a href="privacy.html" target="_blank" rel="noopener noreferrer" aria-label="privacy notice (opens in a new tab)">privacy notice</a>. <span class="req" aria-hidden="true">*</span></span></label>
+<label><span>Business name <span class="req" aria-hidden="true">*</span></span><input id="c-b" name="business_name" required autocomplete="organization"></label>
+<label><span>Email <span class="req" aria-hidden="true">*</span></span><input id="c-e" name="email" type="email" required autocomplete="email"></label>
+<label class="check"><input id="c-mk" type="checkbox" name="marketing_emails" value="yes"><span>Email me news, tips and offers from Pixel North. You can <a href="https://pixel-north.co.uk/marketing-unsubscribe" target="_blank" rel="noopener noreferrer" aria-label="unsubscribe (opens in a new tab)">unsubscribe</a> at any time. See the <a href="privacy.html" target="_blank" rel="noopener noreferrer" aria-label="privacy notice (opens in a new tab)">privacy notice</a>.</span></label>
+<label class="check"><input id="c-consent" type="checkbox" name="data_consent" value="yes" aria-required="true"><span>To process your request, we need your permission to store and process your personal data. Please check this box to confirm your consent. See the <a href="privacy.html" target="_blank" rel="noopener noreferrer" aria-label="privacy notice (opens in a new tab)">privacy notice</a>. <span class="req" aria-hidden="true">*</span></span></label>
 <p class="hint">Fields marked * are required.</p>
 <button class="btn pink" type="submit" style="align-self:flex-start">Claim the offer →</button>
 <p id="claim-note" role="status"></p>
@@ -216,12 +215,11 @@ mark{background:#FFE9A8;color:#1A1033;padding:0 4px;border-radius:4px}
 </div>
 </footer>
 
-<script src="https://forminit.com/sdk/v1/forminit.js" defer></script>
 <script>
-// Claim form: sent through Forminit (the same form as the contact form on the home page).
-// If FORM_ID is empty, or Forminit can't be reached, it falls back to a pre-filled email.
+// Claim form: sent through Web3Forms, which emails each claim to the address the key was registered with.
+// The access key is meant to be public. If it is empty, or Web3Forms can't be reached, the form falls back to a pre-filled email.
 var EMAIL = "james@pixel-north.co.uk";
-var FORM_ID = "yyje3l2l97x";
+var ACCESS_KEY = "82b75d31-d854-4ba0-bd19-61ff5a2dbb3c";
 (function(){
   var form = document.getElementById("claim-form");
   var note = document.getElementById("claim-note");
@@ -287,7 +285,7 @@ var FORM_ID = "yyje3l2l97x";
       var body = "Promo code: " + code.value + "\nName: " + name + "\nBusiness: " + v("c-b") + "\nEmail: " + v("c-e") + "\nEmail me news, tips and offers from Pixel North: " + (document.getElementById("c-mk").checked ? "Yes" : "No") + "\nConsent to store and process my personal data: Yes";
       return "mailto:" + EMAIL + "?subject=" + encodeURIComponent("PNL4106 offer claim from " + name) + "&body=" + encodeURIComponent(body);
     };
-    if (!FORM_ID) {
+    if (!ACCESS_KEY) {
       var href = mailtoHref();
       say("Your email app should open. If it doesn’t, ", href, "open the pre-filled email");
       window.location.href = href;
@@ -298,9 +296,26 @@ var FORM_ID = "yyje3l2l97x";
     btn.textContent = "Sending…";
     say("");
     try {
-      if (typeof Forminit === "undefined") throw new Error("Forminit did not load");
-      var res = await new Forminit().submit(FORM_ID, new FormData(form));
-      if (res.error) throw new Error(res.error.message || "Forminit error");
+      var resp = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {"Content-Type": "application/json", "Accept": "application/json"},
+        body: JSON.stringify({
+          access_key: ACCESS_KEY,
+          subject: "PNL4106 offer claim from " + name,
+          from_name: "Pixel North website",
+          source: "PNL4106 offer terms page",
+          promo_code: code.value,
+          name: name,
+          first_name: first,
+          last_name: v("c-ln"),
+          business_name: v("c-b"),
+          email: v("c-e"),
+          marketing_emails: document.getElementById("c-mk").checked ? "Yes" : "No",
+          data_consent: "Yes"
+        })
+      });
+      var json = await resp.json();
+      if (!resp.ok || !json.success) throw new Error(json.message || "Web3Forms error");
       form.reset();
       codeSeen = false;
       say("Thank you, " + first + ". Your promo code has been extended and is valid for a further 3 months. We will remind you by email before the promo code expires.", null, null, "ok");
