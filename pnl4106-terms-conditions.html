@@ -152,7 +152,7 @@ mark{background:#FFE9A8;color:#1A1033;padding:0 4px;border-radius:4px}
 
 <h2>5. How long the code lasts</h2>
 <p>The offer is open for 3 months from the date the code was issued to you (the date you received the flyer). To use it, you must contact us and quote the code within that time, and accept our written quotation within the period it states.</p>
-<p>You can extend the offer by a further 3 months, to 6 months in total from the date the code was issued, by completing the claim the extension to your promo code form at the bottom of this page. We will not extend it beyond that for individual businesses. Claims made after the offer has ended are not accepted.</p>
+<p>You can extend the offer by a further 3 months, to 6 months in total from the date the code was issued, by completing the “Claim the extension to your promo code” form at the bottom of this page. We will not extend it beyond that for individual businesses. Claims made after the offer has ended are not accepted.</p>
 
 <h2>6. Limits on the offer</h2>
 <ul>
@@ -198,7 +198,7 @@ mark{background:#FFE9A8;color:#1A1033;padding:0 4px;border-radius:4px}
 <label class="check"><input id="c-mk" type="checkbox" name="marketing_emails" value="yes"><span>Email me news, tips and offers from Pixel North. You can <a href="https://pixel-north.co.uk/marketing-unsubscribe" target="_blank" rel="noopener noreferrer" aria-label="unsubscribe (opens in a new tab)">unsubscribe</a> at any time. See the <a href="privacy.html" target="_blank" rel="noopener noreferrer" aria-label="privacy notice (opens in a new tab)">privacy notice</a>.</span></label>
 <label class="check"><input id="c-consent" type="checkbox" name="data_consent" value="yes" aria-required="true"><span>To process your request, we need your permission to store and process your personal data. Please check this box to confirm your consent. See the <a href="privacy.html" target="_blank" rel="noopener noreferrer" aria-label="privacy notice (opens in a new tab)">privacy notice</a>. <span class="req" aria-hidden="true">*</span></span></label>
 <p class="hint">Fields marked * are required.</p>
-<button class="btn pink" type="submit" style="align-self:flex-start">Activate code</button>
+<button class="btn pink" type="submit" style="align-self:flex-start">Claim extension</button>
 <p id="claim-note" role="status"></p>
 </form>
 </main>
@@ -319,7 +319,7 @@ var ACCESS_KEY = "82b75d31-d854-4ba0-bd19-61ff5a2dbb3c";
       if (!resp.ok || !json.success) throw new Error(json.message || "Web3Forms error");
       form.reset();
       codeSeen = false;
-      say("Thank you, " + first + ". Your promo code has been activated and is now valid for 6 months from the date of issue. We’ll contact you ahead of the offer expiring to arrange your initial consultation.", null, null, "ok");
+      say("Thank you, " + first + ". Your promo code has been extended to 6 months from the date of issue. We’ll contact you ahead of the offer expiring to arrange your initial consultation.", null, null, "ok");
     } catch (e) {
       say("Sorry, that didn’t send. Please try again, or email ", mailtoHref(), EMAIL, "err");
     }
