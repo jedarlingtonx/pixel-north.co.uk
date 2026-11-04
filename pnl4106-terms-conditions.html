@@ -190,8 +190,8 @@ mark{background:#FFE9A8;color:#1A1033;padding:0 4px;border-radius:4px}
 </div>
 <label><span>Business name <span class="req" aria-hidden="true">*</span></span><input id="c-b" name="fi-text-business" required autocomplete="organization"></label>
 <label><span>Email <span class="req" aria-hidden="true">*</span></span><input id="c-e" name="fi-sender-email" type="email" required autocomplete="email"></label>
-<label class="check"><input id="c-mk" type="checkbox" name="fi-checkbox-marketing" value="yes"><span>By checking this box, you agree to receive marketing communications from Pixel North. You can unsubscribe anytime.</span></label>
-<label class="check"><input id="c-consent" type="checkbox" name="fi-checkbox-consent" value="yes" aria-required="true"><span>To process your request, we need your permission to store and process your personal data. Please check this box to confirm your consent (see <a href="privacy.html" target="_blank" rel="noopener noreferrer" aria-label="Privacy Policy (opens in a new tab)">Privacy Policy</a>). <span class="req" aria-hidden="true">*</span></span></label>
+<label class="check"><input id="c-mk" type="checkbox" name="fi-checkbox-marketing" value="yes"><span>Email me news, tips and offers from Pixel North. You can <a href="https://pixel-north.co.uk/marketing-unsubscribe" target="_blank" rel="noopener noreferrer" aria-label="unsubscribe (opens in a new tab)">unsubscribe</a> at any time. (see the <a href="privacy.html" target="_blank" rel="noopener noreferrer" aria-label="privacy notice (opens in a new tab)">privacy notice</a>.)</span></label>
+<label class="check"><input id="c-consent" type="checkbox" name="fi-checkbox-consent" value="yes" aria-required="true"><span>To process your request, we need your permission to store and process your personal data. Please check this box to confirm your consent. (see the <a href="privacy.html" target="_blank" rel="noopener noreferrer" aria-label="privacy notice (opens in a new tab)">privacy notice</a>) <span class="req" aria-hidden="true">*</span></span></label>
 <p class="hint">Fields marked * are required.</p>
 <button class="btn pink" type="submit" style="align-self:flex-start">Claim the offer →</button>
 <p id="claim-note" role="status"></p>
@@ -268,7 +268,7 @@ var FORM_ID = "yyje3l2l97x";
     var first = v("c-fn");
     var name = first + " " + v("c-ln");
     var mailtoHref = function(){
-      var body = "Promo code: " + code.value + "\nName: " + name + "\nBusiness: " + v("c-b") + "\nEmail: " + v("c-e") + "\nHappy to receive marketing communications from Pixel North: " + (document.getElementById("c-mk").checked ? "Yes" : "No") + "\nConsent to store and process my personal data: Yes";
+      var body = "Promo code: " + code.value + "\nName: " + name + "\nBusiness: " + v("c-b") + "\nEmail: " + v("c-e") + "\nEmail me news, tips and offers from Pixel North: " + (document.getElementById("c-mk").checked ? "Yes" : "No") + "\nConsent to store and process my personal data: Yes";
       return "mailto:" + EMAIL + "?subject=" + encodeURIComponent("PNL4106 offer claim from " + name) + "&body=" + encodeURIComponent(body);
     };
     if (!FORM_ID) {
