@@ -121,7 +121,7 @@ mark{background:#FFE9A8;color:#1A1033;padding:0 4px;border-radius:4px}
 
 <main class="prose">
 <h1>Unsubscribe from marketing emails</h1>
-<p>Enter the email address you signed up with, and I’ll stop sending you news, tips and offers from Pixel North.</p>
+<p>Enter the email address you signed up with, and we’ll stop sending you news, tips and offers from Pixel North.</p>
 <form id="unsub-form" novalidate>
 <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><label>Leave this field empty<input id="u-gotcha" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
 <label><span>Email <span class="req" aria-hidden="true">*</span></span><input id="u-e" name="email" type="email" required autocomplete="email"></label>
@@ -206,7 +206,7 @@ var ACCESS_KEY = "06dbbd03-ce0c-4fd4-a35c-4fa7807b0652";
       var json = await resp.json();
       if (!resp.ok || !json.success) throw new Error(json.message || "Web3Forms error");
       form.reset();
-      say("Thank you. Your request has been received, and I’ll remove " + addr + " from marketing emails.", null, null, "ok");
+      say("Thank you. Your request has been received, and we’ll remove " + addr + " from our marketing emails list.", null, null, "ok");
     } catch (e) {
       say("Sorry, that didn’t send. Please try again, or email me at ", mailtoHref(), EMAIL, "err");
     }
