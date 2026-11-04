@@ -181,7 +181,7 @@ mark{background:#FFE9A8;color:#1A1033;padding:0 4px;border-radius:4px}
 <p>These terms are governed by the law of England and Wales, and the courts of England and Wales have jurisdiction.</p>
 
 <h2 id="claim">Code activation form</h2>
-<p>Have your flyer to hand? Completing this form activates your promo code and extends it by a further 3 months (see section 5). We’ll contact you ahead of the offer expiring to arrange your initial consultation. Sending the form does not commit you to anything.</p>
+<p>Have your flyer to hand? Completing this form activates your promo code and extends it to 6 months from the date of issue (see section 5). We’ll contact you ahead of the offer expiring to arrange your initial consultation. Sending the form does not commit you to anything.</p>
 <form id="claim-form" novalidate>
 <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><label>Leave this field empty<input id="c-gotcha" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
 <div class="two">
@@ -319,7 +319,7 @@ var ACCESS_KEY = "82b75d31-d854-4ba0-bd19-61ff5a2dbb3c";
       if (!resp.ok || !json.success) throw new Error(json.message || "Web3Forms error");
       form.reset();
       codeSeen = false;
-      say("Thank you, " + first + ". Your promo code has been extended and is valid for a further 3 months. We will remind you by email before the promo code expires.", null, null, "ok");
+      say("Thank you, " + first + ". Your promo code has been activated and is now valid for 6 months from the date of issue. We’ll contact you ahead of the offer expiring to arrange your initial consultation.", null, null, "ok");
     } catch (e) {
       say("Sorry, that didn’t send. Please try again, or email ", mailtoHref(), EMAIL, "err");
     }
