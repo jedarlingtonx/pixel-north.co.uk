@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" href="/favicon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="color-scheme" content="light">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Unsubscribe from marketing emails | Pixel North</title>
+<meta name="description" content="Unsubscribe from marketing emails from Pixel North.">
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light;--bg:#fff;--text:#1A1033;--muted:#5E5675;--primary:#5B21E6;--accent:#FF3D8B;--panel:#F1EBFF;--line:#7C5CE8;--card:#4A17BF;--ink:#1A1033;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.6 "DM Sans",system-ui,sans-serif}
+h1,h2,h3,.wm,.num{font-family:Outfit,"Segoe UI",system-ui,sans-serif;margin:0}
+h2{font-weight:700;font-size:clamp(30px,5vw,44px);line-height:1.1;letter-spacing:-1px}
+h3{font-weight:700;font-size:23px;line-height:1.2}
+p{margin:0}
+a{color:var(--primary)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.sec{padding:72px max(24px,calc((100% - 1120px)/2))}
+.row{display:flex;flex-wrap:wrap;gap:20px}
+.row>*{flex:1 1 240px}
+.wm{font-weight:700;font-size:28px;letter-spacing:-1px;color:var(--primary);display:inline-flex;align-items:flex-end;gap:4px;text-decoration:none}
+.wm::after{content:"";width:.26em;height:.26em;background:var(--accent);margin-bottom:.22em}
+nav{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between;padding:20px max(24px,calc((100% - 1120px)/2))}
+nav div{display:flex;flex-wrap:wrap;gap:8px 24px;align-items:center}
+nav a:not(.wm):not(.btn){color:var(--text);text-decoration:none}
+.btn{display:inline-block;border:0;border-radius:999px;font:500 18px "DM Sans",system-ui,sans-serif;padding:15px 28px;text-decoration:none;cursor:pointer;background:#5B21E6;color:#fff}
+.pink{background:var(--accent);color:#1A1033}
+.hero{padding-top:64px;padding-bottom:88px;display:flex;flex-wrap:wrap;gap:48px;align-items:center}
+.hero-text{flex:1 1 460px;min-width:0}
+.portrait{flex:0 1 400px;width:100%;max-width:400px;height:auto;aspect-ratio:1/1;object-fit:cover;border-radius:50%;border:6px solid var(--accent);box-shadow:0 0 0 10px var(--panel);display:block}
+.hero h1{font-weight:700;font-size:clamp(40px,6.4vw,84px);line-height:1;letter-spacing:-.04em;max-width:900px}
+.hero h1 i{display:inline-block;width:.2em;height:.2em;background:var(--accent);margin-left:.06em}
+.hero p{font-size:21px;max-width:560px;margin:28px 0}
+.band{background:#5B21E6;color:#fff}
+.band p.lead{font-size:20px;max-width:640px;color:#E9E0FF;margin:16px 0 32px}
+.stat{background:var(--card);border-radius:20px;padding:28px}
+.sq{width:12px;height:12px;background:var(--accent);margin-bottom:12px}
+.num{font-weight:700;font-size:56px;line-height:1;letter-spacing:-2px}
+.stat p{font-size:18px;line-height:1.5;margin-top:12px}
+.stat small{display:block;font-size:14px;color:#D9CCFF;margin-top:12px}
+.close{font:500 24px/1.3 Outfit,system-ui,sans-serif;max-width:760px;margin-top:32px}
+.card{background:var(--panel);border-radius:20px;padding:28px}
+.card h3{color:var(--primary);margin-bottom:10px}
+.intro{max-width:640px;margin:14px 0 32px;font-size:19px}
+.dark{background:var(--ink);color:#fff}
+.dark p{color:#D9CCFF}
+.step{width:44px;height:44px;border-radius:12px;background:var(--accent);color:#1A1033;display:grid;place-items:center;font:700 22px Outfit,sans-serif;margin-bottom:12px}
+.dark h3{font-weight:500;margin-bottom:8px}
+form{background:var(--panel);border-radius:24px;padding:32px;display:flex;flex-direction:column;gap:18px}
+label{font-weight:500;font-size:15px;display:flex;flex-direction:column;gap:6px}
+input,select,textarea{font:inherit;font-size:16px;padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--text);width:100%}
+.two{display:flex;flex-wrap:wrap;gap:18px}.two>*{flex:1 1 180px}
+#note{font-size:15px;color:var(--muted)}
+footer{padding:32px max(24px,calc((100% - 1120px)/2));display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;color:var(--muted);font-size:15px}
+.contact{display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start}
+.contact>*{flex:1 1 360px}
+.js .rv{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease;transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
+
+main.prose{padding:40px max(24px,calc((100% - 720px)/2)) 72px}
+.prose h1{font-weight:700;font-size:clamp(36px,6vw,56px);line-height:1.05;letter-spacing:-.03em;margin-bottom:12px}
+.prose h2{font-size:26px;margin:40px 0 10px}
+.prose p,.prose ul{margin:0 0 14px}
+.prose ul{padding-left:22px}
+.prose li{margin-bottom:8px}
+.meta{color:var(--muted);font-size:15px}
+
+.tw{overflow-x:auto;margin:0 0 18px}
+.tbl{width:100%;border-collapse:collapse;font-size:15px;min-width:560px}
+.tbl th,.tbl td{text-align:left;padding:10px 12px;border-bottom:1px solid #E4DAFF;vertical-align:top}
+.tbl th{font-weight:500;color:var(--muted)}
+.linkbtn{font:inherit;font-weight:500;background:#5B21E6;color:#fff;border:0;border-radius:999px;padding:12px 24px;cursor:pointer}
+.legal{flex:1 1 100%;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:flex-end;border-top:1px solid #E4DAFF;padding-top:16px;margin-top:4px;font-size:14px;line-height:1.5}
+.legal-text{display:flex;flex-direction:column;gap:6px;flex:1 1 320px}
+.legal p{margin:0}
+.fb{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--panel);color:var(--primary)}
+.fb:hover{background:var(--primary);color:#fff}
+.fb svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.social{display:flex;gap:10px}
+.credit{display:inline-flex;align-items:center;gap:8px}
+.factory{width:22px;height:22px;fill:none;stroke:var(--primary);stroke-width:26;stroke-linecap:butt;stroke-linejoin:miter;flex:none}
+mark{background:#FFE9A8;color:#1A1033;padding:0 4px;border-radius:4px}
+
+.req{color:var(--primary);margin-left:2px}
+#unsub-form{margin-top:20px}
+#unsub-form label.check{flex-direction:row;align-items:flex-start;gap:12px;font-weight:400;font-size:15px;line-height:1.5;cursor:pointer}
+#unsub-form label.check input{width:22px;height:22px;flex:none;margin:1px 0 0;padding:0;accent-color:var(--primary)}
+#unsub-form .two>.sp{height:0;margin-top:-18px;padding:0;pointer-events:none}
+#unsub-form button[aria-disabled="true"]{background:#E2DEEA;color:#5E5675;cursor:not-allowed}
+#unsub-form input[type="text"][aria-invalid="true"],#unsub-form input:not([type])[aria-invalid="true"]{border-color:#D64560;box-shadow:0 0 0 1px #D64560}
+#unsub-form .field-err{margin:-6px 0 0;font-size:15px;font-weight:500;line-height:1.4;color:#7A1F31}
+#unsub-form .field-err:empty{display:none}
+#unsub-form .field-err::before{content:"\2715";font-weight:700;margin-right:8px}
+#unsub-form .hint{margin:0;font-size:14px;color:var(--muted)}
+#unsub-form label.check input[aria-invalid="true"]{outline:3px solid #D64560;outline-offset:2px}
+#unsub-note{font-size:15px;color:var(--muted)}
+#unsub-note:empty{display:none}
+#unsub-note.ok,#unsub-note.err{padding:14px 16px;border-radius:12px;border:1px solid;font-size:16px;line-height:1.5}
+#unsub-note.ok{background:#E8F7EE;border-color:#2E9E5B;color:#14532D}
+#unsub-note.ok::before{content:"\2713";font-weight:700;margin-right:8px}
+#unsub-note.err{background:#FDECEF;border-color:#D64560;color:#7A1F31}
+#unsub-note.err a,#unsub-note.ok a{color:inherit}
+</style>
+</head>
+<body>
+
+<nav>
+<a class="wm" href="/">Pixel North</a>
+<div><a href="/">Back to home</a></div>
+</nav>
+
+<main class="prose">
+<h1>Unsubscribe from marketing emails</h1>
+<p>Enter the email address you signed up with, and I’ll stop sending you news, tips and offers from Pixel North.</p>
+<form id="unsub-form" novalidate>
+<div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><label>Leave this field empty<input id="u-gotcha" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
+<label><span>Email <span class="req" aria-hidden="true">*</span></span><input id="u-e" name="email" type="email" required autocomplete="email"></label>
+<p class="hint">Fields marked * are required.</p>
+<button class="btn pink" type="submit" style="align-self:flex-start">Unsubscribe</button>
+<p id="unsub-note" role="status"></p>
+<p class="hint">We only use your email address to deal with this request. See the <a href="privacy.html">privacy notice</a>. Unsubscribing from marketing doesn’t affect any quotation or work we’re doing together.</p>
+</form>
+</main>
+
+<footer>
+<span class="wm" style="font-size:20px">Pixel North</span>
+<span class="credit"><svg class="factory" viewBox="0 0 512 512" aria-hidden="true"><path d="M30 464H480"/><path d="M70 464V268L195 205V268L325 205V268L445 205V464"/><path d="M347 250L359 45H413L425 205"/><path d="M362 78H410"/><rect x="120" y="318" width="64" height="64"/><rect x="226" y="318" width="64" height="64"/><rect x="331" y="318" width="64" height="64"/></svg><span>Another small business site, sorted, by <a href="https://pixel-north.co.uk/">Pixel North</a>.</span></span>
+<span style="display:flex;flex-wrap:wrap;gap:6px 18px"><a href="web-design-cheshire.html">Web design in Cheshire</a><a href="faq.html">FAQs</a><a href="privacy.html">Privacy notice</a><a href="cookies.html">Cookie policy</a><a href="#" data-cookie-settings>Cookie settings</a></span>
+<div class="legal">
+<div class="legal-text">
+<p>Pixel North Limited is a limited company registered in England and Wales. Company Number 16490976. Registered office: 59 Western Way, Northwich, Cheshire CW8 4YJ.</p>
+<p>© Copyright 2026 Pixel North Limited. All Rights Reserved.</p>
+</div>
+<div class="social"><a class="fb" href="https://www.facebook.com/profile.php?id=61595794411993&amp;locale=en_GB" target="_blank" rel="noopener noreferrer" aria-label="Pixel North on Facebook (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a><a class="fb" href="https://www.linkedin.com/company/pixel-north/" target="_blank" rel="noopener noreferrer" aria-label="Pixel North on LinkedIn (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a></div>
+</div>
+</footer>
+
+<script>
+// Unsubscribe form: sent through Web3Forms, which emails each request to me.
+// The access key is meant to be public. If Web3Forms can't be reached, the form falls back to a pre-filled email.
+var EMAIL = "james@pixel-north.co.uk";
+var ACCESS_KEY = "06dbbd03-ce0c-4fd4-a35c-4fa7807b0652";
+(function(){
+  var form = document.getElementById("unsub-form");
+  var note = document.getElementById("unsub-note");
+  var email = document.getElementById("u-e");
+  var btn = form.querySelector('button[type="submit"]');
+  var say = function(text, href, linkText, kind){
+    note.className = kind || "";
+    note.textContent = text;
+    if (href) {
+      var a = document.createElement("a");
+      a.href = href;
+      a.textContent = linkText;
+      note.appendChild(a);
+      note.appendChild(document.createTextNode("."));
+    }
+  };
+  // The button is greyed until a valid email address has been entered.
+  var refresh = function(){
+    btn.setAttribute("aria-disabled", form.checkValidity() ? "false" : "true");
+  };
+  form.addEventListener("input", refresh);
+  form.addEventListener("change", refresh);
+  refresh();
+  form.addEventListener("submit", async function(ev){
+    ev.preventDefault();
+    if (document.getElementById("u-gotcha").value.trim()) return; // a bot filled the hidden field
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    var addr = email.value.trim();
+    var mailtoHref = function(){
+      return "mailto:" + EMAIL + "?subject=" + encodeURIComponent("Unsubscribe from marketing emails") + "&body=" + encodeURIComponent("Please unsubscribe this address from marketing emails: " + addr);
+    };
+    if (!ACCESS_KEY) {
+      var href = mailtoHref();
+      say("Your email app should open. If it doesn’t, ", href, "open the pre-filled email");
+      window.location.href = href;
+      return;
+    }
+    var label = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = "Sending…";
+    say("");
+    try {
+      var resp = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {"Content-Type": "application/json", "Accept": "application/json"},
+        body: JSON.stringify({
+          access_key: ACCESS_KEY,
+          subject: "Marketing unsubscribe request",
+          from_name: "Pixel North website",
+          source: "Marketing unsubscribe page",
+          email: addr
+        })
+      });
+      var json = await resp.json();
+      if (!resp.ok || !json.success) throw new Error(json.message || "Web3Forms error");
+      form.reset();
+      say("Thank you. Your request has been received, and I’ll remove " + addr + " from marketing emails.", null, null, "ok");
+    } catch (e) {
+      say("Sorry, that didn’t send. Please try again, or email me at ", mailtoHref(), EMAIL, "err");
+    }
+    btn.disabled = false;
+    btn.textContent = label;
+    refresh();
+  });
+})();
+</script>
+<script src="consent.js" defer></script>
+<script src="/chat-widget.js" defer></script>
+</body>
+</html>
