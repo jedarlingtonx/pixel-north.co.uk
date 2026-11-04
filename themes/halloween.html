@@ -66,6 +66,10 @@ form{background:var(--panel);border-radius:24px;padding:32px;display:flex;flex-d
 label{font-weight:500;font-size:15px;display:flex;flex-direction:column;gap:6px}
 input,select,textarea{font:inherit;font-size:16px;padding:13px 15px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--text);width:100%}
 .two{display:flex;flex-wrap:wrap;gap:18px}.two>*{flex:1 1 180px}
+#f label.check{flex-direction:row;align-items:flex-start;gap:12px;font-weight:400;font-size:15px;line-height:1.5;cursor:pointer}
+#f label.check input{width:22px;height:22px;flex:none;margin:1px 0 0;padding:0;accent-color:var(--primary)}
+#f label.check input[aria-invalid="true"]{outline:3px solid #D64560;outline-offset:2px}
+#f button[aria-disabled="true"]{background:#E2DEEA;color:#5E5675;cursor:not-allowed}
 #note{font-size:15px;color:var(--muted)}
 #note:empty{display:none}
 #note.ok,#note.err{padding:14px 16px;border-radius:12px;border:1px solid;font-size:16px;line-height:1.5}
@@ -289,6 +293,8 @@ nav .wm{font-size:24px}
 <select id="w" name="fi-select-need" required><option value="" selected disabled>Please choose</option><option>A brand new website</option><option>A refresh of my current site</option><option>Not sure yet</option></select>
 </label>
 <label><span>Tell me a bit more <span class="req" aria-hidden="true">*</span></span><textarea id="m" name="fi-text-message" rows="4" required></textarea></label>
+<label class="check"><input id="mk" type="checkbox" name="marketing_emails" value="yes"><span>Email me news, tips and offers from Pixel North. You can <a href="https://pixel-north.co.uk/marketing-unsubscribe" target="_blank" rel="noopener noreferrer" aria-label="unsubscribe (opens in a new tab)">unsubscribe</a> at any time. See the <a href="/privacy.html" target="_blank" rel="noopener noreferrer" aria-label="privacy notice (opens in a new tab)">privacy notice</a>.</span></label>
+<label class="check"><input id="consent" type="checkbox" name="data_consent" value="yes" aria-required="true"><span>To process your request, we need your permission to store and process your personal data. Please check this box to confirm your consent. See the <a href="/privacy.html" target="_blank" rel="noopener noreferrer" aria-label="privacy notice (opens in a new tab)">privacy notice</a>. <span class="req" aria-hidden="true">*</span></span></label>
 <p style="margin:0;font-size:14px;color:var(--muted)">Fields marked * are required.</p>
 <button class="btn pink" type="submit" style="align-self:flex-start">Send it over →</button>
 <p id="note" role="status"></p>
@@ -337,6 +343,17 @@ function siteVal(){
   return val && !/^https?:\/\//i.test(val) ? "https://" + val : val;
 }
 siteEl.addEventListener("input", checkSite);
+// The send button is greyed until every mandatory field is complete and the data-consent box is ticked.
+(function(){
+  var f = document.getElementById("f");
+  var c = document.getElementById("consent");
+  var b = f.querySelector('button[type="submit"]');
+  window.refresh = function(){ b.setAttribute("aria-disabled", f.checkValidity() && c.checked ? "false" : "true"); };
+  f.addEventListener("input", window.refresh);
+  f.addEventListener("change", window.refresh);
+  c.addEventListener("change", function(){ if (c.checked) { c.removeAttribute("aria-invalid"); document.getElementById("note").className = ""; document.getElementById("note").textContent = ""; } });
+  window.refresh();
+})();
 document.getElementById("f").addEventListener("submit", async function(ev){
   ev.preventDefault();
   var form = ev.target;
@@ -346,6 +363,8 @@ document.getElementById("f").addEventListener("submit", async function(ev){
   var name = first + " " + v("ln");
   var note = document.getElementById("note");
   var btn = form.querySelector('button[type="submit"]');
+  var consent = document.getElementById("consent");
+  var mk = document.getElementById("mk");
   var say = function(text, href, linkText, kind){
     note.className = kind || "";
     note.textContent = text;
@@ -357,8 +376,14 @@ document.getElementById("f").addEventListener("submit", async function(ev){
       note.appendChild(document.createTextNode("."));
     }
   };
+  if (!consent.checked) {
+    consent.setAttribute("aria-invalid", "true");
+    say("You must give us your permission to store and process your personal data to proceed.", null, null, "err");
+    consent.focus();
+    return;
+  }
   var mailtoHref = function(){
-    var body = "Name: " + name + "\nEmail: " + v("e") + "\nBusiness: " + v("b") + "\nCurrent website: " + siteVal() + "\nNeed: " + v("w") + "\n\n" + v("m");
+    var body = "Name: " + name + "\nEmail: " + v("e") + "\nBusiness: " + v("b") + "\nCurrent website: " + siteVal() + "\nNeed: " + v("w") + "\nEmail me news, tips and offers from Pixel North: " + (mk.checked ? "Yes" : "No") + "\nPermission to store and process my personal data: Yes\n\n" + v("m");
     return "mailto:" + EMAIL + "?subject=" + encodeURIComponent("Website enquiry from " + name) + "&body=" + encodeURIComponent(body);
   };
   if (!ACCESS_KEY) {
@@ -387,12 +412,15 @@ document.getElementById("f").addEventListener("submit", async function(ev){
         business_name: v("b"),
         current_website: siteVal(),
         need: v("w"),
-        message: v("m")
+        message: v("m"),
+        marketing_emails: mk.checked ? "Yes" : "No",
+        data_consent: "Yes"
       })
     });
     var json = await resp.json();
     if (!resp.ok || !json.success) throw new Error(json.message || "Web3Forms error");
     form.reset();
+    window.refresh();
     say("Thank you, " + first + ". Your message has been sent, and I’ll reply by email.", null, null, "ok");
   } catch (e) {
     say("Sorry, that didn’t send. Please try again, or email ", "mailto:" + EMAIL, EMAIL, "err");
