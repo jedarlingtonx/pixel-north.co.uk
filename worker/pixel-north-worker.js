@@ -72,7 +72,7 @@ Rules:
 - When it helps, point people to the contact form or the "Get a quote" button.
 - If someone asks about privacy, personal data, how their details are used or stored, or GDPR: answer briefly and accurately from the privacy information, then give the link to the privacy notice. If they ask about cookies, give the cookie policy link.
 - You may include links in this exact format: [label](url). Use ONLY these urls, exactly as written, and never invent others:
-  /privacy.html (privacy notice), /cookies.html (cookie policy), /faq.html (frequently asked questions), /web-design-cheshire.html (web design in Cheshire and across the UK), /free-website-terms.html (free website competition terms), /#contact (contact form), /#services (services), /#quotes (how quotes work), mailto:james@pixel-north.co.uk (email James).
+  /privacy.html (privacy notice), /cookies.html (cookie policy), /faq.html (frequently asked questions), /web-design-cheshire.html (web design in Cheshire and across the UK), /free-website-terms.html (free website competition terms), /pnl4106-terms-conditions.html#claim (50% off offer terms, and the form to claim the extension to a promo code), /marketing-unsubscribe (unsubscribe from marketing emails), /#contact (contact form), /#services (services), /#quotes (how quotes work), mailto:james@pixel-north.co.uk (email James).
   Use at most two links per answer, and never show a raw web address.
 `;
 
@@ -80,6 +80,8 @@ Rules:
 const CORE_FACTS = `
 - Pixel North is a one-person web design business run by James, a freelance web designer in Northwich, Cheshire. James meets clients in person across Cheshire, and works with small businesses anywhere in the UK. Tagline: "Small business sites, sorted". Email: james@pixel-north.co.uk. Pixel North is run by Pixel North Limited (company number 16490976), registered in England and Wales.
 - Seasonal and event-based themes can keep a website feeling current. The Pixel North home page has a Halloween theme at the moment.
+- Promo codes: the 50% off offer is open for 3 months from the date the code was issued (the date on the flyer). It can be extended to 6 months in total by completing the "Claim the extension to your promo code" form at the bottom of the offer terms page. If someone asks how to extend a promo code, tell them that and link to the form.
+- Marketing emails: people can unsubscribe at any time using the unsubscribe page.
 - The contact form asks for first and last name, email, business name, an optional current website address, what you need (a brand new website, a refresh of your current site, or not sure yet) and a short message.`;
 
 // The live pages Pixel reads, so its answers always match the site.
@@ -91,6 +93,8 @@ const PAGES = [
   { label: "FAQ PAGE (page: /faq.html)", paths: ["/faq.html", "/faq"], max: 6000 },
   { label: "WEB DESIGN IN CHESHIRE PAGE (page: /web-design-cheshire.html)", paths: ["/web-design-cheshire.html", "/web-design-cheshire"], max: 6000 },
   // Optional: if this page is removed one day, Pixel simply stops using it.
+  // Optional: the 50% off offer terms, including how to extend a promo code.
+  { label: "50% OFF OFFER TERMS AND CLAIM FORM (page: /pnl4106-terms-conditions.html)", paths: ["/pnl4106-terms-conditions.html", "/pnl4106-terms-conditions"], max: 9000 },
   { label: "FREE WEBSITE COMPETITION TERMS (page: /free-website-terms.html)", paths: ["/free-website-terms.html", "/free-website-terms"], max: 9000 },
 ];
 const PAGE_CACHE_MS = 5 * 60 * 1000;
@@ -172,7 +176,7 @@ function plainText(text) {
 }
 
 const ALLOWED_LINKS = new Set([
-  "/privacy.html", "/cookies.html", "/faq.html", "/web-design-cheshire.html", "/free-website-terms.html", "/#contact", "/#services", "/#quotes", "/#why",
+  "/privacy.html", "/cookies.html", "/faq.html", "/web-design-cheshire.html", "/free-website-terms.html", "/pnl4106-terms-conditions.html#claim", "/pnl4106-terms-conditions.html", "/marketing-unsubscribe", "/#contact", "/#services", "/#quotes", "/#why",
   "mailto:james@pixel-north.co.uk",
 ]);
 const LINK_RE = /\[([^\]\n]{1,60})\]\(([^)\s]{1,200})\)/g;
