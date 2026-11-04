@@ -421,7 +421,7 @@ document.getElementById("f").addEventListener("submit", async function(ev){
     if (!resp.ok || !json.success) throw new Error(json.message || "Web3Forms error");
     form.reset();
     window.refresh();
-    say("Thank you, " + first + ". Your message has been sent, and I’ll reply by email.", null, null, "ok");
+    say("Thank you, " + first + ". Your message has been sent, and we’ll reply by email.", null, null, "ok");
   } catch (e) {
     say("Sorry, that didn’t send. Please try again, or email ", "mailto:" + EMAIL, EMAIL, "err");
   }
