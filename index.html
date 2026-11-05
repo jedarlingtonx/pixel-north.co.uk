@@ -258,7 +258,15 @@ input,select,textarea{font:inherit;font-size:16px;padding:13px 15px;border:1px s
 #note.ok::before{content:"\2713";font-weight:700;margin-right:8px}
 #note.err{background:#FDECEF;border-color:#D64560;color:#7A1F31}
 #note.err a,#note.ok a{color:inherit}
-footer{padding:32px max(24px,calc((100% - 1120px)/2));display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;align-items:center;color:var(--muted);font-size:15px}
+footer{padding:48px max(24px,calc((100% - 1120px)/2)) 32px;display:grid;grid-template-columns:minmax(0,1.7fr) repeat(3,minmax(0,1fr));gap:36px 40px;align-items:start;color:var(--muted);font-size:15px}
+.f-brand{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.f-brand p{margin:0;max-width:34ch;line-height:1.5}
+footer .f-col{display:flex;flex-direction:column;flex-wrap:nowrap;align-items:flex-start;justify-content:flex-start;gap:10px;padding:0}
+.f-h{margin:0 0 2px;font:700 13px/1.2 Outfit,"Segoe UI",system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--text)}
+footer .f-col a{color:var(--text);text-decoration:none;font-weight:500;line-height:1.35}
+footer .f-col a:hover{color:var(--primary);text-decoration:underline}
+@media (max-width:860px){footer{grid-template-columns:repeat(3,minmax(0,1fr))}.f-brand{grid-column:1/-1}}
+@media (max-width:560px){footer{grid-template-columns:repeat(2,minmax(0,1fr));padding-top:36px}}
 .contact{display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start}
 .contact>*{flex:1 1 360px}
 .callme{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;margin-top:24px}
@@ -284,7 +292,7 @@ nav .wm{font-size:24px}
 .req{color:var(--primary);margin-left:2px}
 .alt{background:var(--panel)}
 .alt .card{background:var(--bg)}
-.legal{order:4;flex:1 1 100%;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:flex-end;border-top:1px solid #E4DAFF;padding-top:16px;margin-top:4px;font-size:14px;line-height:1.5}
+.legal{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:flex-end;border-top:1px solid #E4DAFF;padding-top:16px;margin-top:4px;font-size:14px;line-height:1.5}
 .legal-text{display:flex;flex-direction:column;gap:6px;flex:1 1 320px}
 .legal p{margin:0}
 .fb{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--panel);color:var(--primary)}
@@ -320,7 +328,7 @@ nav .wm{font-size:24px}
 [data-season="bonfire"] .season-strip{display:flex;justify-content:center;align-items:center;gap:10px;background:#1A1033;color:#E9E0FF;font-size:14px;line-height:1.4;padding:8px 24px;text-align:center;position:relative;overflow:hidden}
 .season-strip a{color:#FFC53D}
 .flame{display:inline-block;width:20px;height:23px;flex:0 0 auto;background:url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%207%208%22%20shape-rendering=%22crispEdges%22%3E%3Crect%20x=%223%22%20y=%220%22%20width=%221%22%20height=%221%22%20fill=%22%23FF7A1A%22/%3E%3Crect%20x=%222%22%20y=%221%22%20width=%221%22%20height=%221%22%20fill=%22%23FF7A1A%22/%3E%3Crect%20x=%223%22%20y=%221%22%20width=%221%22%20height=%221%22%20fill=%22%23FF7A1A%22/%3E%3Crect%20x=%222%22%20y=%222%22%20width=%221%22%20height=%221%22%20fill=%22%23FF7A1A%22/%3E%3Crect%20x=%223%22%20y=%222%22%20width=%221%22%20height=%221%22%20fill=%22%23FF7A1A%22/%3E%3Crect%20x=%224%22%20y=%222%22%20width=%221%22%20height=%221%22%20fill=%22%23FF7A1A%22/%3E%3Crect%20x=%221%22%20y=%223%22%20width=%221%22%20height=%221%22%20fill=%22%23FF7A1A%22/%3E%3Crect%20x=%222%22%20y=%223%22%20width=%221%22%20height=%221%22%20fill=%22%23FF7A1A%22/%3E%3Crect%20x=%223%22%20y=%223%22%20width=%221%22%20height=%221%22%20fill=%22%23FFC53D%22/%3E%3Crect%20x=%224%22%20y=%223%22%20width=%221%22%20height=%221%22%20fill=%22%23FF7A1A%22/%3E%3Crect%20x=%225%22%20y=%223%22%20width=%221%22%20height=%221%22%20fill=%22%23FF7A1A%22/%3E%3Crect%20x=%221%22%20y=%224%22%20width=%221%22%20height=%221%22%20fill=%22%23FF7A1A%22/%3E%3Crect%20x=%222%22%20y=%224%22%20width=%221%22%20height=%221%22%20fill=%22%23FFC53D%22/%3E%3Crect%20x=%223%22%20y=%224%22%20width=%221%22%20height=%221%22%20fill=%22%23FFC53D%22/%3E%3Crect%20x=%224%22%20y=%224%22%20width=%221%22%20height=%221%22%20fill=%22%23FFC53D%22/%3E%3Crect%20x=%225%22%20y=%224%22%20width=%221%22%20height=%221%22%20fill=%22%23FF7A1A%22/%3E%3Crect%20x=%220%22%20y=%225%22%20width=%221%22%20height=%221%22%20fill=%22%23FF7A1A%22/%3E%3Crect%20x=%221%22%20y=%225%22%20width=%221%22%20height=%221%22%20fill=%22%23FF7A1A%22/%3E%3Crect%20x=%222%22%20y=%225%22%20width=%221%22%20height=%221%22%20fill=%22%23FFC53D%22/%3E%3Crect%20x=%223%22%20y=%225%22%20width=%221%22%20height=%221%22%20fill=%22%23FFC53D%22/%3E%3Crect%20x=%224%22%20y=%225%22%20width=%221%22%20height=%221%22%20fill=%22%23FFC53D%22/%3E%3Crect%20x=%225%22%20y=%225%22%20width=%221%22%20height=%221%22%20fill=%22%23FF7A1A%22/%3E%3Crect%20x=%226%22%20y=%225%22%20width=%221%22%20height=%221%22%20fill=%22%23FF7A1A%22/%3E%3Crect%20x=%220%22%20y=%226%22%20width=%221%22%20height=%221%22%20fill=%22%23FF7A1A%22/%3E%3Crect%20x=%221%22%20y=%226%22%20width=%221%22%20height=%221%22%20fill=%22%23FF7A1A%22/%3E%3Crect%20x=%222%22%20y=%226%22%20width=%221%22%20height=%221%22%20fill=%22%23FFC53D%22/%3E%3Crect%20x=%223%22%20y=%226%22%20width=%221%22%20height=%221%22%20fill=%22%23FFF1B8%22/%3E%3Crect%20x=%224%22%20y=%226%22%20width=%221%22%20height=%221%22%20fill=%22%23FFC53D%22/%3E%3Crect%20x=%225%22%20y=%226%22%20width=%221%22%20height=%221%22%20fill=%22%23FF7A1A%22/%3E%3Crect%20x=%226%22%20y=%226%22%20width=%221%22%20height=%221%22%20fill=%22%23FF7A1A%22/%3E%3Crect%20x=%221%22%20y=%227%22%20width=%221%22%20height=%221%22%20fill=%22%23FF7A1A%22/%3E%3Crect%20x=%222%22%20y=%227%22%20width=%221%22%20height=%221%22%20fill=%22%23FFC53D%22/%3E%3Crect%20x=%223%22%20y=%227%22%20width=%221%22%20height=%221%22%20fill=%22%23FFF1B8%22/%3E%3Crect%20x=%224%22%20y=%227%22%20width=%221%22%20height=%221%22%20fill=%22%23FFC53D%22/%3E%3Crect%20x=%225%22%20y=%227%22%20width=%221%22%20height=%221%22%20fill=%22%23FF7A1A%22/%3E%3C/svg%3E") center/contain no-repeat;image-rendering:pixelated}
-.credit{display:inline-flex;align-items:center;justify-content:center;gap:8px;flex:1 1 100%;order:3;text-align:center}
+.credit{display:inline-flex;align-items:flex-start;gap:8px;font-size:14px;line-height:1.4}
 .factory{width:22px;height:22px;fill:none;stroke:var(--primary);stroke-width:26;stroke-linecap:butt;stroke-linejoin:miter;flex:none}
 #quotes{padding-top:0;padding-bottom:0}
 #quotes .qhead{padding-top:64px}
@@ -492,17 +500,22 @@ nav .wm{font-size:24px}
 
 <footer>
 <div class="season-deco" aria-hidden="true"><svg class="fw f5" viewBox="0 0 120 120" aria-hidden="true"><path d="M60.0 45.0L60.0 22.0M66.5 46.5L72.1 34.8M71.7 50.6L89.7 36.3M74.6 56.7L87.3 53.8M74.6 63.3L97.0 68.5M71.7 69.4L81.9 77.5M66.5 73.5L76.5 94.2M60.0 75.0L60.0 88.0M53.5 73.5L43.5 94.2M48.3 69.4L38.1 77.5M45.4 63.3L23.0 68.5M45.4 56.7L32.7 53.8M48.3 50.6L30.3 36.3M53.5 46.5L47.9 34.8" fill="none"/><circle cx="60.0" cy="12.0" r="2.6" stroke="none"/><circle cx="75.6" cy="27.6" r="1.8" stroke="none"/><circle cx="97.5" cy="30.1" r="2.6" stroke="none"/><circle cx="95.1" cy="52.0" r="1.8" stroke="none"/><circle cx="106.8" cy="70.7" r="2.6" stroke="none"/><circle cx="88.1" cy="82.4" r="1.8" stroke="none"/><circle cx="80.8" cy="103.2" r="2.6" stroke="none"/><circle cx="60.0" cy="96.0" r="1.8" stroke="none"/><circle cx="39.2" cy="103.2" r="2.6" stroke="none"/><circle cx="31.9" cy="82.4" r="1.8" stroke="none"/><circle cx="13.2" cy="70.7" r="2.6" stroke="none"/><circle cx="24.9" cy="52.0" r="1.8" stroke="none"/><circle cx="22.5" cy="30.1" r="2.6" stroke="none"/><circle cx="44.4" cy="27.6" r="1.8" stroke="none"/></svg><i class="sp o1"></i><i class="sp o2 o l"></i><i class="rk r4"></i></div>
+<div class="f-brand">
 <span class="wm" style="font-size:20px">Pixel North</span>
+<p>Freelance web design for small businesses, based in Cheshire and working across the UK.</p>
 <span class="credit"><svg class="factory" viewBox="0 0 512 512" aria-hidden="true"><path d="M30 464H480"/><path d="M70 464V268L195 205V268L325 205V268L445 205V464"/><path d="M347 250L359 45H413L425 205"/><path d="M362 78H410"/><rect x="120" y="318" width="64" height="64"/><rect x="226" y="318" width="64" height="64"/><rect x="331" y="318" width="64" height="64"/></svg><span>Another small business site, sorted, by <a href="https://pixel-north.co.uk/">Pixel North</a>.</span></span>
-<span style="display:flex;flex-wrap:wrap;gap:6px 18px"><a href="services">Services</a><a href="about-james">About James</a><a href="web-designer-northwich">Web designer in Northwich</a><a href="web-design-cheshire">Web design in Cheshire</a><a href="faq">FAQs</a><a href="privacy">Privacy notice</a><a href="cookies">Cookie policy</a><a href="#" data-cookie-settings>Cookie settings</a></span>
+</div>
+<nav class="f-col" aria-label="Explore"><p class="f-h">Explore</p><a href="services">Services</a><a href="about-james">About James</a><a href="faq">FAQs</a></nav>
+<nav class="f-col" aria-label="Areas we cover"><p class="f-h">Areas</p><a href="web-designer-northwich">Web designer in Northwich</a><a href="web-design-cheshire">Web design in Cheshire</a></nav>
+<nav class="f-col" aria-label="Legal"><p class="f-h">Legal</p><a href="privacy">Privacy notice</a><a href="cookies">Cookie policy</a><a href="#" data-cookie-settings>Cookie settings</a></nav>
 <div class="legal">
 <div class="legal-text">
-<p>Freelance web design for small businesses, based in Cheshire and working across the UK.</p>
 <p>Pixel North Limited is a limited company registered in England and Wales. Company Number 16490976. Registered office: 59 Western Way, Northwich, Cheshire CW8 4YJ.</p>
 <p>© Copyright 2026 Pixel North Limited. All Rights Reserved.</p>
 </div>
 <div class="social"><a class="fb" href="https://www.facebook.com/profile.php?id=61595794411993&amp;locale=en_GB" target="_blank" rel="noopener noreferrer" aria-label="Pixel North on Facebook (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a><a class="fb" href="https://www.linkedin.com/company/pixel-north/" target="_blank" rel="noopener noreferrer" aria-label="Pixel North on LinkedIn (opens in a new tab)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a></div>
 </div>
+
 </footer>
 
 <script>
