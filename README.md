@@ -11,7 +11,8 @@ It is plain HTML, CSS, and a little JavaScript in one file, with no build step a
 - `404.html`: the branded "page not found" page
 - `free-website-terms.html`: terms for the launch free-website prize draw (hidden from search engines)
 - Forms: submissions are sent through Web3Forms. The (public) access key is `ACCESS_KEY` in the script at the bottom of `index.html` and `pnl4106-terms-conditions.html`.
-- `consent.js`: the cookie banner and settings; it loads Google Analytics only after consent. `GA_ID` at the top is the GA4 measurement ID (starts with `G-`)
+- `consent.js`: the shared Pixel North cookie control (identical on every site, never edited per site). It loads Google Analytics only after consent.
+- `consent-config.js`: this site's cookie control settings (GA4 measurement ID, cookie name, colours, fonts, how long a choice is remembered, audit log address)
 - `chat-widget.js`: the "Ask Pixel" chat window, loaded by a script tag at the bottom of each page. Remove that tag to switch the chat off.
 - `worker/pixel-north-worker.js`: the server side of the chat. It answers `/api/chat` using Cloudflare Workers AI, reads the site's own pages for its notes, and serves everything else as normal.
 - `wrangler.jsonc`: Cloudflare settings (Worker name, AI connection, 404 page, log settings). The name must match the Worker in the Cloudflare dashboard.
