@@ -62,13 +62,14 @@ input,select,textarea{font:inherit;font-size:16px;padding:13px 15px;border:1px s
 #note{font-size:15px;color:var(--muted)}
 footer{padding:48px max(24px,calc((100% - 1120px)/2)) 32px;display:grid;grid-template-columns:minmax(0,1.7fr) repeat(3,minmax(0,1fr));gap:36px 40px;align-items:start;color:var(--muted);font-size:15px}
 .f-brand{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
-.f-brand p{margin:0;max-width:34ch;line-height:1.5}
+.f-id{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.f-id p{margin:0;max-width:34ch;line-height:1.5}
 footer .f-col{display:flex;flex-direction:column;flex-wrap:nowrap;align-items:flex-start;justify-content:flex-start;gap:10px;padding:0}
 .f-h{margin:0 0 2px;font:700 13px/1.2 Outfit,"Segoe UI",system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--text)}
 footer .f-col a{color:var(--text);text-decoration:none;font-weight:500;line-height:1.35}
 footer .f-col a:hover{color:var(--primary);text-decoration:underline}
 @media (max-width:860px){footer{grid-template-columns:repeat(3,minmax(0,1fr))}.f-brand{grid-column:1/-1}}
-@media (max-width:560px){footer{grid-template-columns:repeat(2,minmax(0,1fr));padding-top:36px}}
+@media (max-width:560px){footer{grid-template-columns:repeat(2,minmax(0,1fr));padding-top:36px}.f-brand{display:contents}.f-id{grid-column:1/-1;display:flex;flex-direction:column;gap:12px;align-items:flex-start}.f-brand .credit{grid-column:1/-1;order:1}.legal{order:2}}
 .contact{display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start}
 .contact>*{flex:1 1 360px}
 .js .rv{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease;transition-delay:var(--d,0s)}
@@ -213,8 +214,10 @@ mark{background:#FFE9A8;color:#1A1033;padding:0 4px;border-radius:4px}
 
 <footer>
 <div class="f-brand">
+<div class="f-id">
 <span class="wm" style="font-size:20px">Pixel North</span>
 <p>Freelance web design for small businesses, based in Cheshire and working across the UK.</p>
+</div>
 <span class="credit"><svg class="factory" viewBox="0 0 512 512" aria-hidden="true"><path d="M30 464H480"/><path d="M70 464V268L195 205V268L325 205V268L445 205V464"/><path d="M347 250L359 45H413L425 205"/><path d="M362 78H410"/><rect x="120" y="318" width="64" height="64"/><rect x="226" y="318" width="64" height="64"/><rect x="331" y="318" width="64" height="64"/></svg><span>Another small business site, sorted, by <a href="https://pixel-north.co.uk/">Pixel North</a>.</span></span>
 </div>
 <nav class="f-col" aria-label="Explore"><p class="f-h">Explore</p><a href="services">Services</a><a href="about-james">About James</a><a href="faq">FAQs</a></nav>
