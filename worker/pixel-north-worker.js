@@ -2,6 +2,8 @@
 // and serves everything else from the static site files (404.html included).
 // The Workers AI binding named AI is declared in wrangler.jsonc.
 
+import { handleConsent } from "./consent-log.js";
+
 // Models are tried in order. Cloudflare retires models from time to time:
 // if replies stop working, check https://developers.cloudflare.com/workers-ai/models/
 const MODELS = ["@cf/zai-org/glm-4.7-flash", "@cf/meta/llama-3.1-8b-instruct-fp8"];
@@ -262,74 +264,11 @@ async function handleChat(request, env) {
   return json({ error: "unavailable" }, 503);
 }
 
-// ---- Consent audit trail -------------------------------------------------
-// Every cookie choice (accept, reject, change, withdraw) is written to the D1
-// table consent_log (see schema.sql). Records hold a random consent ID, the
-// choice, the policy version and the page path. No IP address or user agent
-// is stored. The time is set here on the server, not taken from the browser.
-const CONSENT_ID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
-const CONSENT_ACTIONS = new Set(["accept", "reject", "changed", "withdrawn"]);
-const CONSENT_VERSION_RE = /^v[0-9]{1,3}$/;
-const CONSENT_MAX_BODY = 600; // bytes
-
-async function handleConsentLog(request, env) {
-  if (!originAllowed(request)) return json({ error: "forbidden" }, 403);
-  if (!env.CONSENT_DB) return json({ error: "not_configured" }, 503);
-
-  const text = await request.text();
-  if (text.length > CONSENT_MAX_BODY) return json({ error: "too_long" }, 413);
-
-  let b;
-  try { b = JSON.parse(text); } catch (e) { return json({ error: "bad_request" }, 400); }
-
-  const id = b && b.id;
-  const action = b && b.action;
-  const version = b && b.version;
-  const page = typeof (b && b.page) === "string" ? b.page.slice(0, 120) : "";
-  if (typeof id !== "string" || !CONSENT_ID_RE.test(id)) return json({ error: "bad_request" }, 400);
-  if (!CONSENT_ACTIONS.has(action)) return json({ error: "bad_request" }, 400);
-  if (typeof version !== "string" || !CONSENT_VERSION_RE.test(version)) return json({ error: "bad_request" }, 400);
-  if (typeof b.analytics !== "boolean") return json({ error: "bad_request" }, 400);
-
-  try {
-    await env.CONSENT_DB
-      .prepare("INSERT INTO consent_log (consent_id, created_at, action, analytics, policy_version, page) VALUES (?1, ?2, ?3, ?4, ?5, ?6)")
-      .bind(id, new Date().toISOString(), action, b.analytics ? 1 : 0, version, page)
-      .run();
-  } catch (e) {
-    console.error("consent log error:", String((e && e.message) || e).slice(0, 160));
-    return json({ error: "unavailable" }, 503);
-  }
-  return json({ ok: true }, 201);
-}
-
-// Look up one visitor's consent history, for a request to see their record.
-// GET /api/consent/<consent id> with the header  Authorization: Bearer <CONSENT_ADMIN_TOKEN>
-// Set the token with:  npx wrangler secret put CONSENT_ADMIN_TOKEN
-async function handleConsentLookup(request, env, id) {
-  const token = env.CONSENT_ADMIN_TOKEN;
-  const auth = request.headers.get("authorization") || "";
-  if (!token || auth !== "Bearer " + token) return json({ error: "forbidden" }, 403);
-  if (!env.CONSENT_DB) return json({ error: "not_configured" }, 503);
-  if (!CONSENT_ID_RE.test(id)) return json({ error: "bad_request" }, 400);
-  const rows = await env.CONSENT_DB
-    .prepare("SELECT created_at, action, analytics, policy_version, page FROM consent_log WHERE consent_id = ?1 ORDER BY created_at, rowid")
-    .bind(id)
-    .all();
-  return json({ consent_id: id, records: rows.results || [] });
-}
-
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
-    if (url.pathname === "/api/consent") {
-      if (request.method !== "POST") return json({ error: "method_not_allowed" }, 405);
-      return handleConsentLog(request, env);
-    }
-    if (url.pathname.startsWith("/api/consent/")) {
-      if (request.method !== "GET") return json({ error: "method_not_allowed" }, 405);
-      return handleConsentLookup(request, env, url.pathname.slice("/api/consent/".length));
-    }
+    const consent = await handleConsent(request, env, url);
+    if (consent) return consent;
     if (url.pathname === "/api/chat") {
       if (request.method !== "POST") return json({ error: "method_not_allowed" }, 405);
       return handleChat(request, env);
