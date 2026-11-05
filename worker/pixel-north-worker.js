@@ -46,7 +46,7 @@ HOW QUOTES WORK
 2. A clear quotation: a written quotation covering what's included, the timeline, and the cost.
 3. Start when you're ready: no pressure. If it looks right, work begins. If not, you've lost nothing.
 
-PRIVACY AND COOKIES (summary of the privacy notice at /privacy.html and cookie policy at /cookies.html)
+PRIVACY AND COOKIES (summary of the privacy notice at /privacy and cookie policy at /cookies)
 - The site is run by Pixel North Limited (company number 16490976). Contact: james@pixel-north.co.uk.
 - The pages themselves don't store personal data. Google Analytics cookies are used only if the visitor accepts them. Rejecting is as easy as accepting, and the site works the same either way. The visitor can change their choice any time via "Cookie settings" in the footer. One essential cookie, pn_consent, remembers the choice for 12 months. Each choice is also saved in a short consent record (a random ID, the date and time, the choice, the policy version and the page, with no name, email or IP address), kept for 12 months and then deleted, to show what the visitor agreed to.
 - Contact form details (name, email, business name, current website if given, what's needed, and the message) go through Web3Forms, which emails them to James and keeps a copy in his account. They are used only to reply to the enquiry and prepare a quotation. Enquiries from people who don't become clients are kept for up to 12 months, then deleted. Details are never sold or used for unrelated marketing.
@@ -56,7 +56,7 @@ PRIVACY AND COOKIES (summary of the privacy notice at /privacy.html and cookie p
 - Rights: visitors can ask to see, correct, delete or restrict their data by emailing James. They can complain to the Information Commissioner's Office (ico.org.uk).
 
 CONTACTING JAMES
-Use the "Tell me about your business" form on the website (Get a quote button), or email james@pixel-north.co.uk. The form asks for name, email, business name, optional current website address, what you need (a brand new website, a refresh of your current site, or not sure yet) and a short message. Details are used only to reply to the enquiry. See the privacy notice at /privacy.html and cookie policy at /cookies.html.
+Use the "Tell me about your business" form on the website (Get a quote button), or email james@pixel-north.co.uk. The form asks for name, email, business name, optional current website address, what you need (a brand new website, a refresh of your current site, or not sure yet) and a short message. Details are used only to reply to the enquiry. See the privacy notice at /privacy and cookie policy at /cookies.
 `;
 
 const RULES = `You are Pixel, the friendly website assistant for Pixel North, a small web design business. You are an AI, not James. If asked your name, say you are Pixel.
@@ -74,7 +74,7 @@ Rules:
 - When it helps, point people to the contact form or the "Get a quote" button.
 - If someone asks about privacy, personal data, how their details are used or stored, or GDPR: answer briefly and accurately from the privacy information, then give the link to the privacy notice. If they ask about cookies, give the cookie policy link.
 - You may include links in this exact format: [label](url). Use ONLY these urls, exactly as written, and never invent others:
-  /privacy.html (privacy notice), /cookies.html (cookie policy), /faq.html (frequently asked questions), /web-design-cheshire.html (web design in Cheshire and across the UK), /free-website-terms.html (free website competition terms), /pnl4106-terms-conditions.html#claim (50% off offer terms, and the form to claim the extension to a promo code), /marketing-unsubscribe (unsubscribe from marketing emails), /#contact (contact form), /#services (services), /#quotes (how quotes work), mailto:james@pixel-north.co.uk (email James).
+  /privacy (privacy notice), /cookies (cookie policy), /faq (frequently asked questions), /web-design-cheshire (web design in Cheshire and across the UK), /free-website-terms (free website competition terms), /pnl4106-terms-conditions#claim (50% off offer terms, and the form to claim the extension to a promo code), /marketing-unsubscribe (unsubscribe from marketing emails), /#contact (contact form), /#services (services), /#quotes (how quotes work), mailto:james@pixel-north.co.uk (email James).
   Use at most two links per answer, and never show a raw web address.
 `;
 
@@ -89,15 +89,15 @@ const CORE_FACTS = `
 // The live pages Pixel reads, so its answers always match the site.
 const PAGES = [
   { label: "HOME PAGE", paths: ["/", "/index.html"], required: true },
-  { label: "PRIVACY NOTICE (page: /privacy.html)", paths: ["/privacy.html", "/privacy"], required: true },
-  { label: "COOKIE POLICY (page: /cookies.html)", paths: ["/cookies.html", "/cookies"], required: true },
+  { label: "PRIVACY NOTICE (page: /privacy)", paths: ["/privacy", "/privacy.html"], required: true },
+  { label: "COOKIE POLICY (page: /cookies)", paths: ["/cookies", "/cookies.html"], required: true },
   // Optional: if the FAQ page is removed one day, Pixel simply stops using it.
-  { label: "FAQ PAGE (page: /faq.html)", paths: ["/faq.html", "/faq"], max: 6000 },
-  { label: "WEB DESIGN IN CHESHIRE PAGE (page: /web-design-cheshire.html)", paths: ["/web-design-cheshire.html", "/web-design-cheshire"], max: 6000 },
+  { label: "FAQ PAGE (page: /faq)", paths: ["/faq", "/faq.html"], max: 6000 },
+  { label: "WEB DESIGN IN CHESHIRE PAGE (page: /web-design-cheshire)", paths: ["/web-design-cheshire", "/web-design-cheshire.html"], max: 6000 },
   // Optional: if this page is removed one day, Pixel simply stops using it.
   // Optional: the 50% off offer terms, including how to extend a promo code.
-  { label: "50% OFF OFFER TERMS AND CLAIM FORM (page: /pnl4106-terms-conditions.html)", paths: ["/pnl4106-terms-conditions.html", "/pnl4106-terms-conditions"], max: 9000 },
-  { label: "FREE WEBSITE COMPETITION TERMS (page: /free-website-terms.html)", paths: ["/free-website-terms.html", "/free-website-terms"], max: 9000 },
+  { label: "50% OFF OFFER TERMS AND CLAIM FORM (page: /pnl4106-terms-conditions)", paths: ["/pnl4106-terms-conditions", "/pnl4106-terms-conditions.html"], max: 9000 },
+  { label: "FREE WEBSITE COMPETITION TERMS (page: /free-website-terms)", paths: ["/free-website-terms", "/free-website-terms.html"], max: 9000 },
 ];
 const PAGE_CACHE_MS = 5 * 60 * 1000;
 const PAGE_MAX_CHARS = 7000;
@@ -178,7 +178,7 @@ function plainText(text) {
 }
 
 const ALLOWED_LINKS = new Set([
-  "/privacy.html", "/cookies.html", "/faq.html", "/web-design-cheshire.html", "/free-website-terms.html", "/pnl4106-terms-conditions.html#claim", "/pnl4106-terms-conditions.html", "/marketing-unsubscribe", "/#contact", "/#services", "/#quotes", "/#why",
+  "/privacy", "/cookies", "/faq", "/web-design-cheshire", "/free-website-terms", "/pnl4106-terms-conditions#claim", "/pnl4106-terms-conditions", "/marketing-unsubscribe", "/#contact", "/#services", "/#quotes", "/#why",
   "mailto:james@pixel-north.co.uk",
 ]);
 const LINK_RE = /\[([^\]\n]{1,60})\]\(([^)\s]{1,200})\)/g;
@@ -195,8 +195,8 @@ function addTopicLinks(question, reply) {
   const wantsCookies = /cookie/.test(q);
   const wantsPrivacy =
     /privacy|personal (data|information|details)|my (data|details|information)|gdpr|data protection|data (do|is|are)|what (data|information)|(store|keep|collect|share|sell|record|track|log)\b.*\b(data|details|information|chat|messages|conversation)/.test(q);
-  if (wantsPrivacy && !out.includes("(/privacy.html)")) out += "\n\nYou can read the full details in the [privacy notice](/privacy.html).";
-  if (wantsCookies && !out.includes("(/cookies.html)")) out += "\n\nThere's more in the [cookie policy](/cookies.html).";
+  if (wantsPrivacy && !out.includes("(/privacy)")) out += "\n\nYou can read the full details in the [privacy notice](/privacy).";
+  if (wantsCookies && !out.includes("(/cookies)")) out += "\n\nThere's more in the [cookie policy](/cookies).";
   return out;
 }
 

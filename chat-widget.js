@@ -60,7 +60,7 @@
   box.innerHTML =
     '<header><div class="who"><img alt="" src="' + AVATAR + '"><div><b>Pixel</b><span>Pixel North\u2019s AI assistant, not James</span></div></div><button type="button" aria-label="Close chat">&times;</button></header>' +
     '<div class="log" role="log" aria-live="polite"></div>' +
-    '<div class="note">AI answers can be wrong, and quotations only come from James. Please don’t share personal details here. <a href="/privacy.html">Privacy</a></div>' +
+    '<div class="note">AI answers can be wrong, and quotations only come from James. Please don’t share personal details here. <a href="/privacy">Privacy</a></div>' +
     '<form><input type="text" maxlength="500" placeholder="Type your question" aria-label="Your question" autocomplete="off"><button type="submit">Send</button></form>';
 
   document.body.appendChild(btn);
@@ -103,7 +103,7 @@
   }
 
   var ALLOWED = {
-    "/privacy.html": 1, "/cookies.html": 1, "/free-website-terms.html": 1, "/#contact": 1, "/#services": 1, "/#quotes": 1, "/#why": 1,
+    "/privacy": 1, "/cookies": 1, "/free-website-terms": 1, "/#contact": 1, "/#services": 1, "/#quotes": 1, "/#why": 1,
     "mailto:james@pixel-north.co.uk": 1
   };
 
