@@ -17,7 +17,14 @@
     }
   ],
   "previews": {
-    "ai": { "binding": "AI" }
+    "ai": { "binding": "AI" },
+    "d1_databases": [
+      {
+        "binding": "CONSENT_DB",
+        "database_name": "pixel-north-consent-staging",
+        "database_id": "c1b5db16-98fd-4391-b185-6581e7c56386"
+      }
+    ]
   },
   "observability": {
     "enabled": true,
