@@ -24,8 +24,8 @@
     "d1_databases": [
       {
         "binding": "CONSENT_DB",
-        "database_name": "pixel-north-consent-staging",
-        "database_id": "c1b5db16-98fd-4391-b185-6581e7c56386"
+        "database_name": "Staging",
+        "database_id": "2743134e-ddbb-4e2b-86ac-b676a70b0295"
       }
     ]
   },
