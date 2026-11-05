@@ -8,22 +8,56 @@
 
   var GA_ID = "G-19MLYWMYX5";
   var COOKIE = "pn_consent";
-  var VERSION = "v1"; // change this to ask everyone again after a policy change
+  var VERSION = "v2"; // change this to ask everyone again after a policy change
   var MAX_AGE = 60 * 60 * 24 * 365; // 12 months
+  var LOG_URL = "/api/consent"; // consent audit trail (see worker/pixel-north-worker.js)
   var root, lastFocus;
 
-  function readChoice() {
+  // The cookie holds "<version>-<yes|no>.<consent id>", e.g. v2-yes.3f2b...
+  // The consent id is a random UUID. It links one visitor's choices together
+  // in the audit trail without identifying them.
+  function readState() {
     var m = document.cookie.match(new RegExp("(?:^|; )" + COOKIE + "=([^;]*)"));
-    if (!m) return null;
-    if (m[1] === VERSION + "-yes") return true;
-    if (m[1] === VERSION + "-no") return false;
-    return null;
+    var p = m && m[1].match(/^(v[0-9]+)-(yes|no)(?:\.([0-9a-f-]{36}))?$/);
+    return p ? { version: p[1], yes: p[2] === "yes", id: p[3] || null } : null;
   }
 
-  function saveChoice(yes) {
-    document.cookie = COOKIE + "=" + VERSION + (yes ? "-yes" : "-no") +
+  function readChoice() {
+    var s = readState();
+    if (!s || s.version !== VERSION) return null;
+    return s.yes;
+  }
+
+  function newId() {
+    var c = window.crypto;
+    if (c && c.randomUUID) return c.randomUUID();
+    var b = new Uint8Array(16);
+    if (c && c.getRandomValues) c.getRandomValues(b);
+    else for (var i = 0; i < 16; i++) b[i] = Math.floor(Math.random() * 256);
+    b[6] = (b[6] & 0x0f) | 0x40;
+    b[8] = (b[8] & 0x3f) | 0x80;
+    var h = Array.prototype.map.call(b, function (x) { return ("0" + x.toString(16)).slice(-2); }).join("");
+    return h.slice(0, 8) + "-" + h.slice(8, 12) + "-" + h.slice(12, 16) + "-" + h.slice(16, 20) + "-" + h.slice(20);
+  }
+
+  function saveChoice(yes, id) {
+    document.cookie = COOKIE + "=" + VERSION + (yes ? "-yes" : "-no") + "." + id +
       "; max-age=" + MAX_AGE + "; path=/; SameSite=Lax" +
       (location.protocol === "https:" ? "; Secure" : "");
+  }
+
+  // Sends one record to the audit trail. Never blocks or breaks the banner:
+  // if the request fails, the visitor's choice still applies.
+  function logChoice(action, yes, id) {
+    try {
+      fetch(LOG_URL, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ id: id, action: action, analytics: yes, version: VERSION, page: location.pathname }),
+        keepalive: true,
+        credentials: "omit"
+      }).catch(function () {});
+    } catch (e) { /* ignore */ }
   }
 
   function gaConfigured() {
@@ -117,8 +151,15 @@
   }
 
   function choose(yes) {
-    saveChoice(yes);
+    var before = readChoice();   // null if no valid choice for this version yet
+    var state = readState();
+    var id = (state && state.id) || newId();
+    saveChoice(yes, id);
     if (yes) loadGA(); else removeGA();
+    if (before !== yes) {
+      var action = before === null ? (yes ? "accept" : "reject") : (yes ? "changed" : "withdrawn");
+      logChoice(action, yes, id);
+    }
     hide();
   }
 
