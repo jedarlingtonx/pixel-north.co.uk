@@ -9,7 +9,8 @@
     "run_worker_first": ["/api/*"]
   },
   "ai": { "binding": "AI" },
-  "vars": { "SITE": "pixel-north.co.uk" },
+  "vars": { "SITE": "pixel-north.co.uk", "CONSENT_RETENTION_MONTHS": "12" },
+  "triggers": { "crons": ["17 3 * * *"] },
   "d1_databases": [
     {
       "binding": "CONSENT_DB",

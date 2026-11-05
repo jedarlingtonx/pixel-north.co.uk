@@ -84,6 +84,39 @@ async function lookup(request, env, site, id) {
   return json({ site, consent_id: id, records: rows.results || [] });
 }
 
+// ---- Retention -----------------------------------------------------------
+// Records are deleted once they are older than CONSENT_RETENTION_MONTHS (default
+// 12). Run pruneConsent() daily from a Cron Trigger (see wrangler.jsonc). Each
+// site deletes only its own rows, so sites sharing a database can use different
+// periods. If the setting is invalid, nothing is deleted.
+const DEFAULT_RETENTION_MONTHS = 12;
+
+function retentionMonths(env) {
+  const raw = env && env.CONSENT_RETENTION_MONTHS;
+  if (raw === undefined || raw === null || raw === "") return DEFAULT_RETENTION_MONTHS;
+  const n = Number(raw);
+  return Number.isInteger(n) && n >= 1 && n <= 120 ? n : null;
+}
+
+export async function pruneConsent(env, now = new Date()) {
+  const site = siteOf(env);
+  const months = retentionMonths(env);
+  if (!site || !env.CONSENT_DB || months === null) {
+    console.error("consent prune skipped: SITE, CONSENT_DB or CONSENT_RETENTION_MONTHS not valid");
+    return { skipped: true };
+  }
+  const cutoff = new Date(now.getTime());
+  cutoff.setUTCMonth(cutoff.getUTCMonth() - months);
+  const iso = cutoff.toISOString();
+  const res = await env.CONSENT_DB
+    .prepare("DELETE FROM consent_log WHERE site = ?1 AND created_at < ?2")
+    .bind(site, iso)
+    .run();
+  const deleted = (res && res.meta && res.meta.changes) || 0;
+  console.log("consent prune:", site, "deleted", deleted, "older than", iso);
+  return { site, cutoff: iso, deleted };
+}
+
 // Returns a Response for /api/consent routes, or null for any other path.
 export async function handleConsent(request, env, url) {
   const path = url.pathname;

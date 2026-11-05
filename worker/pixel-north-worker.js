@@ -2,7 +2,7 @@
 // and serves everything else from the static site files (404.html included).
 // The Workers AI binding named AI is declared in wrangler.jsonc.
 
-import { handleConsent } from "./consent-log.js";
+import { handleConsent, pruneConsent } from "./consent-log.js";
 
 // Models are tried in order. Cloudflare retires models from time to time:
 // if replies stop working, check https://developers.cloudflare.com/workers-ai/models/
@@ -48,7 +48,7 @@ HOW QUOTES WORK
 
 PRIVACY AND COOKIES (summary of the privacy notice at /privacy.html and cookie policy at /cookies.html)
 - The site is run by Pixel North Limited (company number 16490976). Contact: james@pixel-north.co.uk.
-- The pages themselves don't store personal data. Google Analytics cookies are used only if the visitor accepts them. Rejecting is as easy as accepting, and the site works the same either way. The visitor can change their choice any time via "Cookie settings" in the footer. One essential cookie, pn_consent, remembers the choice for 12 months. Each choice is also saved in a short consent record (a random ID, the date and time, the choice, the policy version and the page, with no name, email or IP address), kept for up to six years to show what the visitor agreed to.
+- The pages themselves don't store personal data. Google Analytics cookies are used only if the visitor accepts them. Rejecting is as easy as accepting, and the site works the same either way. The visitor can change their choice any time via "Cookie settings" in the footer. One essential cookie, pn_consent, remembers the choice for 12 months. Each choice is also saved in a short consent record (a random ID, the date and time, the choice, the policy version and the page, with no name, email or IP address), kept for 12 months and then deleted, to show what the visitor agreed to.
 - Contact form details (name, email, business name, current website if given, what's needed, and the message) go through Web3Forms, which emails them to James and keeps a copy in his account. They are used only to reply to the enquiry and prepare a quotation. Enquiries from people who don't become clients are kept for up to 12 months, then deleted. Details are never sold or used for unrelated marketing.
 - The chat assistant is automated. Typed questions are sent to Cloudflare's AI service to write a reply. Visitors should not put personal or sensitive details in the chat. James does not keep a record of what is typed, and the chat does not use cookies. Cloudflare may log technical information such as IP addresses.
 - Other companies involved: Cloudflare (hosting), Google Fonts, Google Analytics (only with consent), Web3Forms (form service, run from India), and an email provider. Some, such as Google and Cloudflare, may process data outside the UK.
@@ -275,5 +275,9 @@ export default {
     }
     if (url.pathname.startsWith("/api/")) return json({ error: "not_found" }, 404);
     return env.ASSETS.fetch(request);
+  },
+  // Daily Cron Trigger (wrangler.jsonc): delete consent records past their retention period.
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(pruneConsent(env));
   },
 };
