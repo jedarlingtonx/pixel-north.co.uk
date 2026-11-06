@@ -3,7 +3,6 @@
   (consent.js is the shared Pixel North cookie control kit, identical on every site.)
 */
 window.COOKIE_CONTROL = {
-  categories: { analytics: true, preferences: true, media: true, marketing: true },   // STAGING TEST ONLY: revert before merging to main
   gaId: "G-19MLYWMYX5",
   cookieName: "pn_consent",
   version: "v2",                   // bump to ask everyone again after a policy change
