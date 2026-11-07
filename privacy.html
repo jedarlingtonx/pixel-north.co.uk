@@ -93,6 +93,17 @@ main.prose{padding:40px max(24px,calc((100% - 720px)/2)) 72px}
 .social{display:flex;gap:10px}
 .credit{display:inline-flex;align-items:flex-start;gap:8px;font-size:14px;line-height:1.4}
 .factory{width:22px;height:22px;fill:none;stroke:var(--primary);stroke-width:26;stroke-linecap:butt;stroke-linejoin:miter;flex:none}
+/* breadcrumbs */
+.crumbs{margin:0 0 18px;font-size:15px;line-height:1.4}
+.crumbs ol{list-style:none;display:flex;flex-wrap:wrap;gap:4px 8px;margin:0;padding:0;align-items:center}
+.crumbs li{display:flex;align-items:center;gap:8px;color:#D9CCFF}
+.crumbs li+li::before{content:"\203A";opacity:.7}
+.crumbs a{color:#fff}
+.crumbs [aria-current]{color:#fff;font-weight:700}
+.prose .crumbs{margin:0 0 14px}
+.prose .crumbs li{color:var(--muted)}
+.prose .crumbs a{color:var(--primary)}
+.prose .crumbs [aria-current]{color:var(--text)}
 </style>
 </head>
 <body>
@@ -103,6 +114,7 @@ main.prose{padding:40px max(24px,calc((100% - 720px)/2)) 72px}
 </nav>
 
 <main class="prose">
+<div class="crumbs" role="navigation" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><span aria-current="page">Privacy notice</span></li></ol></div>
 <h1>Privacy notice</h1>
 <p class="meta">Last updated 5 November 2026</p>
 

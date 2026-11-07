@@ -139,6 +139,17 @@ details.q .ans p{margin:0 0 12px;max-width:70ch}
 .tbody .tl{margin-top:auto;padding-top:10px;font-weight:700}
 .tag{display:inline-block;align-self:flex-start;background:var(--accent);color:var(--ink);font:700 12px/1 Outfit,sans-serif;letter-spacing:.06em;text-transform:uppercase;border-radius:999px;padding:6px 10px}
 @media (max-width:960px){.tgrid{grid-template-columns:1fr;max-width:560px}}
+/* breadcrumbs */
+.crumbs{margin:0 0 18px;font-size:15px;line-height:1.4}
+.crumbs ol{list-style:none;display:flex;flex-wrap:wrap;gap:4px 8px;margin:0;padding:0;align-items:center}
+.crumbs li{display:flex;align-items:center;gap:8px;color:#D9CCFF}
+.crumbs li+li::before{content:"\203A";opacity:.7}
+.crumbs a{color:#fff}
+.crumbs [aria-current]{color:#fff;font-weight:700}
+.prose .crumbs{margin:0 0 14px}
+.prose .crumbs li{color:var(--muted)}
+.prose .crumbs a{color:var(--primary)}
+.prose .crumbs [aria-current]{color:var(--text)}
 </style>
 <script type="application/ld+json">
 {
@@ -170,6 +181,7 @@ details.q .ans p{margin:0 0 12px;max-width:70ch}
 
 <main class="pg">
 <header class="phero pw">
+<div class="crumbs" role="navigation" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><span aria-current="page">Themes</span></li></ol></div>
 <h1>Seasonal themes for your website.</h1>
 <p class="lede">A small, tasteful touch that shows your business is awake and paying attention. Here are the themes we've designed for the Pixel North home page, and how one could work for yours.</p>
 <p class="meta">Last updated 7 November 2026</p>

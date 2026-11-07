@@ -12,7 +12,7 @@ Before changing the live theme, first archive the OLD theme:
 """
 import re, sys, glob, os
 
-BAR_CSS = '<style id="arch-bar-css">.arch-bar{background:#FF3D8B;color:#1A1033;font:500 15px/1.4 "DM Sans",system-ui,sans-serif;text-align:center;padding:10px 16px;position:relative;z-index:5}.arch-bar a{color:#1A1033;font-weight:700;white-space:nowrap}.arch-bar a:hover{text-decoration:none}</style>\n'
+BAR_CSS = '<style id="arch-bar-css">.arch-bar{background:#FF3D8B;color:#1A1033;font:500 15px/1.4 "DM Sans",system-ui,sans-serif;text-align:center;padding:10px 16px;position:relative;z-index:5}.arch-bar a{color:#1A1033;font-weight:700;white-space:nowrap}.arch-bar a:hover{text-decoration:none}.arch-bar .crumbs{margin:0 0 4px;font-size:14px}.arch-bar .crumbs ol{list-style:none;display:flex;flex-wrap:wrap;gap:4px 8px;margin:0;padding:0;align-items:center;justify-content:center}.arch-bar .crumbs li{display:flex;align-items:center;gap:8px}.arch-bar .crumbs li,.arch-bar .crumbs a,.arch-bar .crumbs [aria-current]{color:#1A1033}.arch-bar .crumbs li+li::before{content:"\\203A"}.arch-bar .crumbs [aria-current]{font-weight:700}</style>\n'
 
 def strip_bar(html):
     html = re.sub(r'<style id="arch-bar-css">.*?</style>\n', '', html, flags=re.S)
@@ -44,7 +44,7 @@ def build(index, theme_src, title, comment):
     s = re.sub(r'<script type="application/ld\+json">.*?</script>\n', '', s, flags=re.S)
     s = re.sub(r'(href|src)="(about-james|services|faq|themes|web-designer-northwich|web-design-cheshire|privacy|cookies|free-website-terms|consent-config\.js|consent\.js|images/james\.jpg)([#"?])', r'\1="/\2\3', s)
     s = s.replace('</style>\n', '</style>\n' + BAR_CSS, 1)
-    bar = f'<div class="arch-bar" role="note">You\u2019re previewing the {title} theme. <a href="/themes#what">Exit preview</a></div>\n'
+    bar = f'<div class="arch-bar" role="note"><div class="crumbs" role="navigation" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/themes">Themes</a></li><li><span aria-current="page">{title}</span></li></ol></div>You\u2019re previewing the {title} theme. <a href="/themes#what">Exit preview</a></div>\n'
     s = s.replace('<div class="season-strip"', bar + '<div class="season-strip"', 1)
     s = s.replace('</head>\n', '</head>\n' + comment, 1)
     return s
