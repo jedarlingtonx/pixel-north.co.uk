@@ -12,7 +12,14 @@ Before changing the live theme, first archive the OLD theme:
 """
 import re, sys, glob, os
 
+BAR_CSS = '<style id="arch-bar-css">.arch-bar{background:#FF3D8B;color:#1A1033;font:500 15px/1.4 "DM Sans",system-ui,sans-serif;text-align:center;padding:10px 16px;position:relative;z-index:5}.arch-bar a{color:#1A1033;font-weight:700;white-space:nowrap}.arch-bar a:hover{text-decoration:none}</style>\n'
+
+def strip_bar(html):
+    html = re.sub(r'<style id="arch-bar-css">.*?</style>\n', '', html, flags=re.S)
+    return re.sub(r'<div class="arch-bar".*?</div>\n', '', html, flags=re.S)
+
 def parts(html):
+    html = strip_bar(html)
     css = re.search(r'\.season-strip\{display:none\}.*?(?=\n</style>)', html, re.S).group(0)
     body = re.search(r'<body data-season="[^"]*">\n<!--.*?-->\n<div class="season-strip".*?</div>\n', html, re.S).group(0)
     decos = re.findall(r'<div class="season-deco" aria-hidden="true">.*?</div>', html, re.S)
@@ -36,6 +43,9 @@ def build(index, theme_src, title, comment):
     s = re.sub(r'<meta name="robots" content="index[^>]*>\n', '', s)
     s = re.sub(r'<script type="application/ld\+json">.*?</script>\n', '', s, flags=re.S)
     s = re.sub(r'(href|src)="(about-james|services|faq|themes|web-designer-northwich|web-design-cheshire|privacy|cookies|free-website-terms|consent-config\.js|consent\.js|images/james\.jpg)([#"?])', r'\1="/\2\3', s)
+    s = s.replace('</style>\n', '</style>\n' + BAR_CSS, 1)
+    bar = f'<div class="arch-bar" role="note">You\u2019re previewing the {title} theme. <a href="/themes">Back to all themes &rarr;</a></div>\n'
+    s = s.replace('<div class="season-strip"', bar + '<div class="season-strip"', 1)
     s = s.replace('</head>\n', '</head>\n' + comment, 1)
     return s
 
