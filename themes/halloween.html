@@ -370,11 +370,11 @@ document.querySelectorAll("[data-go]").forEach(function(a){
   });
 });
 // So the browser's Back button returns to the section a visitor left from (e.g. "Discover services").
-document.querySelectorAll("section[id] a[href]").forEach(function(a){
+document.querySelectorAll("section[id] a[href], header.hero[id] a[href]").forEach(function(a){
   var href = a.getAttribute("href");
   if (!href || href.charAt(0) === "#" || /^(mailto:|tel:|https?:)/i.test(href)) return;
   a.addEventListener("click", function(){
-    var s = a.closest("section[id]");
+    var s = a.closest("section[id], header.hero[id]");
     try { if (s) history.replaceState(history.state, "", "#" + s.id); } catch (e) {}
   });
 });
