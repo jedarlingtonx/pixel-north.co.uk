@@ -12,7 +12,7 @@ Before changing the live theme, first archive the OLD theme:
 """
 import re, sys, glob, os
 
-BAR_CSS = '<style id="arch-bar-css">.arch-bar{background:#FF3D8B;color:#1A1033;font:500 15px/1.4 "DM Sans",system-ui,sans-serif;text-align:center;padding:10px 16px;position:relative;z-index:5}.arch-bar a{color:#1A1033;font-weight:700;white-space:nowrap;display:inline-flex;align-items:center;gap:8px;vertical-align:middle}.arch-bar .xi{width:24px;height:24px;flex:none}.arch-bar a:hover{text-decoration:none}</style>\n'
+BAR_CSS = '<style id="arch-bar-css">.arch-bar{background:#FF3D8B;color:#1A1033;font:500 15px/1.4 "DM Sans",system-ui,sans-serif;text-align:center;padding:10px 16px;position:relative;z-index:5}.arch-bar a{color:#1A1033;font-weight:700;white-space:nowrap;display:inline-flex;align-items:center;gap:8px;vertical-align:middle}.arch-bar .xi{width:28px;height:28px;flex:none}.arch-bar a:hover{text-decoration:none}</style>\n'
 
 def strip_bar(html):
     html = re.sub(r'<style id="arch-bar-css">.*?</style>\n', '', html, flags=re.S)
@@ -44,7 +44,7 @@ def build(index, theme_src, title, comment):
     s = re.sub(r'<script type="application/ld\+json">.*?</script>\n', '', s, flags=re.S)
     s = re.sub(r'(href|src)="(about-james|services|faq|themes|web-designer-northwich|web-design-cheshire|privacy|cookies|free-website-terms|consent-config\.js|consent\.js|images/james\.jpg)([#"?])', r'\1="/\2\3', s)
     s = s.replace('</style>\n', '</style>\n' + BAR_CSS, 1)
-    bar = f'<div class="arch-bar" role="note">You\u2019re previewing the {title} theme. <a href="/themes">Exit preview<svg class="xi" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#0B9A55"/><path d="M16 4.5h4.5v15H16" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><circle cx="8.4" cy="6.4" r="1.8" fill="#fff"/><path d="M8.8 9.2L10.6 13M9.2 10.2L12.6 9.2L14 10.6M9 10.4L6.4 11.8L5.2 10.4M10.6 13L13.4 15.4L12.8 18.8M10.6 13L8 15.8L5.4 15" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>\n'
+    bar = f'<div class="arch-bar" role="note">You\u2019re previewing the {title} theme. <a href="/themes">Exit preview<svg class="xi" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="3" fill="#0B9A55"/><rect x="2.2" y="2.2" width="19.6" height="19.6" rx="1.2" fill="#fff"/><path d="M3.4 3.4L8.4 5.6V18.4L3.4 20.6Z" fill="#0B9A55"/><circle cx="13.4" cy="6.4" r="1.7" fill="#0B9A55"/><g fill="none" stroke="#0B9A55" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.4 9.4L14.6 13.4"/><path d="M13.2 10.2L10.4 9.6L9.6 11.6"/><path d="M13.6 10.2L16.6 11.4L17.8 10"/><path d="M14.6 13.4L11.8 14.6L11.2 17.6"/><path d="M14.6 13.4L17 16L19 15.4"/></g><path d="M12.6 19.6H19.8V17.4L17.6 17.8Z" fill="#0B9A55"/></svg></a></div>\n'
     s = s.replace('<div class="season-strip"', bar + '<div class="season-strip"', 1)
     s = s.replace('</head>\n', '</head>\n' + comment, 1)
     return s
