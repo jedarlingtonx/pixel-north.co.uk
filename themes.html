@@ -128,9 +128,9 @@ details.q .ans p{margin:0 0 12px;max-width:70ch}
 .tgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
 .tcard{background:#fff;border:1px solid #E4DAFF;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 10px 30px rgba(26,16,51,.08)}
 .tshot{container-type:inline-size;aspect-ratio:1280/820;overflow:hidden;background:var(--panel);position:relative}
-.tshot img{display:block;width:100%;height:auto;animation:tscroll 32s ease-in-out infinite alternate;will-change:transform}
+.tshot img{display:block;width:100%;height:auto;animation:tscroll 30s ease-in-out 1 both;will-change:transform}
 .tcard:hover .tshot img,.tcard:focus-within .tshot img{animation-play-state:paused}
-@keyframes tscroll{0%,6%{transform:translateY(0)}94%,100%{transform:translateY(calc(-100% + 64.0625cqw))}}
+@keyframes tscroll{0%,4%{transform:translateY(0)}92%,97%{transform:translateY(calc(-100% + 64.0625cqw))}97.01%,100%{transform:translateY(0)}}
 @media (prefers-reduced-motion:reduce){.tshot img{animation:none}}
 .tbody{padding:20px 22px 24px;display:flex;flex-direction:column;gap:8px;flex:1}
 .tbody h3{font-size:24px;line-height:1.15}
