@@ -44,7 +44,7 @@ def build(index, theme_src, title, comment):
     s = re.sub(r'<script type="application/ld\+json">.*?</script>\n', '', s, flags=re.S)
     s = re.sub(r'(href|src)="(about-james|services|faq|themes|web-designer-northwich|web-design-cheshire|privacy|cookies|free-website-terms|consent-config\.js|consent\.js|images/james\.jpg)([#"?])', r'\1="/\2\3', s)
     s = s.replace('</style>\n', '</style>\n' + BAR_CSS, 1)
-    bar = f'<div class="arch-bar" role="note"><div class="crumbs" role="navigation" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/themes">Themes</a></li><li><span aria-current="page">{title}</span></li></ol></div>You\u2019re previewing the {title} theme. <a href="/themes#what">Exit preview</a></div>\n'
+    bar = f'<div class="arch-bar" role="note"><div class="crumbs" role="navigation" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/services">Services</a></li><li><a href="/themes">Themes</a></li><li><span aria-current="page">{title}</span></li></ol></div>You\u2019re previewing the {title} theme. <a href="/themes#what">Exit preview</a></div>\n'
     s = s.replace('<div class="season-strip"', bar + '<div class="season-strip"', 1)
     s = s.replace('</head>\n', '</head>\n' + comment, 1)
     return s
