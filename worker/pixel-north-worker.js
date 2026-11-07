@@ -97,6 +97,7 @@ const PAGES = [
   { label: "ABOUT JAMES PAGE (page: /about-james)", paths: ["/about-james", "/about-james.html"], max: 6000 },
   { label: "WEB DESIGN IN NORTHWICH PAGE (page: /web-designer-northwich)", paths: ["/web-designer-northwich", "/web-designer-northwich.html"], max: 6000 },
   { label: "WEB DESIGN ACROSS CHESHIRE PAGE (page: /web-design-cheshire)", paths: ["/web-design-cheshire", "/web-design-cheshire.html"], max: 6000 },
+  { label: "SEASONAL THEMES PAGE (page: /themes)", paths: ["/themes", "/themes.html"], max: 5000 },
   // Optional: if this page is removed one day, Pixel simply stops using it.
   // Optional: the 50% off offer terms, including how to extend a promo code.
   { label: "50% OFF OFFER TERMS AND CLAIM FORM (page: /pnl4106-terms-conditions)", paths: ["/pnl4106-terms-conditions", "/pnl4106-terms-conditions.html"], max: 9000 },
