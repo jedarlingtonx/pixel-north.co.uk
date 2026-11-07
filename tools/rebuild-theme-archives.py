@@ -5,6 +5,9 @@ Each archive keeps its own theme (CSS block, body tag, banner and decorations)
 but picks up everything else from the live home page, so the archives never
 fall behind (footer, buttons, wording, layout).
 
+IMPORTANT: in index.html, theme CSS is everything from `.season-strip{display:none}` down to </style>.
+Keep all other CSS ABOVE that line, or archives will not pick it up.
+
 Run from the repo root:  python3 tools/rebuild-theme-archives.py
 Before changing the live theme, first archive the OLD theme:
   python3 tools/rebuild-theme-archives.py --new <name> --title "<Display name>"

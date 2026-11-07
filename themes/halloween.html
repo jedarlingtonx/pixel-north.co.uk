@@ -146,6 +146,29 @@ nav .wm{font-size:24px}
 .s2{margin-left:0;margin-top:calc(var(--pt) * -1);padding-top:calc(var(--pt) + 28px);padding-bottom:calc(var(--pt) + 28px);clip-path:polygon(0 0,50% var(--pt),100% 0,100% calc(100% - var(--pt)),50% 100%,0 calc(100% - var(--pt)))}
 .s3{margin-left:0;margin-top:calc(var(--pt) * -1);padding-top:calc(var(--pt) + 28px);padding-bottom:44px;clip-path:polygon(0 0,50% var(--pt),100% 0,100% 100%,0 100%)}
 }
+/* site header and menu */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.site-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;padding:18px max(24px,calc((100% - 1120px)/2));position:relative}
+.site-head .wm{margin:0}
+.site-head .sh-nav{display:flex;flex-wrap:nowrap;align-items:center;gap:4px 24px;padding:0;margin:0 0 0 auto}
+.site-head .sh-nav a:not(.btn){color:var(--text);text-decoration:none;font-weight:500;font-size:17px;line-height:1.2;padding:8px 0;border-bottom:2px solid transparent}
+.site-head .sh-nav a:not(.btn):hover{color:var(--primary);border-bottom-color:var(--accent)}
+.site-head .sh-nav a[aria-current="page"]{color:var(--primary);border-bottom-color:var(--accent)}
+.site-head .sh-btn{padding:11px 22px;font-size:16px;margin-left:4px}
+.site-head .sh-toggle{display:none;align-items:center;justify-content:center;width:46px;height:46px;border:0;border-radius:12px;background:#F1EBFF;color:#5B21E6;cursor:pointer;padding:0}
+.site-head .sh-toggle:focus-visible{outline:3px solid #FF3D8B;outline-offset:3px}
+.sh-toggle svg{width:24px;height:24px;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;fill:none}
+.sh-toggle .x{display:none}
+.sh-toggle[aria-expanded="true"] .bars{display:none}
+.sh-toggle[aria-expanded="true"] .x{display:block}
+@media (max-width:900px){
+.site-head .sh-toggle{display:inline-flex}
+.site-head .sh-nav{flex:1 1 100%;flex-direction:column;align-items:stretch;gap:0;margin:0;border-top:1px solid #E4DAFF;padding-top:6px}
+.nav-js .site-head .sh-nav:not(.open){display:none}
+.site-head .sh-nav a:not(.btn){font-size:18px;padding:13px 2px;border-bottom:1px solid #E4DAFF}
+.site-head .sh-nav a[aria-current="page"]{border-bottom:2px solid #FF3D8B}
+.site-head .sh-btn{margin:14px 0 6px;text-align:center}
+}
 .season-strip{display:none}
 [data-season="halloween"] .season-strip{display:flex;justify-content:center;align-items:center;gap:10px;background:#1A1033;color:#E9E0FF;font-size:14px;line-height:1.4;padding:8px 24px;text-align:center}
 .season-strip a{color:#FF9A4D}
@@ -214,16 +237,12 @@ nav .wm{font-size:24px}
 <div class="arch-bar" role="note"><div class="crumbs" role="navigation" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/services">Services</a></li><li><a href="/themes">Themes</a></li><li><span aria-current="page">Halloween</span></li></ol></div>You’re previewing the Halloween theme. <a href="/themes#what">Exit preview</a></div>
 <div class="season-strip" role="note"><svg class="spider sa" viewBox="0 0 24 60" aria-hidden="true"><path d="M12 0V38" stroke="currentColor" stroke-width="1" fill="none"/><ellipse cx="12" cy="45" rx="4" ry="5"/><circle cx="12" cy="39" r="2.6"/><path d="M8 43L2 40M8 46L1 47M8 49L3 54M16 43L22 40M16 46L23 47M16 49L21 54" stroke="currentColor" stroke-width="1" fill="none" stroke-linecap="round"/></svg><svg class="spider sb" viewBox="0 0 24 60" aria-hidden="true"><path d="M12 0V38" stroke="currentColor" stroke-width="1" fill="none"/><ellipse cx="12" cy="45" rx="4" ry="5"/><circle cx="12" cy="39" r="2.6"/><path d="M8 43L2 40M8 46L1 47M8 49L3 54M16 43L22 40M16 46L23 47M16 49L21 54" stroke="currentColor" stroke-width="1" fill="none" stroke-linecap="round"/></svg><svg class="web ws l" viewBox="0 0 120 120" aria-hidden="true"><path d="M0 0L120.0 0.0M0 0L110.9 45.9M0 0L84.9 84.9M0 0L45.9 110.9M0 0L0.0 120.0M28.0 0.0Q24.2 4.8 25.9 10.7Q20.6 13.7 19.8 19.8Q13.7 20.6 10.7 25.9Q4.8 24.2 0.0 28.0M52.0 0.0Q45.0 9.0 48.0 19.9Q38.2 25.5 36.8 36.8Q25.5 38.2 19.9 48.0Q9.0 45.0 0.0 52.0M78.0 0.0Q67.5 13.4 72.1 29.8Q57.2 38.3 55.2 55.2Q38.3 57.2 29.8 72.1Q13.4 67.5 0.0 78.0M104.0 0.0Q90.0 17.9 96.1 39.8Q76.3 51.0 73.5 73.5Q51.0 76.3 39.8 96.1Q17.9 90.0 0.0 104.0"/></svg><svg class="web ws r" viewBox="0 0 120 120" aria-hidden="true"><path d="M0 0L120.0 0.0M0 0L110.9 45.9M0 0L84.9 84.9M0 0L45.9 110.9M0 0L0.0 120.0M28.0 0.0Q24.2 4.8 25.9 10.7Q20.6 13.7 19.8 19.8Q13.7 20.6 10.7 25.9Q4.8 24.2 0.0 28.0M52.0 0.0Q45.0 9.0 48.0 19.9Q38.2 25.5 36.8 36.8Q25.5 38.2 19.9 48.0Q9.0 45.0 0.0 52.0M78.0 0.0Q67.5 13.4 72.1 29.8Q57.2 38.3 55.2 55.2Q38.3 57.2 29.8 72.1Q13.4 67.5 0.0 78.0M104.0 0.0Q90.0 17.9 96.1 39.8Q76.3 51.0 73.5 73.5Q51.0 76.3 39.8 96.1Q17.9 90.0 0.0 104.0"/></svg><span class="pumpkin" aria-hidden="true"></span><span>Happy Halloween! A little seasonal touch from Pixel North. Want your site to mark the season too? <a href="/themes">Discover Themes</a></span></div>
 
-<nav>
+<header class="site-head">
 <a class="wm" href="#" data-go="top">Pixel North</a>
-<a class="btn nav-btn" href="#" data-go="quotes">Get a quote</a>
-<span class="nav-break" aria-hidden="true"></span>
-<div class="nav-links">
-<a href="#" data-go="why">Why</a><span aria-hidden="true">|</span>
-<a href="#" data-go="faff">How</a><span aria-hidden="true">|</span>
-<a href="#" data-go="services">What</a>
-</div>
-</nav>
+<button class="sh-toggle" type="button" aria-expanded="false" aria-controls="sh-menu"><span class="sr">Menu</span><svg viewBox="0 0 24 24" aria-hidden="true"><path class="bars" d="M4 7h16M4 12h16M4 17h16"/><path class="x" d="M6 6l12 12M18 6L6 18"/></svg></button>
+<nav class="sh-nav" id="sh-menu" aria-label="Main"><a href="/services">Services</a><a href="/pixel-ai">Pixel AI</a><a href="/themes">Themes</a><a href="/about-james">About James</a><a href="/faq">FAQs</a><a class="btn pink sh-btn" href="#" data-go="quotes">Get a quote</a></nav>
+</header>
+<script>(function(){var h=document.querySelector(".site-head"),b=h.querySelector(".sh-toggle"),n=h.querySelector(".sh-nav");document.documentElement.classList.add("nav-js");function c(){n.classList.remove("open");b.setAttribute("aria-expanded","false")}b.addEventListener("click",function(){var o=n.classList.toggle("open");b.setAttribute("aria-expanded",o?"true":"false")});n.addEventListener("click",function(e){if(e.target.closest("a"))c()});document.addEventListener("keydown",function(e){if(e.key==="Escape"&&n.classList.contains("open")){c();b.focus()}})})();</script>
 
 <main>
 <header class="sec hero" id="top">

@@ -115,14 +115,39 @@ main.prose{padding:40px max(24px,calc((100% - 720px)/2)) 72px}
 .strip div:last-child{clip-path:polygon(0 0,100% 0,100% 100%,0 100%,36px 50%)}
 .strip .a{background:#1A1033}.strip .b{background:#5B21E6}.strip .c{background:#FF3D8B}
 @media (max-width:600px){.strip{height:64px}.strip div{clip-path:polygon(0 0,calc(100% - 20px) 0,100% 50%,calc(100% - 20px) 100%,0 100%,20px 50%);margin-left:-20px}.strip div:first-child{clip-path:polygon(0 0,calc(100% - 20px) 0,100% 50%,calc(100% - 20px) 100%,0 100%)}.strip div:last-child{clip-path:polygon(0 0,100% 0,100% 100%,0 100%,20px 50%)}}
+/* site header and menu */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.site-head{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 24px;padding:18px max(24px,calc((100% - 1120px)/2));position:relative}
+.site-head .wm{margin:0}
+.site-head .sh-nav{display:flex;flex-wrap:nowrap;align-items:center;gap:4px 24px;padding:0;margin:0 0 0 auto}
+.site-head .sh-nav a:not(.btn){color:var(--text);text-decoration:none;font-weight:500;font-size:17px;line-height:1.2;padding:8px 0;border-bottom:2px solid transparent}
+.site-head .sh-nav a:not(.btn):hover{color:var(--primary);border-bottom-color:var(--accent)}
+.site-head .sh-nav a[aria-current="page"]{color:var(--primary);border-bottom-color:var(--accent)}
+.site-head .sh-btn{padding:11px 22px;font-size:16px;margin-left:4px}
+.site-head .sh-toggle{display:none;align-items:center;justify-content:center;width:46px;height:46px;border:0;border-radius:12px;background:#F1EBFF;color:#5B21E6;cursor:pointer;padding:0}
+.site-head .sh-toggle:focus-visible{outline:3px solid #FF3D8B;outline-offset:3px}
+.sh-toggle svg{width:24px;height:24px;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;fill:none}
+.sh-toggle .x{display:none}
+.sh-toggle[aria-expanded="true"] .bars{display:none}
+.sh-toggle[aria-expanded="true"] .x{display:block}
+@media (max-width:900px){
+.site-head .sh-toggle{display:inline-flex}
+.site-head .sh-nav{flex:1 1 100%;flex-direction:column;align-items:stretch;gap:0;margin:0;border-top:1px solid #E4DAFF;padding-top:6px}
+.nav-js .site-head .sh-nav:not(.open){display:none}
+.site-head .sh-nav a:not(.btn){font-size:18px;padding:13px 2px;border-bottom:1px solid #E4DAFF}
+.site-head .sh-nav a[aria-current="page"]{border-bottom:2px solid #FF3D8B}
+.site-head .sh-btn{margin:14px 0 6px;text-align:center}
+}
 </style>
 </head>
 <body>
 
-<nav>
+<header class="site-head">
 <a class="wm" href="/">Pixel North</a>
-<div><a href="/">Back to home</a></div>
-</nav>
+<button class="sh-toggle" type="button" aria-expanded="false" aria-controls="sh-menu"><span class="sr">Menu</span><svg viewBox="0 0 24 24" aria-hidden="true"><path class="bars" d="M4 7h16M4 12h16M4 17h16"/><path class="x" d="M6 6l12 12M18 6L6 18"/></svg></button>
+<nav class="sh-nav" id="sh-menu" aria-label="Main"><a href="/services">Services</a><a href="/pixel-ai">Pixel AI</a><a href="/themes">Themes</a><a href="/about-james">About James</a><a href="/faq">FAQs</a><a class="btn pink sh-btn" href="/#contact">Get a quote</a></nav>
+</header>
+<script>(function(){var h=document.querySelector(".site-head"),b=h.querySelector(".sh-toggle"),n=h.querySelector(".sh-nav");document.documentElement.classList.add("nav-js");function c(){n.classList.remove("open");b.setAttribute("aria-expanded","false")}b.addEventListener("click",function(){var o=n.classList.toggle("open");b.setAttribute("aria-expanded",o?"true":"false")});n.addEventListener("click",function(e){if(e.target.closest("a"))c()});document.addEventListener("keydown",function(e){if(e.key==="Escape"&&n.classList.contains("open")){c();b.focus()}})})();</script>
 
 <main class="err404">
 <div class="big" aria-hidden="true">404<i></i></div>
