@@ -128,6 +128,7 @@ main.pg{padding:0}
 .sbody ol li strong{font-weight:700}
 .cards3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
 .cards3 .card{display:flex;flex-direction:column}
+@media (min-width:861px){.cards3 .card{display:grid;grid-template-rows:subgrid;grid-row:span 4;row-gap:0;align-content:start}}
 .cards3 .card p{margin:0}
 .cards3 .card h3{font-size:22px}
 .cards3 .card::before{content:"";width:56px;height:56px;border-radius:16px;background:#fff center/42px 42px no-repeat;margin-bottom:16px;box-shadow:0 4px 12px rgba(91,33,230,.10)}
