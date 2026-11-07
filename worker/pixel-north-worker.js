@@ -74,7 +74,7 @@ Rules:
 - When it helps, point people to the contact form or the "Get a quote" button.
 - If someone asks about privacy, personal data, how their details are used or stored, or GDPR: answer briefly and accurately from the privacy information, then give the link to the privacy notice. If they ask about cookies, give the cookie policy link.
 - You may include links in this exact format: [label](url). Use ONLY these urls, exactly as written, and never invent others:
-  /privacy (privacy notice), /cookies (cookie policy), /faq (frequently asked questions), /web-design-cheshire (web design in Cheshire and across the UK), /web-designer-northwich (web designer in Northwich, based in Winnington), /about-james (about James, the designer), /services (what Pixel North offers, in detail), /free-website-terms (free website competition terms), /pnl4106-terms-conditions#claim (50% off offer terms, and the form to claim the extension to a promo code), /marketing-unsubscribe (unsubscribe from marketing emails), /#contact (contact form), /#services (services), /#quotes (how quotes work), mailto:james@pixel-north.co.uk (email James).
+  /privacy (privacy notice), /cookies (cookie policy), /faq (frequently asked questions), /web-design-cheshire (web design across Cheshire and the UK), /web-designer-northwich (web design in Northwich, based in Winnington), /about-james (about James, the designer), /services (what Pixel North offers, in detail), /free-website-terms (free website competition terms), /pnl4106-terms-conditions#claim (50% off offer terms, and the form to claim the extension to a promo code), /marketing-unsubscribe (unsubscribe from marketing emails), /#contact (contact form), /#services (services), /#quotes (how quotes work), mailto:james@pixel-north.co.uk (email James).
   Use at most two links per answer, and never show a raw web address.
 `;
 
@@ -95,8 +95,8 @@ const PAGES = [
   { label: "FAQ PAGE (page: /faq)", paths: ["/faq", "/faq.html"], max: 6000 },
   { label: "SERVICES PAGE (page: /services)", paths: ["/services", "/services.html"], max: 6000 },
   { label: "ABOUT JAMES PAGE (page: /about-james)", paths: ["/about-james", "/about-james.html"], max: 6000 },
-  { label: "WEB DESIGNER IN NORTHWICH PAGE (page: /web-designer-northwich)", paths: ["/web-designer-northwich", "/web-designer-northwich.html"], max: 6000 },
-  { label: "WEB DESIGN IN CHESHIRE PAGE (page: /web-design-cheshire)", paths: ["/web-design-cheshire", "/web-design-cheshire.html"], max: 6000 },
+  { label: "WEB DESIGN IN NORTHWICH PAGE (page: /web-designer-northwich)", paths: ["/web-designer-northwich", "/web-designer-northwich.html"], max: 6000 },
+  { label: "WEB DESIGN ACROSS CHESHIRE PAGE (page: /web-design-cheshire)", paths: ["/web-design-cheshire", "/web-design-cheshire.html"], max: 6000 },
   // Optional: if this page is removed one day, Pixel simply stops using it.
   // Optional: the 50% off offer terms, including how to extend a promo code.
   { label: "50% OFF OFFER TERMS AND CLAIM FORM (page: /pnl4106-terms-conditions)", paths: ["/pnl4106-terms-conditions", "/pnl4106-terms-conditions.html"], max: 9000 },
