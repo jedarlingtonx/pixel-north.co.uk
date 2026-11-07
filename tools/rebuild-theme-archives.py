@@ -12,7 +12,7 @@ Before changing the live theme, first archive the OLD theme:
 """
 import re, sys, glob, os
 
-BAR_CSS = '<style id="arch-bar-css">.arch-bar{background:#FF3D8B;color:#1A1033;font:500 15px/1.4 "DM Sans",system-ui,sans-serif;text-align:center;padding:10px 16px;position:relative;z-index:5}.arch-bar a{color:#1A1033;font-weight:700;white-space:nowrap}.arch-bar a:hover{text-decoration:none}</style>\n'
+BAR_CSS = '<style id="arch-bar-css">.arch-bar{background:#FF3D8B;color:#1A1033;font:500 15px/1.4 "DM Sans",system-ui,sans-serif;text-align:center;padding:10px 16px;position:relative;z-index:5}.arch-bar a{color:#1A1033;font-weight:700;white-space:nowrap;display:inline-flex;align-items:center;gap:8px;vertical-align:middle}.arch-bar .xi{width:24px;height:24px;flex:none}.arch-bar a:hover{text-decoration:none}</style>\n'
 
 def strip_bar(html):
     html = re.sub(r'<style id="arch-bar-css">.*?</style>\n', '', html, flags=re.S)
@@ -44,7 +44,7 @@ def build(index, theme_src, title, comment):
     s = re.sub(r'<script type="application/ld\+json">.*?</script>\n', '', s, flags=re.S)
     s = re.sub(r'(href|src)="(about-james|services|faq|themes|web-designer-northwich|web-design-cheshire|privacy|cookies|free-website-terms|consent-config\.js|consent\.js|images/james\.jpg)([#"?])', r'\1="/\2\3', s)
     s = s.replace('</style>\n', '</style>\n' + BAR_CSS, 1)
-    bar = f'<div class="arch-bar" role="note">You\u2019re previewing the {title} theme. <a href="/themes">Exit preview &rarr;</a></div>\n'
+    bar = f'<div class="arch-bar" role="note">You\u2019re previewing the {title} theme. <a href="/themes">Exit preview<svg class="xi" viewBox="0 0 24 24" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#0B9A55"/><path d="M16 4.5h4.5v15H16" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/><circle cx="8.4" cy="6.4" r="1.8" fill="#fff"/><path d="M8.8 9.2L10.6 13M9.2 10.2L12.6 9.2L14 10.6M9 10.4L6.4 11.8L5.2 10.4M10.6 13L13.4 15.4L12.8 18.8M10.6 13L8 15.8L5.4 15" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>\n'
     s = s.replace('<div class="season-strip"', bar + '<div class="season-strip"', 1)
     s = s.replace('</head>\n', '</head>\n' + comment, 1)
     return s
