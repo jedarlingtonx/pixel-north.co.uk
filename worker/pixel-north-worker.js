@@ -39,7 +39,7 @@ SERVICES (James tailors a package to fit each business)
 - Search and analytics setup: search foundations, Google Business profile, and simple analytics.
 - Enquiry forms and bookings: contact forms and enquiry or booking tools that send customers straight to James.
 - Care and support: hosting, backups, updates and small edits, so the site stays safe and up to date after launch.
-- Seasonal and event-based themes can keep a website feeling current (the Pixel North site currently has a Halloween theme).
+- Seasonal and event-based themes can keep a website feeling current (see /themes for the themes made so far).
 
 HOW QUOTES WORK
 1. An initial consultation: a talk about your business, goals and what you need from a website. James is also happy to meet in person, and coffee is on him.
@@ -74,14 +74,15 @@ Rules:
 - When it helps, point people to the contact form or the "Get a quote" button.
 - If someone asks about privacy, personal data, how their details are used or stored, or GDPR: answer briefly and accurately from the privacy information, then give the link to the privacy notice. If they ask about cookies, give the cookie policy link.
 - You may include links in this exact format: [label](url). Use ONLY these urls, exactly as written, and never invent others:
-  /privacy (privacy notice), /cookies (cookie policy), /faq (frequently asked questions), /web-design-cheshire (web design across Cheshire and the UK), /web-designer-northwich (web design in Northwich, based in Winnington), /about-james (about James, the designer), /services (what Pixel North offers, in detail), /free-website-terms (free website competition terms), /pnl4106-terms-conditions#claim (50% off offer terms, and the form to claim the extension to a promo code), /marketing-unsubscribe (unsubscribe from marketing emails), /#contact (contact form), /#services (services), /#quotes (how quotes work), mailto:james@pixel-north.co.uk (email James).
+  /privacy (privacy notice), /cookies (cookie policy), /faq (frequently asked questions), /web-design-cheshire (web design across Cheshire and the UK), /web-designer-northwich (web design in Northwich, based in Winnington), /about-james (about James, the designer), /services (what Pixel North offers, in detail), /themes (seasonal themes), /pixel-ai (Pixel AI, the website chat assistant that Pixel North can set up on clients’ sites), /free-website-terms (free website competition terms), /pnl4106-terms-conditions#claim (50% off offer terms, and the form to claim the extension to a promo code), /marketing-unsubscribe (unsubscribe from marketing emails), /#contact (contact form), /#services (services), /#quotes (how quotes work), mailto:james@pixel-north.co.uk (email James).
   Use at most two links per answer, and never show a raw web address.
 `;
 
 // Facts that are not written on any page, or that matter most. Always included.
 const CORE_FACTS = `
 - Pixel North is a one-person web design business run by James, a freelance web designer in Northwich, Cheshire. James meets clients in person across Cheshire, and works with small businesses anywhere in the UK. Tagline: "Small business sites, sorted". Email: james@pixel-north.co.uk. Pixel North is run by Pixel North Limited (company number 16490976), registered in England and Wales.
-- Seasonal and event-based themes can keep a website feeling current. The Pixel North home page has a Halloween theme at the moment.
+- Pixel AI is the website assistant (the chat you are talking in) that Pixel North can set up on clients' websites, answering visitors' questions from the client's own pages. Clients' sites need to be hosted on Cloudflare. No prices are published; a written quotation follows an initial consultation. See /pixel-ai.
+- Seasonal and event-based themes can keep a website feeling current. The Pixel North home page carries a small seasonal theme at times of year (see /themes for the themes made so far).
 - Promo codes: the 50% off offer is open for 3 months from the date the code was issued (the date on the flyer). It can be extended to 6 months in total by completing the "Claim the extension to your promo code" form at the bottom of the offer terms page. If someone asks how to extend a promo code, tell them that and link to the form.
 - Marketing emails: people can unsubscribe at any time using the unsubscribe page.
 - The contact form asks for first and last name, email, business name, an optional current website address, what you need (a brand new website, a refresh of your current site, or not sure yet) and a short message.`;
@@ -97,6 +98,7 @@ const PAGES = [
   { label: "ABOUT JAMES PAGE (page: /about-james)", paths: ["/about-james", "/about-james.html"], max: 6000 },
   { label: "WEB DESIGN IN NORTHWICH PAGE (page: /web-designer-northwich)", paths: ["/web-designer-northwich", "/web-designer-northwich.html"], max: 6000 },
   { label: "WEB DESIGN ACROSS CHESHIRE PAGE (page: /web-design-cheshire)", paths: ["/web-design-cheshire", "/web-design-cheshire.html"], max: 6000 },
+  { label: "PIXEL AI PAGE (page: /pixel-ai)", paths: ["/pixel-ai", "/pixel-ai.html"], max: 6000 },
   { label: "SEASONAL THEMES PAGE (page: /themes)", paths: ["/themes", "/themes.html"], max: 5000 },
   // Optional: if this page is removed one day, Pixel simply stops using it.
   // Optional: the 50% off offer terms, including how to extend a promo code.
@@ -182,7 +184,7 @@ function plainText(text) {
 }
 
 const ALLOWED_LINKS = new Set([
-  "/privacy", "/cookies", "/faq", "/web-design-cheshire", "/web-designer-northwich", "/about-james", "/services", "/free-website-terms", "/pnl4106-terms-conditions#claim", "/pnl4106-terms-conditions", "/marketing-unsubscribe", "/#contact", "/#services", "/#quotes", "/#why",
+  "/privacy", "/cookies", "/faq", "/web-design-cheshire", "/web-designer-northwich", "/about-james", "/services", "/themes", "/pixel-ai", "/free-website-terms", "/pnl4106-terms-conditions#claim", "/pnl4106-terms-conditions", "/marketing-unsubscribe", "/#contact", "/#services", "/#quotes", "/#why",
   "mailto:james@pixel-north.co.uk",
 ]);
 const LINK_RE = /\[([^\]\n]{1,60})\]\(([^)\s]{1,200})\)/g;
