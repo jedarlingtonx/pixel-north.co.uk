@@ -537,6 +537,22 @@ document.querySelectorAll("[data-go]").forEach(function(a){
     if (t) t.scrollIntoView({behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
   });
 });
+// So the browser's Back button returns to the section a visitor left from (e.g. "Discover services").
+document.querySelectorAll("section[id] a[href]").forEach(function(a){
+  var href = a.getAttribute("href");
+  if (!href || href.charAt(0) === "#" || /^(mailto:|tel:|https?:)/i.test(href)) return;
+  a.addEventListener("click", function(){
+    var s = a.closest("section[id]");
+    try { if (s) history.replaceState(history.state, "", "#" + s.id); } catch (e) {}
+  });
+});
+// If the browser comes back to a section address (#services) but didn't restore the scroll position, jump there.
+window.addEventListener("pageshow", function(){
+  setTimeout(function(){
+    var t = location.hash && document.getElementById(location.hash.slice(1));
+    if (t && window.scrollY < 50) t.scrollIntoView();
+  }, 60);
+});
 // Contact form: sent through Web3Forms, which emails each enquiry to me.
 // The access key is meant to be public. If it is empty, or Web3Forms can't be reached, the form falls back to a pre-filled email.
 var ACCESS_KEY = "f75186f4-8f23-493d-8d25-9f46cc01c564";
