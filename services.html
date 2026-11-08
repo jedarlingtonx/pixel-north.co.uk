@@ -344,6 +344,11 @@ details.q .ans p{margin:0 0 12px;max-width:70ch}
 
 </footer>
 
+<script>/* Keep every service card the same height: match each part (heading, text, "Good for") across all cards, so the rows stay lined up. */
+(function(){var g=document.querySelector(".cards3");if(!g)return;var parts=["h3","p:not(.meta)","p.meta"];
+function fit(){var cs=g.querySelectorAll(".card");parts.forEach(function(sel){var m=0,els=[];cs.forEach(function(c){var e=c.querySelector(sel);if(e){e.style.minHeight="";els.push(e)}});
+if(innerWidth<861)return;els.forEach(function(e){m=Math.max(m,Math.ceil(e.getBoundingClientRect().height))});els.forEach(function(e){e.style.minHeight=m+"px"})})}
+fit();addEventListener("resize",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit)})();</script>
 <script src="consent-config.js"></script>
 <script src="consent.js" defer></script>
 <script src="/chat-widget.js" defer></script>
