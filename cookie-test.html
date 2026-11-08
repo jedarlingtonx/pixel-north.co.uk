@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Cookie control test page (staging only)</title>
+<style>
+  body{font:16px/1.5 system-ui,sans-serif;max-width:720px;margin:0 auto;padding:24px 16px 120px;color:#1A1033}
+  code{background:#f1eefc;padding:1px 5px;border-radius:4px}
+  button{font:inherit;padding:8px 16px;border-radius:999px;border:2px solid #5B21E6;background:#fff;color:#5B21E6;cursor:pointer;margin:0 8px 8px 0}
+  pre{background:#f6f6f9;padding:12px;border-radius:8px;overflow:auto}
+</style>
+<script>
+  /* Test settings: all four categories, cookie lists, different colours for each window.
+     Uses its own cookie (pn_test_consent) and no audit log, so it never touches real consent. */
+  window.COOKIE_CONTROL = {
+    categories: { analytics: true, preferences: true, media: true, marketing: true },
+    cookieName: "pn_test_consent",
+    version: "t1",
+    policyUrl: "/cookies",
+    reopenButton: true,
+    text: {
+      intro: "This is a test banner. We’d like to use analytics, preferences, embedded content and marketing cookies. By clicking \"Accept all\", you consent to our use of cookies. A cookie that remembers your choice is always on.",
+      accept: "Accept all",
+      reject: "Reject all"
+    },
+    cookies: {
+      analytics: [{ name: "_ga", duration: "2 years", purpose: "Test: tells visits apart" }],
+      preferences: [{ name: "theme", duration: "12 months", purpose: "Test: remembers light or dark mode" }],
+      media: [{ name: "YSC", duration: "Session", purpose: "Test: set by YouTube when a video is shown" }],
+      marketing: [{ name: "_fbp", duration: "3 months", purpose: "Test: used to measure adverts" }]
+    },
+    colors: {
+      brand: "#5B21E6", text: "#1A1033", background: "#ffffff", focus: "#FF3D8B",
+      banner: { border: "#0F766E", button: "#0F766E", buttonText: "#ffffff" },
+      settings: { border: "#B45309", button: "#B45309", buttonText: "#ffffff" }
+    },
+    fonts: { body: "'DM Sans', system-ui, sans-serif", heading: "Outfit, system-ui, sans-serif" }
+  };
+</script>
+<script src="/consent.js" defer></script>
+</head>
+<body>
+<h1>Cookie control test page</h1>
+<p>Staging only, not linked from the site. It has its own cookie, so your real choice on the site is not affected. The banner here has a teal border and buttons; the settings window has amber ones, to show the per-window colours.</p>
+<p><button type="button" data-cookie-settings>Open cookie settings</button>
+<button type="button" id="clear">Forget my test choice and reload</button></p>
+<h2>Gated content (needs "Embedded content")</h2>
+<div data-consent="media" data-consent-label="test video"><p>Placeholder for an embed. It should show a notice until embedded content is switched on.</p></div>
+<h2>Current state</h2>
+<pre id="state">Loading…</pre>
+<script>
+  document.getElementById("clear").onclick = function () {
+    document.cookie = "pn_test_consent=; Max-Age=0; path=/";
+    location.reload();
+  };
+  function show() {
+    var m = document.cookie.match(/pn_test_consent=([^;]*)/);
+    var cc = window.CookieControl;
+    document.getElementById("state").textContent =
+      "cookie: " + (m ? m[1] : "(none yet)") +
+      "\nengine: " + (cc && cc.version ? cc.version : "?");
+  }
+  setInterval(show, 500);
+</script>
+</body>
+</html>
