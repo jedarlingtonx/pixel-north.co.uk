@@ -11,5 +11,10 @@ window.COOKIE_CONTROL = {
   policyUrl: "/cookies",
   logUrl: "/api/consent",          // audit log (worker/consent-log.js)
   colors: { brand: "#5B21E6", text: "#1A1033", background: "#ffffff", focus: "#FF3D8B" },
+  text: {
+    intro: "We’d like to use analytics cookies to see how you use this site. By clicking \"Accept all\", you consent to our use of cookies. A cookie that remembers your choice is always on.",
+    accept: "Accept all",
+    reject: "Reject all"
+  },
   fonts: { body: "'DM Sans', system-ui, sans-serif", heading: "Outfit, system-ui, sans-serif" }
 };
