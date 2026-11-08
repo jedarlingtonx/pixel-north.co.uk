@@ -102,6 +102,9 @@ main.pg{padding:0}
 .pcards .card{background:#fff;border:1px solid #E4DAFF;box-shadow:0 10px 30px rgba(26,16,51,.10)}
 .sec2{padding-top:64px;padding-bottom:64px}
 .sec2.alt{background:var(--panel)}
+.skyline-sec{--sk:clamp(120px,17vw,210px);position:relative;overflow:hidden;padding-bottom:calc(48px + var(--sk))}
+.skyline-sec::after{content:"";position:absolute;left:0;right:0;bottom:0;height:var(--sk);background:url(/images/northwich-skyline.webp) left bottom/auto 100% no-repeat;pointer-events:none}
+@media (min-width:641px){.skyline-sec::after{background-position:right bottom;-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%);mask-image:linear-gradient(90deg,transparent,#000 14%)}}
 .sgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:20px 64px;align-items:start}
 .sgrid>h2{margin:0;font-size:clamp(26px,3vw,34px);line-height:1.15}
 .sgrid>h2::before{content:"";display:block;width:12px;height:12px;background:var(--accent);margin-bottom:14px}
@@ -143,6 +146,7 @@ details.q .ans p{margin:0 0 12px;max-width:70ch}
 .ctas a:not(.btn){color:#fff}
 @media (max-width:860px){.sgrid{grid-template-columns:1fr}.cards3{grid-template-columns:1fr}.phero .about-photo{width:200px;height:200px}}
 @media (max-width:640px){.phero{padding-top:36px;padding-bottom:52px}.phero .lede{font-size:19px}.sec2{padding-top:44px;padding-bottom:44px}.sbody ul{grid-template-columns:1fr}.pcards{margin-top:-28px}.ctas{padding-top:48px;padding-bottom:48px}details.q summary{font-size:18px}}
+@media (max-width:640px){.skyline-sec{padding-bottom:calc(36px + var(--sk))}}
 /* breadcrumbs */
 .crumbs{margin:0 0 18px;font-size:15px;line-height:1.4}
 .crumbs ol{list-style:none;display:flex;flex-wrap:wrap;gap:4px 8px;margin:0;padding:0;align-items:center}
@@ -264,7 +268,7 @@ details.q .ans p{margin:0 0 12px;max-width:70ch}
 <li>Experience managing client relationships, large portfolios of projects and cross-functional teams.</li>
 <li>A Diploma of Higher Education in Computing and Information Technology from the Open University, a PRINCE2 qualification and a BCS Certificate in Business Analysis.</li>
 </ul></div></div></section>
-<section class="sec2 pw alt"><div class="sgrid"><h2>Based in Northwich</h2><div class="sbody"><p>I'm based in Winnington, Northwich. If you're local, I'm happy to meet at your premises or over a coffee in town, and the coffee's on me. My first client was Fast Parts, a motor factor with shops in Northwich and Winsford, and I designed and built <a href="https://fastparts.uk.com" target="_blank" rel="noopener noreferrer" aria-label="Fast Parts website (opens in a new tab)">their website</a>.</p>
+<section class="sec2 pw alt skyline-sec"><div class="sgrid"><h2>Based in Northwich</h2><div class="sbody"><p>I'm based in Winnington, Northwich. If you're local, I'm happy to meet at your premises or over a coffee in town, and the coffee's on me. My first client was Fast Parts, a motor factor with shops in Northwich and Winsford, and I designed and built <a href="https://fastparts.uk.com" target="_blank" rel="noopener noreferrer" aria-label="Fast Parts website (opens in a new tab)">their website</a>.</p>
 <p>You can read more about working with me locally on the <a href="web-designer-northwich">web design in Northwich</a> page, or see how it works across the county in <a href="web-design-cheshire">web design across Cheshire</a>. I work with small businesses anywhere in the UK too, by phone, video call and email.</p></div></div></section>
 <section class="ctas pw"><h2>Let's have a chat.</h2>
 <p>Tell me about your business and I'll sketch out a plan.</p>
