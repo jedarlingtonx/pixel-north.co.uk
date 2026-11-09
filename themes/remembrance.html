@@ -169,6 +169,23 @@ nav .wm{font-size:24px}
 .site-head .sh-nav a[aria-current="page"]{border-bottom:2px solid #FF3D8B}
 .site-head .sh-btn{margin:14px 0 6px;text-align:center}
 }
+/* Customer review card (home page only). Switch off: delete data-quote="on" from the <aside id="pq"> below. */
+.pq{position:fixed;left:16px;bottom:72px;z-index:2147481000;width:min(360px,calc(100vw - 32px));box-sizing:border-box;background:#fff;color:var(--ink);border:2px solid var(--primary);border-radius:18px;box-shadow:0 14px 36px rgba(26,16,51,.22);padding:16px 16px 14px;opacity:0;transform:translateY(14px);transition:opacity .35s ease,transform .35s ease}
+.pq.on{opacity:1;transform:none}
+.pq[hidden]{display:none}
+.pq figure{margin:0;display:grid;grid-template-columns:56px 1fr;gap:6px 14px;align-items:start}
+.pq img{grid-row:1/3;width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--panel)}
+.pq blockquote{margin:0;font-size:15.5px;line-height:1.45;padding-right:26px}
+.pq blockquote p{margin:0}
+.pq figcaption{font-size:14px;line-height:1.35;color:var(--muted)}
+.pq figcaption b{color:var(--ink)}
+.pq figcaption span{display:block}
+.pq .st{color:var(--accent);letter-spacing:2px;margin-right:6px}
+.pq-x{position:absolute;top:2px;right:2px;width:44px;height:44px;border:0;background:none;color:var(--ink);font:400 26px/1 system-ui,sans-serif;cursor:pointer;border-radius:50%}
+.pq-x:hover{background:var(--panel)}
+.pq-x:focus-visible{outline:3px solid var(--primary);outline-offset:-3px}
+@media (prefers-reduced-motion:reduce){.pq{transition:none;transform:none}}
+@media (max-width:560px){.pq{left:16px;right:16px;width:auto;bottom:76px}}
 .season-strip{display:none}
 [data-season="remembrance"] .season-strip{display:flex;justify-content:center;align-items:center;gap:10px;background:#1A1033;color:#E9E0FF;font-size:14px;line-height:1.4;padding:8px 24px;text-align:center;position:relative;overflow:hidden}
 .season-strip a{color:#FF9AA8}
@@ -497,6 +514,22 @@ document.getElementById("f").addEventListener("submit", async function(ev){
 })();
 </script>
 <script src="/consent-config.js"></script>
+<aside class="pq" id="pq" data-quote="on" role="complementary" aria-label="Customer review" hidden>
+<button type="button" class="pq-x" aria-label="Close review">&times;</button>
+<figure>
+<img src="/images/paul-fast-parts.webp" width="56" height="56" alt="Paul from Fast Parts" loading="lazy" decoding="async">
+<blockquote><p>James is thorough, responsive and easy to deal with, and he made the whole thing painless. It was well worth doing.</p></blockquote>
+<figcaption><b>Paul</b>, Fast Parts<span><span class="st" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>5 stars on Google</span></figcaption>
+</figure>
+</aside>
+<script>/* Customer review card: shows after 8 seconds, waits for the cookie banner to be dealt with, closes with the X or Esc. */
+(function(){var q=document.getElementById("pq");if(!q||q.getAttribute("data-quote")!=="on"||document.querySelector(".arch-bar"))return;var closed=false;
+function clear(){var c=document.getElementById("pn-cookie");return !c||c.hidden||getComputedStyle(c).display==="none"}
+function show(){if(closed)return;if(!clear()){setTimeout(show,700);return}q.hidden=false;requestAnimationFrame(function(){requestAnimationFrame(function(){q.classList.add("on")})})}
+function close(){closed=true;q.classList.remove("on");setTimeout(function(){q.hidden=true},350)}
+q.querySelector(".pq-x").addEventListener("click",close);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!q.hidden)close()});
+setTimeout(show,8000)})();</script>
 <script src="/consent.js" defer></script>
 <script src="/chat-widget.js" defer></script>
 </body>
