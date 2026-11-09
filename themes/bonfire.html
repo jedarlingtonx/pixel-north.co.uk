@@ -334,7 +334,7 @@ nav .wm{font-size:24px}
 <div>
 <h2>Tell me about your business</h2>
 <p class="intro" style="margin-bottom:0">Pop your details in to the form and I’ll get back to you with a few questions and a quotation. Or call me and let’s meet in person - coffee is on me.</p>
-<p style="margin:18px 0 0;max-width:640px">Not sure you need a website? <a href="/website-check">Take the two-minute check</a> and get a straight answer.</p>
+<p style="margin:18px 0 0;max-width:640px">Not sure you need a website? <a href="/assessment">Take the two-minute assessment</a> and get a straight answer.</p>
 <div class="callme"><a class="btn" href="tel:+447846012932">Call Me on 07846 012932</a></div>
 </div>
 <form id="f">
@@ -370,7 +370,7 @@ nav .wm{font-size:24px}
 </div>
 <span class="credit"><svg class="factory" viewBox="0 0 512 512" aria-hidden="true"><path d="M30 464H480"/><path d="M70 464V268L195 205V268L325 205V268L445 205V464"/><path d="M347 250L359 45H413L425 205"/><path d="M362 78H410"/><rect x="120" y="318" width="64" height="64"/><rect x="226" y="318" width="64" height="64"/><rect x="331" y="318" width="64" height="64"/></svg><span>Another small business site, sorted, by <a href="https://pixel-north.co.uk/">Pixel North</a>.</span></span>
 </div>
-<nav class="f-col" aria-label="Explore"><p class="f-h">Explore</p><a href="/about-james">About James</a><a href="/services">Services</a><a href="/pixel-ai">Pixel AI</a><a href="/themes">Themes</a><a href="/faq">FAQs</a><a href="/website-check">Website check</a></nav>
+<nav class="f-col" aria-label="Explore"><p class="f-h">Explore</p><a href="/about-james">About James</a><a href="/services">Services</a><a href="/pixel-ai">Pixel AI</a><a href="/themes">Themes</a><a href="/faq">FAQs</a><a href="/assessment">Assessment</a></nav>
 <nav class="f-col" aria-label="Areas we cover"><p class="f-h">Areas</p><a href="/web-designer-northwich">Web design in Northwich</a><a href="/web-design-cheshire">Web design across Cheshire</a></nav>
 <nav class="f-col" aria-label="Legal"><p class="f-h">Legal</p><a href="/privacy">Privacy notice</a><a href="/cookies">Cookie policy</a><a href="#" data-cookie-settings>Cookie settings</a><a href="/marketing-unsubscribe">Unsubscribe</a></nav>
 <div class="legal">
@@ -434,7 +434,7 @@ siteEl.addEventListener("input", checkSite);
   c.addEventListener("change", function(){ if (c.checked) { c.removeAttribute("aria-invalid"); document.getElementById("note").className = ""; document.getElementById("note").textContent = ""; } });
   window.refresh();
 })();
-// Website check (/website-check): if the visitor clicked through with their result, copy their answers into the message box
+// Assessment (/assessment): if the visitor clicked through with their result, copy their answers into the message box
 // and pick the matching "What do you need?" option, once. They travel in the browser's temporary session storage
 // (never the web address) and are cleared as soon as they are used. A choice the visitor has already made is never overridden.
 (function(){
