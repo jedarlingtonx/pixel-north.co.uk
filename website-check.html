@@ -201,7 +201,8 @@ details.q .ans p{margin:0 0 12px;max-width:70ch}
 .wc-res li{background:var(--panel);border-radius:14px;padding:14px 16px;line-height:1.5}
 .wc-res ul.wc-note li{background:#fff;border:1px solid #D9CCFF}
 .wc-close{margin:22px 0 0;max-width:62ch}
-.wc-acts{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center;margin-top:26px}
+.wc-acts{display:flex;flex-direction:column;align-items:flex-start;gap:18px;margin-top:26px}
+.wc-sub{display:flex;flex-wrap:wrap;gap:10px 22px}
 .wc-linkbtn{background:none;border:0;padding:0;font:inherit;color:var(--primary);text-decoration:underline;cursor:pointer}
 details.wc-ans{margin-top:28px;border-top:1px solid #E4DAFF;padding-top:16px}
 details.wc-ans summary{cursor:pointer;font-weight:500;color:var(--primary)}
@@ -209,7 +210,7 @@ details.wc-ans summary{cursor:pointer;font-weight:500;color:var(--primary)}
 .wc-ans dt{font-weight:500;color:var(--muted);font-size:15px;margin-top:12px}
 .wc-ans dd{margin:2px 0 0}
 .wc-priv{max-width:760px;margin:18px auto 0;color:var(--muted);font-size:15px;text-align:center}
-@media (max-width:640px){.wcband{padding-top:36px;padding-bottom:48px}.wc{padding:22px;border-radius:20px}.wc-opt{padding:14px}.wc-nav .btn,.wc-acts .btn{flex:1 1 100%;text-align:center}.wc-nav .wc-next{margin-left:0}.wc-nav{flex-direction:column-reverse;align-items:stretch}}
+@media (max-width:640px){.wcband{padding-top:36px;padding-bottom:48px}.wc{padding:22px;border-radius:20px}.wc-opt{padding:14px}.wc-nav .btn{flex:1 1 100%;text-align:center}.wc-acts .btn{align-self:stretch;text-align:center}.wc-nav .wc-next{margin-left:0}.wc-nav{flex-direction:column-reverse;align-items:stretch}}
 </style>
 <script type="application/ld+json">
 {
@@ -265,7 +266,6 @@ details.wc-ans summary{cursor:pointer;font-weight:500;color:var(--primary)}
 "use strict";
 var root=document.getElementById("wc");
 if(!root){return;}
-var EMAIL="james@pixel-north.co.uk";
 
 /* Questions. needsSite: only asked when the person already has a website. */
 var Q=[
@@ -453,13 +453,6 @@ var OUT={
  }
 };
 
-function mailto(title){
- var lines=["Hi James,","","I took the website check on your site and my result was: "+title+".","","My answers:"],list=active(),i;
- for(i=0;i<list.length;i++){lines.push("- "+list[i].text+" "+optText(list[i],answers[list[i].id]));}
- lines.push("","[Tell me a bit about your business here]");
- return "mailto:"+EMAIL+"?subject="+encodeURIComponent("Website check: "+title)+"&body="+encodeURIComponent(lines.join("\r\n"));
-}
-
 /* The text copied into the contact form's message box when the person clicks through. */
 function carryText(){
  /* Two blank lines first, so there is room to write above, then a divider like an email reply. */
@@ -506,12 +499,10 @@ function showResult(focus){
  h+='<div class="wc-acts">';
  if(o.cta==="primary"){
   h+='<a class="btn pink" href="/#contact" data-wc-carry>Tell me about your business &rarr;</a>';
-  h+='<a href="'+mailto(o.title)+'">Email me this result</a>';
  }else{
   h+='<a class="btn wc-ghost" href="/#contact" data-wc-carry>Questions? Get in touch</a>';
  }
- h+='<button type="button" class="wc-linkbtn wc-change">Change an answer</button>';
- h+='<button type="button" class="wc-linkbtn wc-restart">Start again</button>';
+ h+='<div class="wc-sub"><button type="button" class="wc-linkbtn wc-change">Change an answer</button><button type="button" class="wc-linkbtn wc-restart">Start again</button></div>';
  h+='</div>';
  h+='<details class="wc-ans"><summary>How I got there</summary><dl>';
  for(i=0;i<list.length;i++){h+='<dt>'+esc(list[i].text)+'</dt><dd>'+esc(optText(list[i],answers[list[i].id]))+'</dd>';}
