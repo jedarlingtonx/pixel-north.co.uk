@@ -603,8 +603,10 @@ siteEl.addEventListener("input", checkSite);
   var m = document.getElementById("m"), text = "";
   try { text = sessionStorage.getItem("pn_check") || ""; sessionStorage.removeItem("pn_check"); } catch (e) { return; }
   if (!text || !m || m.value.indexOf(text.trim()) !== -1) return;
-  m.value = m.value.trim() ? m.value.replace(/\s+$/, "") + "\n\n" + text : text;
-  m.rows = 12; // tall enough to show the answers without scrolling inside the box
+  // The text starts with two blank lines and a divider, so there is room to write above the answers.
+  m.value = m.value.trim() ? m.value.replace(/\s+$/, "") + "\n\n" + text.replace(/^\s+/, "") : text;
+  m.rows = 14; // tall enough to show the blank lines and the answers without scrolling inside the box
+  try { m.setSelectionRange(0, 0); } catch (e) {}
   if (window.refresh) window.refresh();
 })();
 document.getElementById("f").addEventListener("submit", async function(ev){

@@ -462,9 +462,10 @@ function mailto(title){
 
 /* The text copied into the contact form's message box when the person clicks through. */
 function carryText(){
- var key=evaluate(answers),lines=["Website check result: "+OUT[key].title,"","My answers:"],list=active(),i;
+ /* Two blank lines first, so there is room to write above, then a divider like an email reply. */
+ var key=evaluate(answers),lines=["","","________________________________","","Website check result: "+OUT[key].title,"","My answers:"],list=active(),i;
  for(i=0;i<list.length;i++){lines.push("- "+list[i].text+" "+optText(list[i],answers[list[i].id]));}
- return lines.join("\n")+"\n\n";
+ return lines.join("\n");
 }
 
 function focusTop(sel){var el=root.querySelector(sel);if(el){el.focus();}}
