@@ -74,7 +74,7 @@ Rules:
 - When it helps, point people to the contact form or the "Get a quote" button.
 - If someone asks about privacy, personal data, how their details are used or stored, or GDPR: answer briefly and accurately from the privacy information, then give the link to the privacy notice. If they ask about cookies, give the cookie policy link.
 - You may include links in this exact format: [label](url). Use ONLY these urls, exactly as written, and never invent others:
-  /privacy (privacy notice), /cookies (cookie policy), /faq (frequently asked questions), /web-design-cheshire (web design across Cheshire and the UK), /web-designer-northwich (web design in Northwich, based in Winnington), /about-james (about James, the designer), /services (what Pixel North offers, in detail), /themes (seasonal themes), /pixel-ai (Pixel AI, the website chat assistant that Pixel North can set up on clients’ sites), /free-website-terms (free website competition terms), /pnl4106-terms-conditions#claim (50% off offer terms, and the form to claim the extension to a promo code), /marketing-unsubscribe (unsubscribe from marketing emails), /#contact (contact form), /#services (services), /#quotes (how quotes work), mailto:james@pixel-north.co.uk (email James).
+  /privacy (privacy notice), /cookies (cookie policy), /faq (frequently asked questions), /web-design-cheshire (web design across Cheshire and the UK), /web-designer-northwich (web design in Northwich, based in Winnington), /about-james (about James, the designer), /services (what Pixel North offers, in detail), /themes (seasonal themes), /website-check (free two-minute check: do you need a website, a refresh or a new one), /pixel-ai (Pixel AI, the website chat assistant that Pixel North can set up on clients’ sites), /free-website-terms (free website competition terms), /pnl4106-terms-conditions#claim (50% off offer terms, and the form to claim the extension to a promo code), /marketing-unsubscribe (unsubscribe from marketing emails), /#contact (contact form), /#services (services), /#quotes (how quotes work), mailto:james@pixel-north.co.uk (email James).
   Use at most two links per answer, and never show a raw web address.
 `;
 
@@ -99,6 +99,7 @@ const PAGES = [
   { label: "WEB DESIGN IN NORTHWICH PAGE (page: /web-designer-northwich)", paths: ["/web-designer-northwich", "/web-designer-northwich.html"], max: 6000 },
   { label: "WEB DESIGN ACROSS CHESHIRE PAGE (page: /web-design-cheshire)", paths: ["/web-design-cheshire", "/web-design-cheshire.html"], max: 6000 },
   { label: "PIXEL AI PAGE (page: /pixel-ai)", paths: ["/pixel-ai", "/pixel-ai.html"], max: 6000 },
+  { label: "WEBSITE CHECK PAGE (page: /website-check)", paths: ["/website-check", "/website-check.html"], max: 5000 },
   { label: "SEASONAL THEMES PAGE (page: /themes)", paths: ["/themes", "/themes.html"], max: 5000 },
   // Optional: if this page is removed one day, Pixel simply stops using it.
   // Optional: the 50% off offer terms, including how to extend a promo code.
@@ -184,7 +185,7 @@ function plainText(text) {
 }
 
 const ALLOWED_LINKS = new Set([
-  "/privacy", "/cookies", "/faq", "/web-design-cheshire", "/web-designer-northwich", "/about-james", "/services", "/themes", "/pixel-ai", "/free-website-terms", "/pnl4106-terms-conditions#claim", "/pnl4106-terms-conditions", "/marketing-unsubscribe", "/#contact", "/#services", "/#quotes", "/#why",
+  "/privacy", "/cookies", "/faq", "/web-design-cheshire", "/web-designer-northwich", "/about-james", "/services", "/themes", "/website-check", "/pixel-ai", "/free-website-terms", "/pnl4106-terms-conditions#claim", "/pnl4106-terms-conditions", "/marketing-unsubscribe", "/#contact", "/#services", "/#quotes", "/#why",
   "mailto:james@pixel-north.co.uk",
 ]);
 const LINK_RE = /\[([^\]\n]{1,60})\]\(([^)\s]{1,200})\)/g;
