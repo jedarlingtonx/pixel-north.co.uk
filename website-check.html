@@ -251,14 +251,14 @@ details.wc-ans summary{cursor:pointer;font-weight:500;color:var(--primary)}
 <p class="meta">Takes about two minutes.</p>
 </header>
 <section class="sec2 alt pw wcband">
-<div id="wc"><noscript><div class="wc"><h2 style="font-size:28px;margin:0 0 10px">This check needs JavaScript</h2><p>Your browser has JavaScript switched off, so the questions can't load. You can read the <a href="/faq">FAQs</a> instead, or email me at <a href="mailto:james@pixel-north.co.uk">james@pixel-north.co.uk</a> and I'll give you a straight answer.</p></div></noscript></div>
-<p class="wc-priv">Nothing you choose here is sent anywhere. If you click &ldquo;Tell me about your business&rdquo;, your answers are copied into the contact form, and &ldquo;What do you need?&rdquo; is set to match your result, so you can check it all before you press send. It only reaches me if you do. Otherwise your answers disappear when you close or refresh the page.</p>
+<div id="wc"><noscript><div class="wc"><h2 style="font-size:28px;margin:0 0 10px">This check needs JavaScript</h2><p>Your browser has JavaScript switched off, so the questions can't load. You can read the <a href="/faq">FAQs</a> instead, or email us at <a href="mailto:james@pixel-north.co.uk">james@pixel-north.co.uk</a> and we'll give you a straight answer.</p></div></noscript></div>
+<p class="wc-priv">Nothing you choose here is sent anywhere. If you click &ldquo;Tell me about your business&rdquo;, your answers are copied into the contact form, and &ldquo;What do you need?&rdquo; is set to match your result, so you can check it all before you press send. It only reaches us if you do. Otherwise your answers disappear when you close or refresh the page.</p>
 </section>
 <section class="sec2 pw"><div class="sgrid"><h2>How far can you trust it?</h2>
-<div class="sbody"><p>It's a quick rule of thumb built from a handful of answers, not a verdict. I haven't seen your business or your current site, so treat your result as a starting point.</p>
+<div class="sbody"><p>It's a quick rule of thumb built from a handful of answers, not a verdict. We haven't seen your business or your current site, so treat your result as a starting point.</p>
 <p>The check is built to turn people away when that's the honest answer. A small business doesn't always need a website, and we'd rather you spent your money where it helps.</p></div></div></section>
 <section class="ctas pw"><h2>Not sure what your result means?</h2>
-<p>Tell me about your business and I'll give you a straight answer.</p>
+<p>Tell us about your business and we'll give you a straight answer.</p>
 <a class="btn pink" href="/#contact" data-wc-carry>Tell me about your business &rarr;</a></section>
 </main>
 <script>
@@ -345,7 +345,7 @@ function reasons(key,a){
   if(a.need==="contact"){r.push("You mainly want people to know you exist and how to reach you, which a good social profile can do.");}
   if(a.need==="unsure"){r.push("You're not sure what a website would do for you yet. It's better to wait until you are.");}
   if(a.need==="proof"){r.push("You'd like to show your work, and social posts can do that well for now.");}
-  if(!r.length){r.push("Nothing you've told me suggests a website would pay for itself just yet.");}
+  if(!r.length){r.push("Nothing you've told us suggests a website would pay for itself just yet.");}
  }else if(key==="new"){
   if(a.site==="broken"){r.push("Your website is broken, or you can't get into it or change it, so it isn't doing a job for you.");}
   if(a.site==="dated"&&a.phone==="bad"&&a.age==="old"){r.push("Your website is dated, awkward on a phone and more than three years old. Patching that rarely pays off.");}
@@ -357,7 +357,7 @@ function reasons(key,a){
   if(a.need==="proof"){r.push("You want to show your work and build trust with new customers.");}
   if(a.found==="search"){r.push(has?"Customers already find you through Google, so it matters what they land on.":"Customers already look for you on Google or maps, so being properly there matters.");}
  }else if(key==="refresh"){
-  if(a.site==="dated"){r.push("You told me it's dated, slow or awkward to use.");}
+  if(a.site==="dated"){r.push("You told us it's dated, slow or awkward to use.");}
   if(a.site==="happy"&&a.phone==="bad"){r.push("You're happy with it overall, but it's fiddly on a phone.");}
   if(a.site==="happy"&&a.age==="old"){r.push("You're happy with it overall, but it hasn't been updated in over three years.");}
   if(a.site!=="happy"&&a.phone==="bad"){r.push("It's fiddly on a phone, and many people will look at it there.");}
@@ -380,7 +380,7 @@ function notes(key,a){
  if(key!=="socials"){
   if(a.domain==="unsure"){n.push("Find out who your domain name is registered to. It should be in your name, not a previous web designer's. It's the one thing that's painful to fix later.");}
   if(a.domain==="what"){n.push("Your domain name is your web address, like yourbusiness.co.uk. Find out who it's registered to. It should be you.");}
-  if(a.domain==="none"&&!has){n.push("You'll need a domain name for a website. I can advise on what to buy, and it should be registered in your name so it stays yours.");}
+  if(a.domain==="none"&&!has){n.push("You'll need a domain name for a website. We can advise on what to buy, and it should be registered in your name so it stays yours.");}
   if(a.domain==="none"&&has){n.push("If your site sits on a free address from a website builder, a domain of your own is worth having, so your web address stays yours if you ever move.");}
  }
  if(has&&a.phone==="unsure"){n.push("Open your website on your phone today. Can you read it without zooming, and find your phone number in a few seconds?");}
@@ -392,14 +392,14 @@ function notes(key,a){
 var OUT={
  socials:{
   title:"Your socials are enough for now",
-  lead:function(){return "From what you've told me, a website wouldn't pay for itself yet. I'd rather tell you that than sell you one you don't need.";},
-  stepsTitle:"What I'd do instead",
+  lead:function(){return "From what you've told us, a website wouldn't pay for itself yet. We'd rather tell you that than sell you one you don't need.";},
+  stepsTitle:"What we'd do instead",
   steps:[
    "Pick one or two places where your customers already are, and show up there regularly.",
    "Make it easy to get hold of you. Put your phone number or contact link, your area and how to book in your bio, and pin a post that says what you do.",
    "If you serve a local area, set up a free Google Business Profile, so people can find you on Google and maps without a website.",
    "Ask happy customers for a review, and share the kind words you get."],
-  changeTitle:"What would change my answer",
+  changeTitle:"What would change our answer",
   change:[
    "People start searching for you by name, or for what you do.",
    "You want to take bookings or payments online.",
@@ -411,14 +411,14 @@ var OUT={
  },
  fine:{
   title:"Your website is doing its job",
-  lead:function(){return "From your answers, nothing says you should spend money on it. I'd leave it be.";},
+  lead:function(){return "From your answers, nothing says you should spend money on it. We'd leave it be.";},
   stepsTitle:"How to keep it that way",
   steps:[
    "Look it over every few months. Check your phone number, opening times and services are right, and that the contact form still reaches you.",
    "Keep your domain name registered in your name and renewing.",
    "Update the wording and photos when your business changes, so visitors see what you really do.",
    "Make sure you, or someone you trust, can get in and change it when you need to."],
-  changeTitle:"What would change my answer",
+  changeTitle:"What would change our answer",
   change:[
    "Your business changes: new services, a new area or a new look.",
    "Enquiries drop off, or people say they couldn't find you.",
@@ -436,19 +436,19 @@ var OUT={
    "Updating out-of-date wording, photos and contact details.",
    "Tidying the design so it fits how your business looks today.",
    "Checking the basics that help people find you on Google, like page titles and descriptions."],
-  close:"I'd want to look at your current site before saying so for certain. Put its address in the contact form and I'll take a look before we talk. A clear written quotation follows.",
+  close:"We'd want to look at your current site before saying so for certain. Put its address in the contact form and we'll take a look before we talk. A clear written quotation follows.",
   cta:"primary"
  },
  "new":{
   title:"You need a new website",
-  lead:function(has){return has?"A new website looks like the right call. Patching what you have wouldn't give you what you need, so I'd start fresh.":"You don't have a website yet, and from your answers you'd get real use from one.";},
+  lead:function(has){return has?"A new website looks like the right call. Patching what you have wouldn't give you what you need, so we'd start fresh.":"You don't have a website yet, and from your answers you'd get real use from one.";},
   stepsTitle:"What happens next",
   steps:[
    "We have a quick chat about your business and who you want to reach.",
    "You get a clear written quotation that says what you get, when you get it and what it costs.",
-   "I design and build the site, and you see it taking shape as we go.",
-   "Your site goes live and I hand it over, so you know how everything works."],
-  close:"This is a quick guide, not a quote. Tell me about your business and I'll give you a straight answer on what's needed.",
+   "We design and build the site, and you see it taking shape as we go.",
+   "Your site goes live and we hand it over, so you know how everything works."],
+  close:"This is a quick guide, not a quote. Tell us about your business and we'll give you a straight answer on what's needed.",
   cta:"primary"
  }
 };
@@ -510,7 +510,7 @@ function showResult(focus){
  }
  h+='<div class="wc-sub"><button type="button" class="wc-linkbtn wc-change">Change an answer</button><button type="button" class="wc-linkbtn wc-restart">Start again</button></div>';
  h+='</div>';
- h+='<details class="wc-ans"><summary>How I got there</summary><dl>';
+ h+='<details class="wc-ans"><summary>How we got there</summary><dl>';
  for(i=0;i<list.length;i++){h+='<dt>'+esc(list[i].text)+'</dt><dd>'+esc(optText(list[i],answers[list[i].id]))+'</dd>';}
  h+='</dl></details></div>';
  root.innerHTML=h;
