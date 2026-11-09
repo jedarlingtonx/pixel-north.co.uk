@@ -597,6 +597,16 @@ siteEl.addEventListener("input", checkSite);
   c.addEventListener("change", function(){ if (c.checked) { c.removeAttribute("aria-invalid"); document.getElementById("note").className = ""; document.getElementById("note").textContent = ""; } });
   window.refresh();
 })();
+// Website check (/website-check): if the visitor clicked through with their answers, copy them into the message box once.
+// They travel in the browser's temporary session storage (never the web address) and are cleared as soon as they are used.
+(function(){
+  var m = document.getElementById("m"), text = "";
+  try { text = sessionStorage.getItem("pn_check") || ""; sessionStorage.removeItem("pn_check"); } catch (e) { return; }
+  if (!text || !m || m.value.indexOf(text.trim()) !== -1) return;
+  m.value = m.value.trim() ? m.value.replace(/\s+$/, "") + "\n\n" + text : text;
+  m.rows = 12; // tall enough to show the answers without scrolling inside the box
+  if (window.refresh) window.refresh();
+})();
 document.getElementById("f").addEventListener("submit", async function(ev){
   ev.preventDefault();
   var form = ev.target;
