@@ -252,7 +252,7 @@ details.wc-ans summary{cursor:pointer;font-weight:500;color:var(--primary)}
 </header>
 <section class="sec2 alt pw wcband">
 <div id="wc"><noscript><div class="wc"><h2 style="font-size:28px;margin:0 0 10px">This check needs JavaScript</h2><p>Your browser has JavaScript switched off, so the questions can't load. You can read the <a href="/faq">FAQs</a> instead, or email me at <a href="mailto:james@pixel-north.co.uk">james@pixel-north.co.uk</a> and I'll give you a straight answer.</p></div></noscript></div>
-<p class="wc-priv">Nothing you choose here is sent anywhere. If you click &ldquo;Tell me about your business&rdquo;, your answers are copied into the contact form so you can read them before you press send, and they only reach me if you do. Otherwise they disappear when you close or refresh the page.</p>
+<p class="wc-priv">Nothing you choose here is sent anywhere. If you click &ldquo;Tell me about your business&rdquo;, your answers are copied into the contact form, and &ldquo;What do you need?&rdquo; is set to match your result, so you can check it all before you press send. It only reaches me if you do. Otherwise your answers disappear when you close or refresh the page.</p>
 </section>
 <section class="sec2 pw"><div class="sgrid"><h2>How far can you trust it?</h2>
 <div class="sbody"><p>It's a quick rule of thumb built from a handful of answers, not a verdict. I haven't seen your business or your current site, so treat your result as a starting point.</p>
@@ -461,6 +461,12 @@ function carryText(){
  return lines.join("\n");
 }
 
+/* The "What do you need?" option on the contact form that matches the result. Socials and "fine" have no matching option. */
+function carryNeed(){
+ var key=evaluate(answers);
+ return key==="new"?"A brand new website":(key==="refresh"?"A refresh of my current site":"");
+}
+
 function focusTop(sel){var el=root.querySelector(sel);if(el){el.focus();}}
 
 function showQuestion(focus){
@@ -546,7 +552,10 @@ document.addEventListener("click",function(e){
  var a=e.target&&e.target.closest?e.target.closest("a[data-wc-carry]"):null;
  if(!a){return;}
  try{
-  if(done){sessionStorage.setItem("pn_check",carryText());}else{sessionStorage.removeItem("pn_check");}
+  if(done){
+   sessionStorage.setItem("pn_check",carryText());
+   if(carryNeed()){sessionStorage.setItem("pn_check_need",carryNeed());}else{sessionStorage.removeItem("pn_check_need");}
+  }else{sessionStorage.removeItem("pn_check");sessionStorage.removeItem("pn_check_need");}
  }catch(err){}
 });
 

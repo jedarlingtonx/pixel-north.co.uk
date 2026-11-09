@@ -597,16 +597,26 @@ siteEl.addEventListener("input", checkSite);
   c.addEventListener("change", function(){ if (c.checked) { c.removeAttribute("aria-invalid"); document.getElementById("note").className = ""; document.getElementById("note").textContent = ""; } });
   window.refresh();
 })();
-// Website check (/website-check): if the visitor clicked through with their answers, copy them into the message box once.
-// They travel in the browser's temporary session storage (never the web address) and are cleared as soon as they are used.
+// Website check (/website-check): if the visitor clicked through with their result, copy their answers into the message box
+// and pick the matching "What do you need?" option, once. They travel in the browser's temporary session storage
+// (never the web address) and are cleared as soon as they are used. A choice the visitor has already made is never overridden.
 (function(){
-  var m = document.getElementById("m"), text = "";
-  try { text = sessionStorage.getItem("pn_check") || ""; sessionStorage.removeItem("pn_check"); } catch (e) { return; }
-  if (!text || !m || m.value.indexOf(text.trim()) !== -1) return;
-  // The text starts with two blank lines and a divider, so there is room to write above the answers.
-  m.value = m.value.trim() ? m.value.replace(/\s+$/, "") + "\n\n" + text.replace(/^\s+/, "") : text;
-  m.rows = 14; // tall enough to show the blank lines and the answers without scrolling inside the box
-  try { m.setSelectionRange(0, 0); } catch (e) {}
+  var m = document.getElementById("m"), w = document.getElementById("w"), text = "", need = "";
+  try {
+    text = sessionStorage.getItem("pn_check") || "";
+    need = sessionStorage.getItem("pn_check_need") || "";
+    sessionStorage.removeItem("pn_check");
+    sessionStorage.removeItem("pn_check_need");
+  } catch (e) { return; }
+  if (text && m && m.value.indexOf(text.trim()) === -1) {
+    // The text starts with two blank lines and a divider, so there is room to write above the answers.
+    m.value = m.value.trim() ? m.value.replace(/\s+$/, "") + "\n\n" + text.replace(/^\s+/, "") : text;
+    m.rows = 14; // tall enough to show the blank lines and the answers without scrolling inside the box
+    try { m.setSelectionRange(0, 0); } catch (e) {}
+  }
+  if (need && w && !w.value) {
+    for (var i = 0; i < w.options.length; i++) { if (w.options[i].text === need) { w.selectedIndex = i; break; } }
+  }
   if (window.refresh) window.refresh();
 })();
 document.getElementById("f").addEventListener("submit", async function(ev){
