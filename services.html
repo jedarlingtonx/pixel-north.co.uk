@@ -356,17 +356,17 @@ var KEY="pn_promo_seen",shown=false,timer;
 try{if(sessionStorage.getItem(KEY))return}catch(e){}
 function mark(){try{sessionStorage.setItem(KEY,"1")}catch(e){}}
 var css=document.createElement("style");
-css.textContent="#pn-promo{position:fixed;left:16px;bottom:16px;z-index:2147481000;width:min(360px,calc(100vw - 32px));background:#fff;color:#1A1033;border:1px solid #E4DAFF;border-radius:20px;padding:22px 22px 20px;box-shadow:0 14px 40px rgba(26,16,51,.22);font:400 16px/1.5 'DM Sans',system-ui,sans-serif;opacity:0;transform:translateY(14px);transition:opacity .3s,transform .3s}"
+css.textContent="#pn-promo{position:fixed;left:16px;bottom:72px;z-index:2147481000;width:min(360px,calc(100vw - 32px));box-sizing:border-box;background:#fff;color:#1A1033;border:2px solid #5B21E6;border-radius:18px;padding:16px 16px 14px;box-shadow:0 14px 36px rgba(26,16,51,.22);font:400 16px/1.5 'DM Sans',system-ui,sans-serif;opacity:0;transform:translateY(14px);transition:opacity .35s ease,transform .35s ease}"
 +"#pn-promo.on{opacity:1;transform:none}"
 +"#pn-promo .pp-tag{display:inline-block;background:#FF3D8B;color:#1A1033;font:700 12px/1 Outfit,'Segoe UI',system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border-radius:999px}"
 +"#pn-promo h2{font:700 26px/1.15 Outfit,'Segoe UI',system-ui,sans-serif;letter-spacing:-.5px;margin:12px 28px 8px 0;color:#1A1033}"
-+"#pn-promo p{margin:0 0 16px;color:#5E5675}"
++"#pn-promo p{margin:0 0 14px;color:#5E5675}"
 +"#pn-promo .pp-go{display:inline-block;background:#5B21E6;color:#fff;border-radius:999px;padding:13px 24px;font:500 17px 'DM Sans',system-ui,sans-serif;text-decoration:none}"
 +"#pn-promo .pp-go:hover{background:#4A1BC0}"
-+"#pn-promo .pp-x{position:absolute;top:10px;right:10px;width:44px;height:44px;border:0;border-radius:50%;background:none;color:#1A1033;cursor:pointer;display:grid;place-items:center}"
++"#pn-promo .pp-x{position:absolute;top:2px;right:2px;width:44px;height:44px;border:0;border-radius:50%;background:none;color:#1A1033;cursor:pointer;display:grid;place-items:center}"
 +"#pn-promo .pp-x:hover{background:#F1EBFF}"
-+"#pn-promo a:focus-visible,#pn-promo button:focus-visible{outline:3px solid #FF3D8B;outline-offset:2px}"
-+"@media (max-width:600px){#pn-promo{bottom:84px}}"
++"#pn-promo a:focus-visible,#pn-promo button:focus-visible{outline:3px solid #5B21E6;outline-offset:2px}"
++"@media (max-width:560px){#pn-promo{left:16px;right:16px;width:auto;bottom:76px}}"
 +"@media (prefers-reduced-motion:reduce){#pn-promo{transition:none;transform:none}}";
 function close(){var e=document.getElementById("pn-promo");if(!e)return;e.classList.remove("on");mark();document.removeEventListener("keydown",key);setTimeout(function(){if(e.parentNode)e.parentNode.removeChild(e)},300)}
 function key(ev){if(ev.key==="Escape")close()}
