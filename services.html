@@ -350,6 +350,43 @@ details.q .ans p{margin:0 0 12px;max-width:70ch}
 function fit(){var cs=g.querySelectorAll(".card");parts.forEach(function(sel){var m=0,els=[];cs.forEach(function(c){var e=c.querySelector(sel);if(e){e.style.minHeight="";els.push(e)}});
 if(innerWidth<861)return;els.forEach(function(e){m=Math.max(m,Math.ceil(e.getBoundingClientRect().height))});els.forEach(function(e){e.style.minHeight=m+"px"})})}
 fit();addEventListener("resize",fit);addEventListener("load",fit);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit)})();</script>
+<script>/* Assessment pop-up: a small, closable card that appears once per visit, after a pause, and never on top of the cookie banner. */
+(function(){
+var KEY="pn_promo_seen",shown=false,timer;
+try{if(sessionStorage.getItem(KEY))return}catch(e){}
+function mark(){try{sessionStorage.setItem(KEY,"1")}catch(e){}}
+var css=document.createElement("style");
+css.textContent="#pn-promo{position:fixed;left:16px;bottom:16px;z-index:2147481000;width:min(360px,calc(100vw - 32px));background:#fff;color:#1A1033;border:1px solid #E4DAFF;border-radius:20px;padding:22px 22px 20px;box-shadow:0 14px 40px rgba(26,16,51,.22);font:400 16px/1.5 'DM Sans',system-ui,sans-serif;opacity:0;transform:translateY(14px);transition:opacity .3s,transform .3s}"
++"#pn-promo.on{opacity:1;transform:none}"
++"#pn-promo .pp-tag{display:inline-block;background:#FF3D8B;color:#1A1033;font:700 12px/1 Outfit,'Segoe UI',system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:6px 10px;border-radius:999px}"
++"#pn-promo h2{font:700 26px/1.15 Outfit,'Segoe UI',system-ui,sans-serif;letter-spacing:-.5px;margin:12px 28px 8px 0;color:#1A1033}"
++"#pn-promo p{margin:0 0 16px;color:#5E5675}"
++"#pn-promo .pp-go{display:inline-block;background:#5B21E6;color:#fff;border-radius:999px;padding:13px 24px;font:500 17px 'DM Sans',system-ui,sans-serif;text-decoration:none}"
++"#pn-promo .pp-go:hover{background:#4A1BC0}"
++"#pn-promo .pp-x{position:absolute;top:10px;right:10px;width:44px;height:44px;border:0;border-radius:50%;background:none;color:#1A1033;cursor:pointer;display:grid;place-items:center}"
++"#pn-promo .pp-x:hover{background:#F1EBFF}"
++"#pn-promo a:focus-visible,#pn-promo button:focus-visible{outline:3px solid #FF3D8B;outline-offset:2px}"
++"@media (max-width:600px){#pn-promo{bottom:84px}}"
++"@media (prefers-reduced-motion:reduce){#pn-promo{transition:none;transform:none}}";
+function close(){var e=document.getElementById("pn-promo");if(!e)return;e.classList.remove("on");mark();document.removeEventListener("keydown",key);setTimeout(function(){if(e.parentNode)e.parentNode.removeChild(e)},300)}
+function key(ev){if(ev.key==="Escape")close()}
+function show(){
+ if(shown)return;
+ /* wait while the cookie banner or its settings are open, so the two never stack */
+ var cb=document.getElementById("pn-cookie");if(cb&&cb.getBoundingClientRect().height>0){timer=setTimeout(show,1500);return}
+ shown=true;mark();
+ document.head.appendChild(css);
+ var d=document.createElement("div");
+ d.id="pn-promo";d.setAttribute("role","dialog");d.setAttribute("aria-modal","false");d.setAttribute("aria-labelledby","pn-promo-t");
+ d.innerHTML='<span class="pp-tag">Free &middot; 2 minutes</span><h2 id="pn-promo-t">Do you need a website?</h2><p>Answer a few quick questions and get a straight answer. If you don’t need us, that’s what you’ll get.</p><a class="pp-go" href="/assessment">Take the assessment &rarr;</a><button type="button" class="pp-x" aria-label="Close"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
+ d.querySelector(".pp-x").addEventListener("click",close);
+ d.querySelector(".pp-go").addEventListener("click",mark);
+ document.body.appendChild(d);
+ document.addEventListener("keydown",key);
+ requestAnimationFrame(function(){requestAnimationFrame(function(){d.classList.add("on")})});
+}
+timer=setTimeout(show,12000);
+})();</script>
 <script src="consent-config.js"></script>
 <script src="consent.js" defer></script>
 <script src="/chat-widget.js" defer></script>
