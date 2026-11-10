@@ -557,10 +557,11 @@ document.getElementById("f").addEventListener("submit", async function(ev){
 </figure>
 </aside>
 <script>/* Customer review card: shows after 8 seconds, waits for the cookie banner to be dealt with, closes with the X or Esc. */
-(function(){var q=document.getElementById("pq");if(!q||q.getAttribute("data-quote")!=="on"||document.querySelector(".arch-bar"))return;var closed=false;
+(function(){var q=document.getElementById("pq");if(!q||q.getAttribute("data-quote")!=="on"||document.querySelector(".arch-bar"))return;var KEY="pn_review_seen",closed=false;try{if(sessionStorage.getItem(KEY))return}catch(e){}
+function mark(){try{sessionStorage.setItem(KEY,"1")}catch(e){}}
 function clear(){var c=document.getElementById("pn-cookie");return !c||c.hidden||getComputedStyle(c).display==="none"}
-function show(){if(closed)return;if(!clear()){setTimeout(show,700);return}q.hidden=false;requestAnimationFrame(function(){requestAnimationFrame(function(){q.classList.add("on")})})}
-function close(){closed=true;q.classList.remove("on");setTimeout(function(){q.hidden=true},350)}
+function show(){if(closed)return;if(!clear()){setTimeout(show,700);return}q.hidden=false;mark();requestAnimationFrame(function(){requestAnimationFrame(function(){q.classList.add("on")})})}
+function close(){closed=true;mark();q.classList.remove("on");setTimeout(function(){q.hidden=true},350)}
 q.querySelector(".pq-x").addEventListener("click",close);
 document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!q.hidden)close()});
 setTimeout(show,8000)})();</script>
