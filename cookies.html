@@ -153,16 +153,18 @@ main.prose{padding:40px max(24px,calc((100% - 720px)/2)) 72px}
 <p>Cookies are small text files that a website saves on your device. Some are needed for a site to work. Others, such as analytics cookies, help a site owner understand how the site is used.</p>
 
 <h2>How this site uses them</h2>
-<p>This site uses one essential cookie, which is always on, and Google Analytics cookies, which are only set if you accept them. Analytics cookies are off by default. Rejecting them is as easy as accepting them, and the site works the same either way.</p>
+<p>This site uses essential cookies, which are always on, and Google Analytics cookies, which are only set if you accept them. The essential cookies are one that remembers your cookie choice and, in some cases, one that Cloudflare sets to keep the site secure. Analytics cookies are off by default. Rejecting them is as easy as accepting them, and the site works the same either way.</p>
 
 <h2>The cookies in use</h2>
 <div class="tw"><table class="tbl">
 <thead><tr><th>Cookie</th><th>Set by</th><th>What it does</th><th>Lasts</th><th>Type</th></tr></thead>
 <tbody>
 <tr><td><code>pn_consent</code></td><td>This site</td><td>Remembers your cookie choice so we don’t ask again on every page. It also holds a random ID that links your choices in our consent record (see below).</td><td>12 months</td><td>Essential</td></tr>
+<tr><td><code>cf_clearance</code></td><td>Cloudflare (our host)</td><td>Helps Cloudflare tell real visitors from automated bots, to keep the site secure. It is set for security only, may appear before you make a choice, and isn’t used for analytics or advertising. It may not be set for every visitor.</td><td>Up to 30 minutes at a time, renewed while you browse</td><td>Essential (security)</td></tr>
 <tr><td><code>_ga</code></td><td>Google Analytics</td><td>Gives your browser a random ID so that visits can be counted and visitors told apart.</td><td>Up to 13 months</td><td>Analytics (only with your consent)</td></tr>
 <tr><td><code>_ga_&lt;container ID&gt;</code></td><td>Google Analytics</td><td>Keeps track of your session, so page views within one visit are grouped together.</td><td>Up to 13 months</td><td>Analytics (only with your consent)</td></tr>
 </tbody></table></div>
+<p>Essential cookies don’t need your consent because the site needs them to work or to stay secure. Cloudflare sets <code>cf_clearance</code> itself, so it can’t be switched off from the cookie settings. You can block it in your browser, but if you do, Cloudflare may check you more often or occasionally stop a page from loading. See <a href="https://developers.cloudflare.com/fundamentals/reference/policies-compliances/cloudflare-cookies/" target="_blank" rel="noopener noreferrer" aria-label="Cloudflare’s cookie information (opens in a new tab)">Cloudflare’s cookie information</a>.</p>
 <p>Your browser may delete cookies sooner than the times above.</p>
 <p>One other thing may be held in your browser, but it isn’t a cookie. If you use our website assessment and click “Tell me about your business”, your answers are kept briefly in your browser’s temporary (session) storage so that they can be copied into the contact form. They are cleared as soon as the form page has used them, and they only reach us if you send the form. On our services page we also note in session storage that you have seen or closed our assessment pop-up, and on our home page that you have seen our customer review card, so that we do not show either to you again during the same visit. That note disappears when you close your browser tab.</p>
 
