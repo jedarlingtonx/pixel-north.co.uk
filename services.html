@@ -378,7 +378,7 @@ function show(){
  document.head.appendChild(css);
  var d=document.createElement("div");
  d.id="pn-promo";d.setAttribute("role","dialog");d.setAttribute("aria-modal","false");d.setAttribute("aria-labelledby","pn-promo-t");
- d.innerHTML='<span class="pp-tag">Free &middot; 2 minutes</span><h2 id="pn-promo-t">Do you need a website?</h2><p>Answer a few quick questions and get a straight answer. If you don’t need us, that’s what you’ll get.</p><a class="pp-go" href="/assessment">Take the assessment &rarr;</a><button type="button" class="pp-x" aria-label="Close"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
+ d.innerHTML='<span class="pp-tag">Free &middot; 2 minutes</span><h2 id="pn-promo-t">Do you need a website?</h2><p>Answer a few quick questions and get a straight answer. If you don’t need us, we’ll tell you.</p><a class="pp-go" href="/assessment">Take the assessment &rarr;</a><button type="button" class="pp-x" aria-label="Close"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>';
  d.querySelector(".pp-x").addEventListener("click",close);
  d.querySelector(".pp-go").addEventListener("click",mark);
  document.body.appendChild(d);
