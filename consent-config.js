@@ -19,7 +19,7 @@ window.COOKIE_CONTROL = {
   },
   cookies: {
     essential: [
-      { name: "cf_clearance", duration: "Up to 30 minutes", purpose: "Set by Cloudflare, our host, to tell real visitors from bots and keep the site secure. It may not be set for every visitor." }
+      { name: "cf_clearance", duration: "Up to 12 months", purpose: "Set by Cloudflare, our host, to tell real visitors from bots and keep the site secure. It may not be set for every visitor." }
     ]
   },
   fonts: { body: "'DM Sans', system-ui, sans-serif", heading: "Outfit, system-ui, sans-serif" }
