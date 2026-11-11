@@ -58,6 +58,11 @@ export function checkSite(site) {
     if (!Array.isArray(site.links)) return "links must be a list";
     for (const l of site.links) {
       if (!l || typeof l.about !== "string" || typeof l.url !== "string" || !PATH_RE.test(l.url)) return "each link needs an about and a url that starts with /";
+      if (l.when !== undefined) {
+        if (typeof l.when !== "string" || !l.when.trim()) return "a link's when must be a non-empty text pattern";
+        try { new RegExp(l.when, "i"); } catch (e) { return "a link's when is not a valid pattern: " + l.url; }
+        if (typeof l.label !== "string" || !l.label.trim()) return "a link with a when also needs a label: " + l.url;
+      }
     }
   }
   if (site.models !== undefined && (!Array.isArray(site.models) || !site.models.length || site.models.some((m) => typeof m !== "string" || /-external$/.test(m)))) {
@@ -102,7 +107,7 @@ export function buildRules(site) {
     ...extra,
     "- You may include links in this exact format: [label](url). Use ONLY these urls, exactly as written, and never invent others:",
     "  " + urls + ".",
-    "  Use at most two links per answer, and never show a raw web address.",
+    "  When your answer is about something that has its own page in that list (for example a service, a tool, an offer, a form or a policy), include that page's link. Use at most two links per answer, and never show a raw web address.",
     "",
   ].join("\n");
 }
@@ -120,7 +125,7 @@ export function cleanLinks(text, set) {
 }
 
 // Make sure privacy and cookie questions always end with the right link.
-export function addTopicLinks(question, reply, topic) {
+export function addTopicLinks(question, reply, topic, links) {
   const q = question.toLowerCase();
   let out = reply;
   const wantsCookies = /cookie/.test(q);
@@ -128,6 +133,21 @@ export function addTopicLinks(question, reply, topic) {
     /privacy|personal (data|information|details)|my (data|details|information)|gdpr|data protection|data (do|is|are)|what (data|information)|(store|keep|collect|share|sell|record|track|log)\b.*\b(data|details|information|chat|messages|conversation)/.test(q);
   if (topic.privacy && wantsPrivacy && !out.includes("(" + topic.privacy + ")")) out += "\n\nYou can read the full details in the [privacy notice](" + topic.privacy + ").";
   if (topic.cookies && wantsCookies && !out.includes("(" + topic.cookies + ")")) out += "\n\nThere's more in the [cookie policy](" + topic.cookies + ").";
+  // Links that have a `when` pattern are added when the question matches, if the reply has no
+  // link to that page yet. The model does not always include a link, so this makes it reliable.
+  // At most two links are added, and none if the reply already has two.
+  // For "where do I find it" style questions the topic is in the reply, not the question.
+  const locating = /\b(where|link|find|page|url|address|website for|how do i (get|access|start|do|take))\b/i.test(question);
+  const hay = locating ? question + " " + reply : question;
+  let have = (out.match(/\]\([^)\s]+\)/g) || []).length;
+  const extra = [];
+  for (const l of links || []) {
+    if (!l || !l.when || have + extra.length >= 2) continue;
+    let hit = false;
+    try { hit = new RegExp(l.when, "i").test(hay); } catch (e) { hit = false; }
+    if (hit && !out.includes("(" + l.url + ")")) extra.push("[" + l.label + "](" + l.url + ")");
+  }
+  if (extra.length) out += "\n\n" + (extra.length === 1 ? "Here it is: " : "Here you go: ") + extra.join(" and ") + ".";
   return out;
 }
 
@@ -290,7 +310,7 @@ async function handleChat(request, env, site) {
     try {
       const out = await env.AI.run(a.model, { messages, ...a.opts });
       const reply = extractReply(out);
-      if (reply) return json({ reply: addTopicLinks(lastUser, cleanLinks(plainText(reply), set), topic), model: String((out && out.model) || a.model) });
+      if (reply) return json({ reply: addTopicLinks(lastUser, cleanLinks(plainText(reply), set), topic, site.links), model: String((out && out.model) || a.model) });
       errors.push(a.model.split("/").pop() + " empty: " + JSON.stringify(out).slice(0, 160));
     } catch (e) {
       errors.push(a.model.split("/").pop() + " error: " + String((e && e.message) || e).slice(0, 160));

@@ -9,6 +9,7 @@
 //   A fact on no page       -> add a line to `coreFacts`.
 //   Privacy or cookies change -> update the summary in `fallbackKnowledge` too (the live pages are
 //                              read first; the summary is only the backup).
+// A link with `when` (matched against the visitor's question) and `label` is added to a reply that forgot it.
 // Then ask Pixel a test question on the staging preview before merging.
 
 export default {
@@ -25,22 +26,23 @@ export default {
   ],
 
   // The only links Pixel may give. The privacy and cookie pages (/privacy, /cookies) and the
-  // email address are added automatically.
+  // email address are added automatically. A link with `when` (a pattern tested against the
+  // visitor's question) and `label` is also added to the reply if the model forgot it.
   links: [
-    { url: "/faq", about: "frequently asked questions" },
-    { url: "/web-design-cheshire", about: "web design across Cheshire and the UK" },
-    { url: "/web-designer-northwich", about: "web design in Northwich, based in Winnington" },
-    { url: "/about-james", about: "about James, the designer" },
-    { url: "/services", about: "what Pixel North offers, in detail" },
-    { url: "/themes", about: "seasonal themes" },
-    { url: "/assessment", about: "free two-minute assessment: do you need a website, a refresh or a new one" },
-    { url: "/pixel-ai", about: "Pixel AI, the website chat assistant that Pixel North can set up on clients’ sites" },
-    { url: "/free-website-terms", about: "free website competition terms" },
-    { url: "/pnl4106-terms-conditions#claim", about: "50% off offer terms, and the form to claim the extension to a promo code" },
-    { url: "/marketing-unsubscribe", about: "unsubscribe from marketing emails" },
-    { url: "/#contact", about: "contact form" },
+    { url: "/faq", about: "frequently asked questions", when: "\\bfaqs?\\b|frequently asked", label: "FAQs" },
+    { url: "/web-design-cheshire", about: "web design across Cheshire and the UK", when: "cheshire|uk.wide|outside (of )?northwich", label: "web design across Cheshire" },
+    { url: "/web-designer-northwich", about: "web design in Northwich, based in Winnington", when: "northwich|winnington", label: "web design in Northwich" },
+    { url: "/about-james", about: "about James, the designer", when: "about james|who is james|who are you|who runs|who.s behind", label: "About James" },
+    { url: "/services", about: "what Pixel North offers, in detail", when: "\\bservices?\\b|what (do you|can you) (offer|do)", label: "services" },
+    { url: "/themes", about: "seasonal themes", when: "theme|seasonal|halloween|bonfire|remembrance|christmas", label: "seasonal themes" },
+    { url: "/assessment", about: "free two-minute assessment: do you need a website, a refresh or a new one", when: "assessment|quiz|not sure (if )?i need|do i (even )?need a (new )?website|need a (new )?website\\?", label: "free assessment" },
+    { url: "/pixel-ai", about: "Pixel AI, the website chat assistant that Pixel North can set up on clients\u2019 sites", when: "pixel ai|chat ?bot|chat assistant|ai assistant|assistant like (this|you)", label: "Pixel AI" },
+    { url: "/free-website-terms", about: "free website competition terms", when: "free website|competition|prize|giveaway|raffle", label: "competition terms" },
+    { url: "/pnl4106-terms-conditions#claim", about: "50% off offer terms, and the form to claim the extension to a promo code", when: "promo|extend|extension|50%|half price|flyer", label: "claim form" },
+    { url: "/marketing-unsubscribe", about: "unsubscribe from marketing emails", when: "unsubscribe|stop (the )?(marketing )?emails", label: "unsubscribe page" },
+    { url: "/#contact", about: "contact form", when: "contact form|get in touch|how (do|can) i contact|get a quote|book a (call|consultation)", label: "contact form" },
     { url: "/#services", about: "services" },
-    { url: "/#quotes", about: "how quotes work" },
+    { url: "/#quotes", about: "how quotes work", when: "how (do )?quotes? work|quotation process", label: "how quotes work" },
   ],
 
   // The live pages Pixel reads, so its answers always match the site. Optional pages are skipped
