@@ -13,8 +13,11 @@ It is plain HTML, CSS, and a little JavaScript in one file, with no build step a
 - Forms: submissions are sent through Web3Forms. The (public) access key is `ACCESS_KEY` in the script at the bottom of `index.html` and `pnl4106-terms-conditions.html`.
 - `consent.js`: the shared Pixel North cookie control (identical on every site, never edited per site). It loads Google Analytics only after consent.
 - `consent-config.js`: this site's cookie control settings (GA4 measurement ID, cookie name, colours, fonts, how long a choice is remembered, audit log address)
-- `chat-widget.js`: the "Ask Pixel" chat window, loaded by a script tag at the bottom of each page. Remove that tag to switch the chat off.
-- `worker/pixel-north-worker.js`: the server side of the chat. It answers `/api/chat` using Cloudflare Workers AI, reads the site's own pages for its notes, and serves everything else as normal.
+- `chat-widget.js`: the "Ask Pixel" chat window engine (from the Kit's `chat-assistant`, never edited here), loaded by a script tag at the bottom of each page. Remove the `chat-widget.js` tag to switch the chat off.
+- `chat-config.js`: the chat's wording, colours and fonts. Edit this to change how the chat looks or what it says on screen.
+- `worker/pixel-north-worker.js`: the Worker. It routes the consent log, then the chat, then serves everything else as normal.
+- `worker/chat-handler.js`: the chat's server engine (from the Kit, never edited here). Answers `/api/chat` using Cloudflare Workers AI.
+- `worker/chat-site.js`: what Pixel knows: the page list it reads, the links it may give, the facts that are on no page, and the backup notes. **Edit this when a page, offer or policy changes.**
 - `wrangler.jsonc`: Cloudflare settings (Worker name, AI connection, 404 page, log settings). The name must match the Worker in the Cloudflare dashboard.
 - `.assetsignore`: keeps the config and Worker code out of the public website
 - `sitemap.xml`: lists the pages for search engines
@@ -23,7 +26,7 @@ It is plain HTML, CSS, and a little JavaScript in one file, with no build step a
 
 ## Things to check now and then
 
-1. **The chat model.** Cloudflare retires AI models from time to time. If Pixel starts saying "I can't answer right now", check the model names at the top of `worker/pixel-north-worker.js` against developers.cloudflare.com/workers-ai/models.
+1. **The chat model.** Cloudflare retires AI models from time to time. If Pixel starts saying "I can't answer right now", check the model names (`DEFAULT_MODELS`) at the top of `worker/chat-handler.js` against developers.cloudflare.com/workers-ai/models.
 2. **The statistics.** The "Why your business needs a modern website" section quotes Ofcom, DataReportal and Squarespace/YouGov figures. Re-check them when you update the page.
 3. **The privacy notice.** Keep it in step with any change to the form service, analytics, hosting or chat.
 

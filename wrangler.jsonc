@@ -20,7 +20,7 @@
   ],
   "previews": {
     "ai": { "binding": "AI" },
-    "vars": { "SITE": "pixel-north.co.uk" },
+    "vars": { "SITE": "pixel-north.co.uk", "CONSENT_RETENTION_MONTHS": "12", "CHAT_PREVIEW_WORKER": "pixel-north-co-uk", "CHAT_WORKERS_SUBDOMAIN": "jedarlington" },
     "d1_databases": [
       {
         "binding": "CONSENT_DB",
