@@ -1,0 +1,30 @@
+# Pixel North
+
+> Pixel North is a one-person web design business for small businesses, based in Northwich, Cheshire. James meets clients in person across Cheshire and works with small businesses anywhere in the UK by phone, video call and email. Prices are not published: quotations are written and follow an initial consultation.
+
+Services: website design and build, website refresh or redesign, content and copy support, search and analytics setup (including Google Business Profile), enquiry forms and bookings, and ongoing care and support. Pixel AI, a website chat assistant, and seasonal website themes are also offered.
+
+## Main pages
+
+- [Home](https://pixel-north.co.uk/): What Pixel North does, why a small business needs a modern website, the six services, how quotations work, and the enquiry form.
+- [Services](https://pixel-north.co.uk/services): The six services in detail, with who each is good for.
+- [Web design in Northwich](https://pixel-north.co.uk/web-designer-northwich): Web design for small businesses in Northwich, with in-person meetings and a clear written quotation.
+- [Web design across Cheshire](https://pixel-north.co.uk/web-design-cheshire): Web design across Cheshire, with in-person meetings across the county and remote work anywhere in the UK.
+- [About James](https://pixel-north.co.uk/about-james): The designer behind Pixel North and his background in technology.
+- [FAQs](https://pixel-north.co.uk/faq): Answers to common questions about getting a website: cost, timescales, domains, Google and how to start.
+
+## Extras
+
+- [Pixel AI](https://pixel-north.co.uk/pixel-ai): A website chat assistant that answers visitors' questions from a business's own pages, and how it works.
+- [Seasonal themes](https://pixel-north.co.uk/themes): Discreet seasonal looks for a website (such as Halloween, Bonfire Night and Remembrance) that can be added and removed again.
+- [Do I need a website? Two-minute assessment](https://pixel-north.co.uk/assessment): A short questionnaire that gives an honest answer on whether a business needs a new website, a refresh, or can rely on social media.
+
+## Contact
+
+- Email: james@pixel-north.co.uk
+- Enquiry form: https://pixel-north.co.uk/#contact
+
+## Optional
+
+- [Privacy notice](https://pixel-north.co.uk/privacy): How personal data, cookies and enquiries are handled.
+- [Cookie policy](https://pixel-north.co.uk/cookies): Which cookies are used and how to change cookie choices.
