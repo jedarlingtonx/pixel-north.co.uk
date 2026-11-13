@@ -195,7 +195,7 @@ nav .wm{font-size:24px}
 #quotes .s1,#quotes .s3{background:#2A1B55}
 @media (max-width:960px){#quotes{background:#2A1B55}}
 #quotes .qclose{margin:0;padding-top:44px;padding-bottom:64px;color:#fff}
-/* Back to top button (home page only): small, bottom left, appears after scrolling. */
+/* Back to top button (home page only): small, bottom left, appears near the end of the page. */
 .totop{position:fixed;left:16px;bottom:16px;z-index:2147480000;width:44px;height:44px;box-sizing:border-box;border-radius:50%;border:2px solid var(--primary);background:#fff;color:var(--primary);display:grid;place-items:center;padding:0;cursor:pointer;box-shadow:0 6px 18px rgba(26,16,51,.18);opacity:0;transform:translateY(8px);visibility:hidden;transition:opacity .25s ease,transform .25s ease,visibility 0s linear .25s}
 .totop.on{opacity:1;transform:none;visibility:visible;transition:opacity .25s ease,transform .25s ease}
 .totop:hover{background:var(--primary);color:#fff}
@@ -581,10 +581,10 @@ function close(){closed=true;mark();q.classList.remove("on");setTimeout(function
 q.querySelector(".pq-x").addEventListener("click",close);
 document.addEventListener("keydown",function(e){if(e.key==="Escape"&&!q.hidden)close()});
 setTimeout(show,8000)})();</script>
-<script>/* Back to top: shows after a screenful of scrolling. */
+<script>/* Back to top: shows only as you reach the end of the page. */
 (function(){var b=document.getElementById("totop");if(!b)return;var on=false;
-function upd(){var v=(window.pageYOffset||document.documentElement.scrollTop)>window.innerHeight*0.8;if(v!==on){on=v;b.classList.toggle("on",v)}}
-addEventListener("scroll",upd,{passive:true});upd();
+function upd(){var d=document.documentElement,v=(window.pageYOffset||d.scrollTop)+window.innerHeight>d.scrollHeight-Math.max(500,window.innerHeight*0.6);if(v!==on){on=v;b.classList.toggle("on",v)}}
+addEventListener("scroll",upd,{passive:true});addEventListener("resize",upd);upd();
 b.addEventListener("click",function(){var r=window.matchMedia&&matchMedia("(prefers-reduced-motion:reduce)").matches;window.scrollTo({top:0,behavior:r?"auto":"smooth"});var h=document.querySelector(".site-head a");if(h)h.focus({preventScroll:true})})})();</script>
 <script src="/consent.js" defer></script>
 <script src="/chat-config.js"></script>
