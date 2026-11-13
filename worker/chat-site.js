@@ -34,7 +34,7 @@ export default {
     { url: "/web-designer-northwich", about: "web design in Northwich, based in Winnington", when: "northwich|winnington", label: "web design in Northwich" },
     { url: "/about-james", about: "about James, the designer", when: "about james|who is james|who are you|who runs|who.s behind", label: "About James" },
     { url: "/services", about: "what Pixel North offers, in detail", when: "\\bservices?\\b|what (do you|can you) (offer|do)", label: "services" },
-    { url: "/themes", about: "seasonal themes", when: "theme|seasonal|halloween|bonfire|remembrance|christmas", label: "seasonal themes" },
+    { url: "/themes", about: "seasonal themes", when: "theme|seasonal|halloween|bonfire|remembrance|autumn|christmas", label: "seasonal themes" },
     { url: "/assessment", about: "free two-minute assessment: do you need a website, a refresh or a new one", when: "assessment|quiz|not sure (if )?i need|do i (even )?need a (new )?website|need a (new )?website\\?", label: "free assessment" },
     { url: "/pixel-ai", about: "Pixel AI, the website chat assistant that Pixel North can set up on clients\u2019 sites", when: "pixel ai|chat ?bot|chat assistant|ai assistant|assistant like (this|you)", label: "Pixel AI" },
     { url: "/free-website-terms", about: "free website competition terms", when: "free website|competition|prize|giveaway|raffle", label: "competition terms" },
