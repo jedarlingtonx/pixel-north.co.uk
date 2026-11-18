@@ -14,7 +14,7 @@
 //   CONSENT_RETENTION_MONTHS  how long records are kept (optional, default 12, see pruneConsent)
 //   Under "previews" only, to allow staging on a workers.dev address:
 //   CONSENT_PREVIEW_WORKER      the Worker's own name (optional)
-//   CONSENT_WORKERS_SUBDOMAIN   your workers.dev account name, e.g. "jedarlington" (optional but
+//   CONSENT_WORKERS_SUBDOMAIN   your workers.dev account name, e.g. "pixel-north" (optional but
 //                               recommended: stops another account's lookalike Worker matching)
 //
 // Kit cookie control 4.x also sends the list of categories switched on (analytics,
