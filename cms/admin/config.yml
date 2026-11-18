@@ -9,7 +9,7 @@ backend:
   # To go live, change this to `main`.
   branch: staging
   # Sign-in helper (a small Cloudflare Worker shared by Pixel North client sites).
-  base_url: https://sveltia-cms-auth.jedarlington.workers.dev
+  base_url: https://sveltia-cms-auth.pixel-north.workers.dev
 
 # Each save is committed straight to the branch above.
 publish_mode: simple
