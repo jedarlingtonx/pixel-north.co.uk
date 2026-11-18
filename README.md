@@ -2,7 +2,7 @@
 
 A single-page website for Pixel North: *Small business sites, sorted.*
 
-It is plain HTML, CSS, and a little JavaScript in one file, with no build step and no dependencies. The only external request is Google Fonts (Outfit and DM Sans).
+The pages are plain HTML, CSS and a little JavaScript, written by hand in the root of this repo. Only the blog and the `/admin` content manager are built, by Eleventy, from the `cms/` folder (see "Blog and content manager" below). The only external request is Google Fonts (Outfit and DM Sans).
 
 ## Files
 
@@ -18,8 +18,9 @@ It is plain HTML, CSS, and a little JavaScript in one file, with no build step a
 - `worker/pixel-north-worker.js`: the Worker. It routes the consent log, then the chat, then serves everything else as normal.
 - `worker/chat-handler.js`: the chat's server engine (from the Kit, never edited here). Answers `/api/chat` using Cloudflare Workers AI.
 - `worker/chat-site.js`: what Pixel knows: the page list it reads, the links it may give, the facts that are on no page, and the backup notes. **Edit this when a page, offer or policy changes.**
-- `wrangler.jsonc`: Cloudflare settings (Worker name, AI connection, 404 page, log settings). The name must match the Worker in the Cloudflare dashboard.
-- `.assetsignore`: keeps the config and Worker code out of the public website
+- `wrangler.jsonc`: Cloudflare settings (Worker name, build command, AI connection, 404 page, log settings). The name must match the Worker in the Cloudflare dashboard.
+- `.assetsignore`: keeps the config, Worker code and build tooling out of the public website. The build reads this same list, so a new page in the root ships automatically.
+- `package.json`, `package-lock.json`, `eleventy.config.js`, `cms/`: the build for the blog and the content manager
 - `sitemap.xml`: lists the pages for search engines
 - `images/james.jpg`: the portrait in the hero section
 - `images/og-image.png`: the preview image shown when the site is shared (1200 x 630)
@@ -30,12 +31,23 @@ It is plain HTML, CSS, and a little JavaScript in one file, with no build step a
 2. **The statistics.** The "Why your business needs a modern website" section quotes Ofcom, DataReportal and Squarespace/YouGov figures. Re-check them when you update the page.
 3. **The privacy notice.** Keep it in step with any change to the form service, analytics, hosting or chat.
 
+## Blog and content manager
+
+The blog is written in a content manager at `/admin` (Sveltia CMS, free). Each save is a commit to GitHub, and Cloudflare rebuilds the site. Sign-in is through GitHub, using the shared `sveltia-cms-auth` Worker (the allowed sites are listed in its `ALLOWED_DOMAINS` setting in Cloudflare).
+
+- **How the build works.** `npm run build` (run by Cloudflare through the `build` setting in `wrangler.jsonc`) assembles `_site`: it copies every hand-written file from the root exactly as it is (minus the names in `.assetsignore`), then adds the blog and `/admin`. Cloudflare serves `_site`. The hand-written pages are never rewritten.
+- **Where things are.** Posts are Markdown files in `cms/posts/`. The page layouts are in `cms/_includes/` (`base.njk`, `post.njk`, and `page.css`, `header.njk` and `footer.njk`, which are copies of the inner-page style, menu and footer). The CMS settings are `cms/admin/config.yml`. Pictures uploaded in the CMS go to `images/blog/`.
+- **Keep the copies in step.** If the menu, the footer or the shared page style changes on the hand-written pages, make the same change in `cms/_includes/header.njk`, `footer.njk` or `page.css`.
+- **The blog is hidden until launch.** `blogLive` in `cms/_data/site.js` is `false`: blog pages ask search engines not to list them and are left out of the sitemap, and nothing links to them. To launch: set `blogLive` to `true`; add Blog to the menu and footer (every page, plus `cms/_includes/header.njk` and `footer.njk`); add the blog pages to the chat's page list in `worker/chat-site.js`; delete the sample post. When `blogLive` is true the build writes `sitemap.xml` from the root `sitemap.xml` plus the blog.
+- **Where the CMS saves.** `branch` in `cms/admin/config.yml`: `staging` while testing, `main` when live.
+- **Local build.** `npm install`, then `npm run build`.
+
 ## Deploy with Cloudflare
 
 The site is a Cloudflare Worker with static assets, connected to this GitHub repository.
 
 1. Push to `main`: `git add .`, `git commit -m "message"`, `git push`.
-2. Cloudflare builds automatically (`npx wrangler deploy`). Check progress under Workers & Pages, then Deployments.
+2. Cloudflare builds automatically (it runs `npm run build`, then `npx wrangler deploy`). Check progress under Workers & Pages, then Deployments.
 3. Hard refresh the live site (Cmd+Shift+R) to see the change.
 
 Do not add a folder called `functions`. Cloudflare reads that as a Pages project and the build fails.

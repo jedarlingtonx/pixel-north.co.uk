@@ -1,0 +1,101 @@
+# Sveltia CMS settings for the Pixel North blog.
+# Posts are written here; each save is stored in GitHub, and Cloudflare rebuilds the
+# website automatically.
+
+backend:
+  name: github
+  repo: jedarlingtonx/pixel-north.co.uk
+  # PROTOTYPE: changes are saved to `staging`, so nothing reaches the live site.
+  # To go live, change this to `main`.
+  branch: staging
+  # Sign-in helper (a small Cloudflare Worker shared by Pixel North client sites).
+  base_url: https://sveltia-cms-auth.jedarlington.workers.dev
+
+# Each save is committed straight to the branch above.
+publish_mode: simple
+
+logo_url: /favicon-192.png
+
+# Pictures are shrunk and saved as WebP so pages stay quick.
+media_folder: images/blog
+public_folder: /images/blog
+media_libraries:
+  # Pictures are uploaded from your own computer; no stock photo libraries.
+  stock_assets: false
+  default:
+    config:
+      max_file_size: 15000000
+      slugify_filename: true
+      transformations:
+        raster_image:
+          format: webp
+          quality: 85
+          width: 1600
+
+slug:
+  encoding: ascii
+  clean_accents: true
+
+collections:
+  - name: posts
+    label: Blog posts
+    label_singular: post
+    description: Posts for the Pixel North blog.
+    folder: cms/posts
+    extension: md
+    format: frontmatter
+    create: true
+    slug: "{{slug}}"
+    slug_length: 70
+    summary: "{{title}}"
+    preview_path: "blog/{{slug}}"
+    sortable_fields: [date, title]
+    fields:
+      - name: title
+        label: Headline
+        widget: string
+        required: true
+        maxlength: 100
+        hint: Keep it short and plain. It is also the page title in Google results.
+      - name: date
+        label: Publish date
+        widget: datetime
+        required: true
+        time_format: false
+        format: YYYY-MM-DD
+        hint: The date shown on the post.
+      - name: author
+        label: Author
+        widget: string
+        default: James
+        required: true
+      - name: summary
+        label: Short summary
+        widget: text
+        required: true
+        maxlength: 160
+        hint: One or two sentences. Shown at the top of the post, on the blog page and in Google results.
+      - name: image
+        label: Main picture (optional)
+        widget: image
+        required: false
+        choose_url: false
+        hint: Upload a picture from your computer. Landscape pictures work best.
+      - name: image_alt
+        label: Picture description
+        widget: string
+        required: false
+        hint: Describe the picture for people who cannot see it. Leave blank only if it is purely decoration.
+      - name: draft
+        label: Keep as a draft (do not publish yet)
+        widget: boolean
+        default: false
+        required: false
+        hint: Tick this to save the post without it appearing on the website.
+      - name: body
+        label: Post
+        widget: markdown
+        required: true
+        modes: [rich_text]
+        buttons: [bold, italic, link, heading-two, heading-three, bulleted-list, numbered-list, quote]
+        editor_components: []

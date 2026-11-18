@@ -1,0 +1,50 @@
+---
+metaTitle: Blog | Pixel North
+title: Blog
+description: Plain-English advice on websites for small businesses, from Pixel North in Northwich, Cheshire.
+canonicalPath: /blog
+permalink: /blog.html
+---
+{% extends "base.njk" %}
+
+{% block jsonld %}
+{% set crumbsLd = { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+  { "@type": "ListItem", "position": 1, "name": "Pixel North", "item": site.url + "/" },
+  { "@type": "ListItem", "position": 2, "name": "Blog", "item": site.url + "/blog" }
+] } %}
+<script type="application/ld+json">
+{{ crumbsLd | jsonld | safe }}
+</script>
+{% endblock %}
+
+{% block main %}
+<main class="pg">
+<header class="phero pw blog-hero">
+<div class="crumbs" role="navigation" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><span aria-current="page">Blog</span></li></ol></div>
+<h1>Blog</h1>
+<p class="lede">Plain-English advice on websites for small businesses.</p>
+</header>
+<section class="sec2 alt pw">
+{% if collections.posts.length %}
+<div class="posts">
+{% for post in collections.posts %}
+<article class="post-card">
+{% if post.data.image %}<img src="{{ post.data.image }}" alt="{{ post.data.image_alt }}" loading="lazy">{% endif %}
+<div class="post-card-body">
+<p class="meta"><time datetime="{{ post.date | isoDate }}">{{ post.date | readableDate }}</time></p>
+<h2><a href="{{ post.url | replace('.html', '') }}">{{ post.data.title }}</a></h2>
+<p>{{ post.data.summary }}</p>
+<a class="more" href="{{ post.url | replace('.html', '') }}">Read the post<span class="sr">: {{ post.data.title }}</span> &rarr;</a>
+</div>
+</article>
+{% endfor %}
+</div>
+{% else %}
+<p class="empty">The first posts are on their way.</p>
+{% endif %}
+</section>
+<section class="ctas pw"><h2>Need a website for your business?</h2>
+<p>Tell us about your business and we'll sketch out a plan.</p>
+<a class="btn pink" href="/#contact">Tell us about your business &rarr;</a></section>
+</main>
+{% endblock %}

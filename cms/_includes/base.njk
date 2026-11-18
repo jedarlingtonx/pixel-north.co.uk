@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" href="/favicon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="color-scheme" content="light">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+{%- if not site.blogLive %}
+<meta name="robots" content="noindex, nofollow">
+{%- endif %}
+<title>{{ metaTitle or title }}</title>
+<meta name="description" content="{{ description or summary }}">
+<link rel="canonical" href="{{ site.url }}{{ canonicalPath }}">
+<meta property="og:url" content="{{ site.url }}{{ canonicalPath }}">
+<meta property="og:type" content="{{ ogType or 'website' }}">
+<meta property="og:title" content="{{ metaTitle or title }}">
+<meta property="og:description" content="{{ description or summary }}">
+<meta property="og:image" content="{{ site.url }}{{ image if image else site.ogImage }}">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+{% include "page.css" %}
+</style>
+{% block jsonld %}{% endblock %}
+</head>
+<body>
+
+{% include "header.njk" %}
+
+{% block main %}{{ content | safe }}{% endblock %}
+
+{% include "footer.njk" %}
+
+<script src="/consent-config.js"></script>
+<script src="/consent.js" defer></script>
+<script src="/chat-config.js"></script>
+<script src="/totop.js" defer></script>
+<script src="/chat-widget.js" defer></script>
+</body></html>

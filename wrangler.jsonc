@@ -2,8 +2,9 @@
   "name": "pixel-north-co-uk",
   "main": "worker/pixel-north-worker.js",
   "compatibility_date": "2026-10-01",
+  "build": { "command": "npm run build" },
   "assets": {
-    "directory": "./",
+    "directory": "./_site",
     "binding": "ASSETS",
     "not_found_handling": "404-page",
     "run_worker_first": ["/api/*"]

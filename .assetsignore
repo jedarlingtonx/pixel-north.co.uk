@@ -8,3 +8,10 @@ worker
 functions
 README.md
 tools
+cms
+_site
+package.json
+package-lock.json
+eleventy.config.js
+.claude
+CLAUDE.md

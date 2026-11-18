@@ -1,0 +1,38 @@
+{% extends "base.njk" %}
+
+{% set metaTitle = title + " | Pixel North Blog" %}
+{% set ogType = "article" %}
+{% set postUrl = site.url + canonicalPath %}
+
+{% block jsonld %}
+{% set authorLd = { "@type": "Person", "name": author } %}
+{% if author == "James" %}{% set authorLd = { "@type": "Person", "@id": site.url + "/#james", "name": "James", "url": site.url + "/about-james" } %}{% endif %}
+{% set postLd = { "@type": "BlogPosting", "@id": postUrl + "#post", "headline": title, "description": summary, "datePublished": page.date | isoDate, "dateModified": page.date | isoDate, "mainEntityOfPage": postUrl, "url": postUrl, "author": authorLd, "publisher": { "@id": site.url + "/#business" }, "inLanguage": "en-GB" } %}
+{% if image %}{% set postLd = { "@type": "BlogPosting", "@id": postUrl + "#post", "headline": title, "description": summary, "datePublished": page.date | isoDate, "dateModified": page.date | isoDate, "mainEntityOfPage": postUrl, "url": postUrl, "image": site.url + image, "author": authorLd, "publisher": { "@id": site.url + "/#business" }, "inLanguage": "en-GB" } %}{% endif %}
+{% set crumbsLd = { "@type": "BreadcrumbList", "itemListElement": [
+  { "@type": "ListItem", "position": 1, "name": "Pixel North", "item": site.url + "/" },
+  { "@type": "ListItem", "position": 2, "name": "Blog", "item": site.url + "/blog" },
+  { "@type": "ListItem", "position": 3, "name": title, "item": postUrl }
+] } %}
+<script type="application/ld+json">
+{{ { "@context": "https://schema.org", "@graph": [crumbsLd, postLd] } | jsonld | safe }}
+</script>
+{% endblock %}
+
+{% block main %}
+<main class="pg">
+<header class="phero pw blog-hero">
+<div class="crumbs" role="navigation" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/blog">Blog</a></li><li><span aria-current="page">{{ title }}</span></li></ol></div>
+<h1>{{ title }}</h1>
+<p class="lede">{{ summary }}</p>
+<p class="meta">Published <time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time> by {{ author }}</p>
+</header>
+<section class="sec2 pw"><article class="post-body">
+{% if image %}<img class="post-img" src="{{ image }}" alt="{{ image_alt }}">{% endif %}
+{{ content | safe }}
+</article></section>
+<section class="ctas pw"><h2>Need a website for your business?</h2>
+<p>Tell us about your business and we'll sketch out a plan.</p>
+<a class="btn pink" href="/#contact">Tell us about your business &rarr;</a></section>
+</main>
+{% endblock %}
