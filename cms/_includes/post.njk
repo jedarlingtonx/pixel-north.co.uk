@@ -27,10 +27,20 @@
 <p class="lede">{{ summary }}</p>
 <p class="meta">Published <time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time> by {{ author }}</p>
 </header>
-<section class="sec2 pw"><article class="post-body">
+<section class="sec2 pw"><div class="post-layout"><article class="post-body">
 {% if image %}<img class="post-img" src="{{ image }}" alt="{{ image_alt }}">{% endif %}
 {{ content | safe }}
-</article></section>
+</article>
+{% set otherPosts = [] %}
+{% for p in collections.posts %}{% if p.url != page.url %}{% set otherPosts = (otherPosts.push(p), otherPosts) %}{% endif %}{% endfor %}
+{% if otherPosts.length %}<aside class="more-posts" aria-labelledby="more-posts-h">
+<h2 id="more-posts-h">More from the blog</h2>
+<ul>
+{% for p in otherPosts %}{% if loop.index0 < 6 %}<li><a href="{{ p.url | replace('.html', '') }}">{{ p.data.title }}</a><time datetime="{{ p.date | isoDate }}">{{ p.date | readableDate }}</time></li>
+{% endif %}{% endfor %}
+</ul>
+</aside>{% endif %}
+</div></section>
 <section class="ctas pw"><h2>Need a website for your business?</h2>
 <p>Tell us about your business and we'll sketch out a plan.</p>
 <a class="btn pink" href="/#contact">Tell us about your business &rarr;</a></section>

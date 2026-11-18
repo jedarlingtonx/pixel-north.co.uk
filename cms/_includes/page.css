@@ -154,7 +154,17 @@ details.q .ans p{margin:0 0 12px;max-width:70ch}
 }
 /* Blog (cms/): hero is shorter than the inner-page hero, no decorative icons */
 .phero.blog-hero{min-height:0;padding-bottom:64px}
+.post-layout{display:grid;grid-template-columns:minmax(0,720px) minmax(0,300px);gap:64px;justify-content:space-between;align-items:start}
 .post-body{max-width:720px}
+.more-posts{position:sticky;top:24px;background:var(--panel);border-radius:16px;padding:24px}
+.more-posts h2{margin:0 0 14px;font-size:20px;line-height:1.2;letter-spacing:-.3px}
+.more-posts ul{list-style:none;margin:0;padding:0}
+.more-posts li{display:flex;flex-direction:column;gap:2px;padding:12px 0;border-top:1px solid #DCCFFF}
+.more-posts li:first-child{border-top:0;padding-top:0}
+.more-posts a{color:var(--ink);font-weight:500;line-height:1.3;text-decoration:none}
+.more-posts a:hover{text-decoration:underline}
+.more-posts time{font-size:14px;color:var(--muted)}
+@media (max-width:980px){.post-layout{grid-template-columns:minmax(0,1fr);gap:40px}.more-posts{position:static}}
 .post-body>*:first-child{margin-top:0}
 .post-body p{margin:0 0 18px;line-height:1.7}
 .post-body h2{margin:44px 0 14px;font-size:clamp(26px,3vw,34px);line-height:1.15;letter-spacing:-.5px}
