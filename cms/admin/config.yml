@@ -5,9 +5,8 @@
 backend:
   name: github
   repo: jedarlingtonx/pixel-north.co.uk
-  # PROTOTYPE: changes are saved to `staging`, so nothing reaches the live site.
-  # To go live, change this to `main`.
-  branch: staging
+  # Each save goes straight to `main`, which publishes the site.
+  branch: main
   # Sign-in helper (a small Cloudflare Worker shared by Pixel North client sites).
   base_url: https://sveltia-cms-auth.pixel-north.workers.dev
 
