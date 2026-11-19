@@ -37,8 +37,8 @@ slug:
 
 collections:
   - name: posts
-    label: Blog posts
-    label_singular: post
+    label: Blogs
+    label_singular: blog
     description: Posts for the Pixel North blog.
     folder: cms/posts
     extension: md
@@ -95,6 +95,142 @@ collections:
         label: Post
         widget: markdown
         required: true
+        modes: [rich_text]
+        buttons: [bold, italic, link, heading-two, heading-three, bulleted-list, numbered-list, quote]
+        editor_components: []
+
+  - name: projects
+    label: Projects
+    label_singular: project
+    description: Case studies of finished client websites. Saved for later; no website pages are built from these yet.
+    folder: cms/projects
+    extension: md
+    format: frontmatter
+    create: true
+    slug: "{{slug}}"
+    slug_length: 70
+    summary: "{{title}}"
+    sortable_fields: [date, title]
+    fields:
+      - name: title
+        label: Project name
+        widget: string
+        required: true
+        maxlength: 100
+        hint: Usually the client or business name, for example "Fast Parts".
+      - name: client
+        label: Client
+        widget: string
+        required: true
+      - name: date
+        label: Date completed
+        widget: datetime
+        required: true
+        time_format: false
+        format: YYYY-MM-DD
+      - name: summary
+        label: Short summary
+        widget: text
+        required: true
+        maxlength: 160
+        hint: One or two sentences on what the site does for the business.
+      - name: site_url
+        label: Live website address
+        widget: string
+        required: false
+        pattern: ["^https://", "Start with https://"]
+        hint: The address of the finished site, if it is live.
+      - name: services
+        label: What was done
+        widget: list
+        required: false
+        hint: One item per line, for example "Design", "Cookie banner", "Email setup".
+      - name: image
+        label: Main picture (optional)
+        widget: image
+        required: false
+        choose_url: false
+        hint: Upload a picture from your computer. Landscape pictures work best.
+      - name: image_alt
+        label: Picture description
+        widget: string
+        required: false
+        hint: Describe the picture for people who cannot see it.
+      - name: draft
+        label: Keep as a draft (do not publish yet)
+        widget: boolean
+        default: false
+        required: false
+      - name: body
+        label: The story
+        widget: markdown
+        required: false
+        modes: [rich_text]
+        buttons: [bold, italic, link, heading-two, heading-three, bulleted-list, numbered-list, quote]
+        editor_components: []
+
+  - name: concepts
+    label: Concepts
+    label_singular: concept
+    description: Design concepts made for prospective clients. Saved for later; no website pages are built from these yet.
+    folder: cms/concepts
+    extension: md
+    format: frontmatter
+    create: true
+    slug: "{{slug}}"
+    slug_length: 70
+    summary: "{{title}}"
+    sortable_fields: [date, title]
+    fields:
+      - name: title
+        label: Concept name
+        widget: string
+        required: true
+        maxlength: 100
+        hint: For example "Hinton Guest House home page".
+      - name: business
+        label: Business
+        widget: string
+        required: true
+        hint: The prospect the concept was made for.
+      - name: date
+        label: Date created
+        widget: datetime
+        required: true
+        time_format: false
+        format: YYYY-MM-DD
+      - name: summary
+        label: Short summary
+        widget: text
+        required: true
+        maxlength: 160
+        hint: One or two sentences on the idea behind the design.
+      - name: concept_url
+        label: Concept address
+        widget: string
+        required: false
+        pattern: ["^https://", "Start with https://"]
+        hint: Where the concept can be viewed, if it is online.
+      - name: image
+        label: Preview picture (optional)
+        widget: image
+        required: false
+        choose_url: false
+        hint: Upload a picture from your computer, for example a screenshot of the concept.
+      - name: image_alt
+        label: Picture description
+        widget: string
+        required: false
+        hint: Describe the picture for people who cannot see it.
+      - name: draft
+        label: Keep as a draft (do not publish yet)
+        widget: boolean
+        default: false
+        required: false
+      - name: body
+        label: Notes
+        widget: markdown
+        required: false
         modes: [rich_text]
         buttons: [bold, italic, link, heading-two, heading-three, bulleted-list, numbered-list, quote]
         editor_components: []
