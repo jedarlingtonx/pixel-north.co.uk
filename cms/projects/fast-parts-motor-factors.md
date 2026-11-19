@@ -5,7 +5,7 @@ date: 2026-11-19
 summary: A new website for a family-run motor factor in Northwich and Winsford.
 site_url: https://fastparts.uk.com/
 services: []
-image: /images/blog/fast-parts-overlay-tall.webp
+image: /images/blog/fast-parts-devices.webp
 image_alt: Fast Parts website shown on a desktop browser and a phone, with the “The right parts, fast.” home page, a team member beside a Fast Parts van, and call buttons for the Northwich and Winsford shops.
 draft: false
 ---
