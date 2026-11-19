@@ -20,7 +20,7 @@ draft: false
 
 ## The business
 
-Fast Parts is a small independent motor factor with two shops, one in Northwich and one in Winsford. Garages rely on them for quick trade orders, and local drivers come in or call for the right part for their own car or van. Speed and knowing the job are what customers value, and the reviews say so: the site shows a 4.8 out of 5 Google rating from ten five-star reviews (checked 26 Oct 2026), with customers praising helpful staff, good knowledge and quick delivery.
+Fast Parts is a small independent motor factor with two shops, one in Northwich and one in Winsford. Garages rely on them for quick trade orders, and local drivers come in or call for the right part for their own car or van. Speed and knowing the job are what customers value, and the reviews say so: the site shows a 4.8 out of 5 Google rating, with customers praising helpful staff, good knowledge and quick delivery.
 
 ## The challenge
 
@@ -41,7 +41,7 @@ The old website didn't reflect the business. Specifically:
 
 - A **Send a Parts Enquiry** form asks for the vehicle registration, the part needed and the nearest shop. A visitor can optionally use their browser location to pick the nearest shop, and the site is clear that the location isn't received or stored.
 - Both shops have their address, phone number, opening hours and a Google Maps directions link on a Find us page.
-- A dedicated **Trade** page for garages, with the cut-off time and delivery promise up front. A trade credit-account section was removed entirely when it turned out not to fit how Fast Parts works, rather than being left in half-finished.
+- A dedicated **Trade** page for garages, with the cut-off time and delivery promise up front. A trade credit-account section was removed entirely when it turned out not to fit how Fast Parts works.
 
 **Build it properly underneath.**
 
@@ -54,17 +54,13 @@ The old website didn't reflect the business. Specifically:
 
 The move onto the real domain, fastparts.uk.com, happened on 5 Nov 2026. Paul owns the domain and his email runs on it, so the email records were carried across to the new DNS set-up first, so that his mailbox kept working throughout. The new site replaced the old one at the point the domain switched over, with nothing for visitors to do.
 
-## Results
-
-_[To add after four to six weeks of data, around mid-December 2026. Use real numbers from Google Analytics and Search Console, and name the source. Ideas:]_
-
-- _[Parts enquiries received through the form since launch]_
-- _[Search impressions and clicks for "motor factors Northwich" and "motor factors Winsford" (Search Console)]_
-- _[Change in calls and walk-ins, in Paul's words]_
-
 ## What Paul says
 
-_[Quote from Paul, with his OK. If he's happy for it to be taken from his Google review, use that; the review needs to be genuine and attributed.]_
+James approached me with a working proof of concept for a new Fast Parts website, and I’m glad he did. I knew our old site looked dated, but I’ve never been sure where to start with improving it. The new one is far more modern and much more on brand, and it’s easy to navigate, so customers can find what they’re looking for quickly.
+
+It was a light touch for me, which was exactly what I needed. James used the copy from our existing site as the starting point and improved the structure and design around it. My main worry was the technical side, switching the domain from our current provider and whether our email might stop working. In the end the switchover was almost instant. One moment it was the old site, the next it was the new one, and our email carried on without a hiccup.
+
+James is thorough, responsive and easy to deal with, and he made the whole thing painless. It was well worth doing.
 
 ## What we learned
 
