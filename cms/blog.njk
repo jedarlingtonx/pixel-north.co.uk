@@ -7,6 +7,9 @@ permalink: /blog.html
 ---
 {% extends "base.njk" %}
 
+{% set ddCurrent = true %}
+{% set noindexPage = not collections.posts.length %}
+
 {% block jsonld %}
 {% set crumbsLd = { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
   { "@type": "ListItem", "position": 1, "name": "Pixel North", "item": site.url + "/" },

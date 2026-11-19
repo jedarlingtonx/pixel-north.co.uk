@@ -78,6 +78,15 @@ module.exports = function (eleventyConfig) {
       .sort((a, b) => b.date - a.date)
   );
 
+  for (const name of ["projects", "concepts"]) {
+    eleventyConfig.addCollection(name, (api) =>
+      api
+        .getFilteredByGlob(`cms/${name}/*.md`)
+        .filter((item) => !item.data.draft)
+        .sort((a, b) => b.date - a.date)
+    );
+  }
+
   const londonDate = (value, options) => new Intl.DateTimeFormat("en-GB", { timeZone: "Europe/London", ...options }).format(new Date(value));
   eleventyConfig.addFilter("readableDate", (value) => londonDate(value, { day: "numeric", month: "long", year: "numeric" }));
   eleventyConfig.addFilter("isoDate", (value) => new Date(value).toISOString().slice(0, 10));

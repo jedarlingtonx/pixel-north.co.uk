@@ -1,0 +1,53 @@
+---
+metaTitle: Concepts | Pixel North
+title: Concepts
+description: Website design concepts from Pixel North, made to show small businesses what a new site could look like.
+canonicalPath: /concepts
+permalink: /concepts.html
+---
+{% extends "base.njk" %}
+
+{% set ddCurrent = true %}
+{% set noindexPage = not collections.concepts.length %}
+
+{% block jsonld %}
+{% set crumbsLd = { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+  { "@type": "ListItem", "position": 1, "name": "Pixel North", "item": site.url + "/" },
+  { "@type": "ListItem", "position": 2, "name": "Concepts", "item": site.url + "/concepts" }
+] } %}
+<script type="application/ld+json">
+{{ crumbsLd | jsonld | safe }}
+</script>
+{% endblock %}
+
+{% block main %}
+<main class="pg">
+<header class="phero pw blog-hero">
+<div class="crumbs" role="navigation" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><span aria-current="page">Concepts</span></li></ol></div>
+<h1>Concepts</h1>
+<p class="lede">Design ideas for small business websites.</p>
+</header>
+<section class="sec2 alt pw">
+{% if collections.concepts.length %}
+<div class="posts">
+{% for item in collections.concepts %}
+<article class="post-card">
+{% if item.data.image %}<img src="{{ item.data.image }}" alt="{{ item.data.image_alt }}" loading="lazy">{% endif %}
+<div class="post-card-body">
+<p class="meta"><time datetime="{{ item.date | isoDate }}">{{ item.date | readableDate }}</time> &middot; {{ item.data.business }}</p>
+<h2><a href="{{ item.url | replace('.html', '') }}">{{ item.data.title }}</a></h2>
+<p>{{ item.data.summary }}</p>
+<a class="more" href="{{ item.url | replace('.html', '') }}">Read more<span class="sr">: {{ item.data.title }}</span> &rarr;</a>
+</div>
+</article>
+{% endfor %}
+</div>
+{% else %}
+<p class="empty">The first concepts are on their way.</p>
+{% endif %}
+</section>
+<section class="ctas pw"><h2>Need a website for your business?</h2>
+<p>Tell us about your business and we'll sketch out a plan.</p>
+<a class="btn pink" href="/#contact">Tell us about your business &rarr;</a></section>
+</main>
+{% endblock %}

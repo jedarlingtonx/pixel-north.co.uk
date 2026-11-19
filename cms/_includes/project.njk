@@ -1,0 +1,38 @@
+{% extends "base.njk" %}
+
+{% set metaTitle = title + " | Pixel North Projects" %}
+{% set ogType = "article" %}
+{% set ddCurrent = true %}
+{% set pageUrl = site.url + canonicalPath %}
+
+{% block jsonld %}
+{% set crumbsLd = { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+  { "@type": "ListItem", "position": 1, "name": "Pixel North", "item": site.url + "/" },
+  { "@type": "ListItem", "position": 2, "name": "Projects", "item": site.url + "/projects" },
+  { "@type": "ListItem", "position": 3, "name": title, "item": pageUrl }
+] } %}
+<script type="application/ld+json">
+{{ crumbsLd | jsonld | safe }}
+</script>
+{% endblock %}
+
+{% block main %}
+<main class="pg">
+<header class="phero pw blog-hero">
+<div class="crumbs" role="navigation" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/projects">Projects</a></li><li><span aria-current="page">{{ title }}</span></li></ol></div>
+<h1>{{ title }}</h1>
+<p class="lede">{{ summary }}</p>
+<p class="meta">For {{ client }} &middot; <time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time></p>
+</header>
+<section class="sec2 pw"><article class="post-body">
+{% if image %}<img class="post-img" src="{{ image }}" alt="{{ image_alt }}">{% endif %}
+{{ content | safe }}
+{% if services and services.length %}<h2>What we did</h2>
+<ul>{% for s in services %}<li>{{ s }}</li>{% endfor %}</ul>{% endif %}
+{% if site_url %}<p><a class="btn pink" href="{{ site_url }}" target="_blank" rel="noopener noreferrer">Visit the website<span class="sr"> (opens in a new tab)</span> &rarr;</a></p>{% endif %}
+</article></section>
+<section class="ctas pw"><h2>Need a website for your business?</h2>
+<p>Tell us about your business and we'll sketch out a plan.</p>
+<a class="btn pink" href="/#contact">Tell us about your business &rarr;</a></section>
+</main>
+{% endblock %}

@@ -7,7 +7,7 @@ module.exports = {
   // false: the blog works but stays hidden. Its pages ask search engines not to list them
   //        (noindex) and it is left out of the sitemap. Nothing on the site links to it.
   // true:  the blog pages can be listed by search engines and the sitemap includes them.
-  // Before switching it on, add the Blog link to the menu and footer, and add the blog pages to
-  // the chat's page list (worker/chat-site.js). See README.md.
-  blogLive: false,
+  // Switched on 19 Nov 2026 (menu link added). Projects and Concepts share this switch.
+  // A section with nothing published yet stays noindex and out of the sitemap.
+  blogLive: true,
 };

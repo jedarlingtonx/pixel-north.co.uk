@@ -157,6 +157,16 @@ details.q .ans p{margin:0 0 12px;max-width:70ch}
 .site-head .sh-nav a:not(.btn):hover{color:var(--primary);border-bottom-color:var(--accent)}
 .site-head .sh-nav a[aria-current="page"]{color:var(--primary);border-bottom-color:var(--accent)}
 .site-head .sh-btn{padding:11px 22px;font-size:16px;margin-left:4px}
+.sh-dd{position:relative}
+.sh-dd-btn{font:inherit;font-weight:500;font-size:17px;line-height:1.2;color:var(--text);background:none;border:0;border-bottom:2px solid transparent;padding:8px 0;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.sh-dd-btn svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .15s}
+.sh-dd-btn:hover,.sh-dd.open .sh-dd-btn,.sh-dd-btn.current{color:var(--primary);border-bottom-color:var(--accent)}
+.sh-dd.open .sh-dd-btn svg{transform:rotate(180deg)}
+.sh-dd-btn:focus-visible{outline:3px solid #FF3D8B;outline-offset:3px}
+.sh-dd-list{display:none;position:absolute;top:100%;left:-16px;min-width:180px;margin:6px 0 0;padding:8px;list-style:none;background:#fff;border-radius:14px;box-shadow:0 12px 32px rgba(26,16,51,.18);z-index:30}
+.sh-dd.open .sh-dd-list,.sh-dd:not(.js):hover .sh-dd-list,.sh-dd:not(.js):focus-within .sh-dd-list{display:block}
+.site-head .sh-nav .sh-dd-list a:not(.btn){display:block;padding:10px 12px;border-bottom:0;border-radius:8px;font-size:16px}
+.site-head .sh-nav .sh-dd-list a:not(.btn):hover{background:#F1EBFF;border-bottom:0}
 .site-head .sh-toggle{display:none;align-items:center;justify-content:center;width:46px;height:46px;border:0;border-radius:12px;background:#F1EBFF;color:#5B21E6;cursor:pointer;padding:0}
 .site-head .sh-toggle:focus-visible{outline:3px solid #FF3D8B;outline-offset:3px}
 .sh-toggle svg{width:24px;height:24px;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;fill:none}
@@ -170,6 +180,11 @@ details.q .ans p{margin:0 0 12px;max-width:70ch}
 .site-head .sh-nav a:not(.btn){font-size:18px;padding:13px 2px;border-bottom:1px solid #E4DAFF}
 .site-head .sh-nav a[aria-current="page"]{border-bottom:2px solid #FF3D8B}
 .site-head .sh-btn{margin:14px 0 6px;text-align:center}
+.sh-dd-btn{font-size:18px;padding:13px 2px;width:100%;justify-content:space-between;border-bottom:1px solid #E4DAFF}
+.sh-dd-list{position:static;display:none;box-shadow:none;margin:0;padding:0 0 0 14px;min-width:0;background:none;border-radius:0}
+.sh-dd:not(.js) .sh-dd-list{display:block}
+.site-head .sh-nav .sh-dd-list a:not(.btn){font-size:17px;padding:12px 2px;border-bottom:1px solid #E4DAFF;border-radius:0}
+.site-head .sh-nav .sh-dd-list a:not(.btn):hover{background:none;border-bottom:1px solid #E4DAFF}
 }
 /* assessment */
 .wcband{padding-top:56px;padding-bottom:72px}
@@ -242,9 +257,10 @@ details.wc-ans summary{cursor:pointer;font-weight:500;color:var(--primary)}
 <header class="site-head">
 <a class="wm" href="/">Pixel North</a>
 <button class="sh-toggle" type="button" aria-expanded="false" aria-controls="sh-menu"><span class="sr">Menu</span><svg viewBox="0 0 24 24" aria-hidden="true"><path class="bars" d="M4 7h16M4 12h16M4 17h16"/><path class="x" d="M6 6l12 12M18 6L6 18"/></svg></button>
-<nav class="sh-nav" id="sh-menu" aria-label="Main"><a href="/services">Services</a><a href="/pixel-ai">Pixel AI</a><a href="/themes">Themes</a><a href="/about-james">About James</a><a href="/faq">FAQs</a><a class="btn pink sh-btn" href="/#contact">Get a quote</a></nav>
+<nav class="sh-nav" id="sh-menu" aria-label="Main"><a href="/services">Services</a><a href="/pixel-ai">Pixel AI</a><a href="/themes">Themes</a><div class="sh-dd"><button class="sh-dd-btn" type="button" aria-expanded="false" aria-controls="sh-dd-list">Our work<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2 4l4 4 4-4"/></svg></button><ul class="sh-dd-list" id="sh-dd-list"><li><a href="/blog">Blog</a></li><li><a href="/projects">Projects</a></li><li><a href="/concepts">Concepts</a></li></ul></div><a href="/about-james">About James</a><a href="/faq">FAQs</a><a class="btn pink sh-btn" href="/#contact">Get a quote</a></nav>
 </header>
 <script>(function(){var h=document.querySelector(".site-head"),b=h.querySelector(".sh-toggle"),n=h.querySelector(".sh-nav");document.documentElement.classList.add("nav-js");function c(){n.classList.remove("open");b.setAttribute("aria-expanded","false")}b.addEventListener("click",function(){var o=n.classList.toggle("open");b.setAttribute("aria-expanded",o?"true":"false")});n.addEventListener("click",function(e){if(e.target.closest("a"))c()});document.addEventListener("keydown",function(e){if(e.key==="Escape"&&n.classList.contains("open")){c();b.focus()}})})();</script>
+<script>(function(){var d=document.querySelector(".sh-dd"),b=d&&d.querySelector(".sh-dd-btn");if(!b)return;d.classList.add("js");function c(){d.classList.remove("open");b.setAttribute("aria-expanded","false")}b.addEventListener("click",function(e){e.stopPropagation();var o=d.classList.toggle("open");b.setAttribute("aria-expanded",o?"true":"false")});document.addEventListener("click",function(e){if(!d.contains(e.target))c()});document.addEventListener("keydown",function(e){if(e.key==="Escape"&&d.classList.contains("open")){c();b.focus()}})})();</script>
 
 <main class="pg">
 <header class="phero pw">

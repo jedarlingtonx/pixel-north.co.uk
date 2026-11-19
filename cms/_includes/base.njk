@@ -7,7 +7,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="color-scheme" content="light">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-{%- if not site.blogLive %}
+{%- if not site.blogLive or noindexPage %}
 <meta name="robots" content="noindex, nofollow">
 {%- endif %}
 <title>{{ metaTitle or title }}</title>

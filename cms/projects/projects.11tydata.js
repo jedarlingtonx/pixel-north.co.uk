@@ -1,5 +1,8 @@
-// Content saved from the content manager. No website pages are built from these yet.
+// Applies to every entry in this folder. A draft gets no page at all.
 module.exports = {
-  permalink: false,
-  eleventyExcludeFromCollections: true,
+  layout: "project.njk",
+  eleventyComputed: {
+    permalink: (data) => (data.draft ? false : `/projects/${data.page.fileSlug}.html`),
+    canonicalPath: (data) => `/projects/${data.page.fileSlug}`,
+  },
 };

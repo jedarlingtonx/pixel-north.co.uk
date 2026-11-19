@@ -2,7 +2,7 @@
 
 A single-page website for Pixel North: *Small business sites, sorted.*
 
-The pages are plain HTML, CSS and a little JavaScript, written by hand in the root of this repo. Only the blog and the `/admin` content manager are built, by Eleventy, from the `cms/` folder (see "Blog and content manager" below). The only external request is Google Fonts (Outfit and DM Sans).
+The pages are plain HTML, CSS and a little JavaScript, written by hand in the root of this repo. Only the blog, projects, concepts and the `/admin` content manager are built, by Eleventy, from the `cms/` folder (see "Blog and content manager" below). The only external request is Google Fonts (Outfit and DM Sans).
 
 ## Files
 
@@ -38,7 +38,7 @@ The blog is written in a content manager at `/admin` (Sveltia CMS, free). Each s
 - **How the build works.** `npm run build` (run by Cloudflare through the `build` setting in `wrangler.jsonc`) assembles `_site`: it copies every hand-written file from the root exactly as it is (minus the names in `.assetsignore`), then adds the blog and `/admin`. Cloudflare serves `_site`. The hand-written pages are never rewritten.
 - **Where things are.** Posts are Markdown files in `cms/posts/`. The page layouts are in `cms/_includes/` (`base.njk`, `post.njk`, and `page.css`, `header.njk` and `footer.njk`, which are copies of the inner-page style, menu and footer). The CMS settings are `cms/admin/config.yml`. Pictures uploaded in the CMS go to `images/blog/`.
 - **Keep the copies in step.** If the menu, the footer or the shared page style changes on the hand-written pages, make the same change in `cms/_includes/header.njk`, `footer.njk` or `page.css`.
-- **The blog is hidden until launch.** `blogLive` in `cms/_data/site.js` is `false`: blog pages ask search engines not to list them and are left out of the sitemap, and nothing links to them. To launch: set `blogLive` to `true`; add Blog to the menu and footer (every page, plus `cms/_includes/header.njk` and `footer.njk`); add the blog pages to the chat's page list in `worker/chat-site.js`; delete the sample post. When `blogLive` is true the build writes `sitemap.xml` from the root `sitemap.xml` plus the blog.
+- **Launched 19 Nov 2026.** `blogLive` in `cms/_data/site.js` is `true`, the menu has an "Our work" drop-down (Blog, Projects, Concepts) on every page, and the chat knows the three pages. A section with nothing published yet is `noindex` and left out of the sitemap until its first entry. Projects are in `cms/projects/` and concepts in `cms/concepts/` (layouts `project.njk` and `concept.njk`). The drop-down markup, CSS and script are repeated in every hand-written page and in `cms/_includes/header.njk` and `page.css`; change them everywhere. When `blogLive` is true the build writes `sitemap.xml` from the root `sitemap.xml` plus the published sections.
 - **Where the CMS saves.** `branch` in `cms/admin/config.yml`: `staging` while testing, `main` when live.
 - **Local build.** `npm install`, then `npm run build`.
 
