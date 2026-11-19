@@ -69,9 +69,3 @@ _[Quote from Paul, with his OK. If he's happy for it to be taken from his Google
 ## What we learned
 
 Fast Parts was the first full build to go through Pixel North's process from start to finish, and it shaped how every site since is built: the launch checklist, the shared cookie control, the standard setup (404 page, share image, clean addresses) and the habit of checking the live repo before every change. A good site starts with what the business actually does and says, and the details Paul corrected, such as no reconditioned parts and the 09:45 cut-off, did more for the site than any design choice.
-
-## Want a site like this?
-
-Pixel North builds sites for small businesses across Cheshire. Tell me about your business and I'll sketch out a plan. Small business sites, sorted.
-
-_Visit_ _[fastparts.uk.com](https://fastparts.uk.com)_ _to see the site._
