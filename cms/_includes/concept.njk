@@ -24,11 +24,21 @@
 <p class="lede">{{ summary }}</p>
 <p class="meta">Concept for {{ business }} &middot; <time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time></p>
 </header>
-<section class="sec2 pw"><article class="post-body">
+<section class="sec2 pw"><div class="post-layout"><article class="post-body">
 {% if image %}<img class="post-img" src="{{ image }}" alt="{{ image_alt }}">{% endif %}
 {{ content | safe }}
 {% if concept_url %}<p><a class="btn pink" href="{{ concept_url }}" target="_blank" rel="noopener noreferrer">View the concept<span class="sr"> (opens in a new tab)</span> &rarr;</a></p>{% endif %}
-</article></section>
+</article>
+{% set others = [] %}
+{% for p in collections.concepts %}{% if p.url != page.url %}{% set others = (others.push(p), others) %}{% endif %}{% endfor %}
+{% if others.length %}<aside class="more-posts" aria-labelledby="more-posts-h">
+<h2 id="more-posts-h">More concepts</h2>
+<ul>
+{% for p in others %}{% if loop.index0 < 6 %}<li><a href="{{ p.url | replace('.html', '') }}">{{ p.data.title }}</a><time datetime="{{ p.date | isoDate }}">{{ p.date | readableDate }}</time></li>
+{% endif %}{% endfor %}
+</ul>
+</aside>{% endif %}
+</div></section>
 <section class="ctas pw"><h2>Need a website for your business?</h2>
 <p>Tell us about your business and we'll sketch out a plan.</p>
 <a class="btn pink" href="/#contact">Tell us about your business &rarr;</a></section>
