@@ -12,11 +12,11 @@ When I show a small business owner a first draft, one of the first things I hear
 
 Short answer: please don't. That empty space is doing some of the most useful work on the page.
 
-Credit where it's due: I picked up this way of thinking from my former colleague Carrie. Her [Instagram post](https://www.instagram.com/p/De_nn1xDTzw/) on how good design accounts for the human body is well worth a look.
+Credit where it's due: I picked up this way of thinking from my former UX/UI colleague, Carrie. Her [Instagram post](https://www.instagram.com/p/De_nn1xDTzw/) on how good design accounts for the human body is well worth a look at.
 
 ## What white space is
 
-White space is the empty area around and between your words, pictures and buttons. It doesn't have to be white. It can be any plain background colour. It is simply breathing room.
+White space is the empty area around and between your words, pictures and buttons. It doesn't have to be white. It can be any plain background colour. It's simply breathing room.
 
 Think of a shop window. One well-lit display makes you stop and look. A window crammed with everything in the shop makes you walk past.
 
@@ -26,7 +26,7 @@ A website isn't only looked at. People feel it, and the body joins in.
 
 Here's how Carrie puts it. The moment someone lands on a page, their mind is already working out where to move next, before their hand does anything. A crowded page makes that job hard. Everything competes, the eye jumps about, and the brain has to work to decide what matters. Designers call that effort _cognitive load_: the mental work needed to make sense of something.
 
-When that load is high, the body notices. People can feel tense, tired or overwhelmed, often without knowing why, and they leave. When the load is low, the nervous system can settle. The way forward is clear, and the visit feels easy.
+When that load is high, the body notices. People can feel tense, tired or overwhelmed, often without knowing why, and then they leave. When the load is low, the nervous system can settle. The way forward is clear, and the visit feels easy.
 
 That feeling of being overwhelmed is what a crowded website gives people: too many things asking for attention at once.
 
@@ -40,7 +40,7 @@ That's what white space gives you: room to breathe, for your customers as much a
 
 **It makes you look more professional.** A crowded page can feel chaotic, even when the business behind it isn't. A calm page feels capable. That matters when someone is deciding whether to ring you or the next business on the list.
 
-**It works better on phones.** On a small screen, buttons and links need room around them so they are easy to tap with a thumb.
+**It works better on phones.** On a small screen, buttons and links need room around them so they're easy to tap with a thumb.
 
 **It's kinder to people.** Behind every visit is someone who is busy, a bit stressed and in a hurry. A calm page respects that. They feel looked after, and feelings are what people remember when they decide who to call.
 
@@ -68,6 +68,6 @@ Space needs a purpose. A big blank page with nothing useful on it isn't good des
 
 ## Want a second pair of eyes?
 
-If you're not sure whether your website is too busy, try the Do you need a website? assessment (/assessment), or have a look at what a web designer in Northwich, Cheshire can do for small businesses (/web-designer-northwich). You can also read about our services (/services), or tell me about your business and I'll take a look at your site and give you an honest view.
+If you're not sure whether your website is too busy, try the [assessment tool](https://pixel-north.co.uk/assessment), or have a look at what a [web designer in Cheshire](https://pixel-north.co.uk/web-design-cheshire) can do for small businesses. You can also read about [our services](https://pixel-north.co.uk/services), or tell me about your business and I'll take a look at your site and give you an honest view.
 
 _Small business sites, sorted._
