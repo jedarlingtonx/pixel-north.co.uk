@@ -4,7 +4,7 @@ date: 2026-11-24
 author: James Darlington
 summary: Why a little empty space makes your website easier to read, easier to trust and easier to act on, plus five quick fixes to try.
 image: /images/blog/white-space-human.webp
-image_alt: A crowded web page layout beside a calmer version of the same page with more space around the heading, text and button.
+image_alt: A worried person with tense shoulders looking at a crowded website, beside a relaxed, smiling person looking at a calm, uncluttered one.
 draft: false
 ---
 
