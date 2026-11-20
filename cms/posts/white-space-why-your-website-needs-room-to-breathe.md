@@ -3,7 +3,7 @@ title: 'White space: why your website needs room to breathe'
 date: 2026-11-24
 author: James Darlington
 summary: Why a little empty space makes your website easier to read, easier to trust and easier to act on, plus five quick fixes to try.
-image: /images/blog/white-space-before-after.webp
+image: /images/blog/white-space-human.webp
 image_alt: A crowded web page layout beside a calmer version of the same page with more space around the heading, text and button.
 draft: false
 ---
